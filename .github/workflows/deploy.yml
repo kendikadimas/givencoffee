@@ -49,33 +49,32 @@ jobs:
 
             - name: Sync application code
               run: |
-                  rsync -avz --delete \
-                    --exclude '.env' --exclude '.env.*' \
-                    --exclude '.git' --exclude '.github' \
-                    --exclude 'vendor' --exclude 'node_modules' \
-                    --exclude 'bootstrap/cache/*' \
-                    --exclude 'storage/framework/cache/*' \
-                    --exclude 'storage/framework/sessions/*' \
-                    --exclude 'storage/framework/views/*' \
-                    --exclude 'storage/logs/*' \
-                    -e "ssh -i ~/.ssh/deploy_key -p ${{ secrets.DEPLOY_PORT }} -o StrictHostKeyChecking=yes" \
-                    ./ ${{ secrets.DEPLOY_USER }}@${{ secrets.DEPLOY_HOST }}:~/givencoffee/
+                  tar czf - \
+                    --exclude='./.env' --exclude='./.env.*' \
+                    --exclude='./.git' --exclude='./.github' \
+                    --exclude='./vendor' --exclude='./node_modules' \
+                    --exclude='./bootstrap/cache/*' \
+                    --exclude='./storage/framework/cache/*' \
+                    --exclude='./storage/framework/sessions/*' \
+                    --exclude='./storage/framework/views/*' \
+                    --exclude='./storage/logs/*' \
+                    . | ssh -i ~/.ssh/deploy_key -p ${{ secrets.DEPLOY_PORT }} -o StrictHostKeyChecking=yes \
+                      ${{ secrets.DEPLOY_USER }}@${{ secrets.DEPLOY_HOST }} \
+                      'cd ~/givencoffee && tar xzf -'
 
             - name: Sync build assets to docroot
               run: |
-                  rsync -avz --delete \
-                    -e "ssh -i ~/.ssh/deploy_key -p ${{ secrets.DEPLOY_PORT }} -o StrictHostKeyChecking=yes" \
-                    public/build/ ${{ secrets.DEPLOY_USER }}@${{ secrets.DEPLOY_HOST }}:~/public_html/build/
+                  ssh -i ~/.ssh/deploy_key -p ${{ secrets.DEPLOY_PORT }} -o StrictHostKeyChecking=yes \
+                    ${{ secrets.DEPLOY_USER }}@${{ secrets.DEPLOY_HOST }} 'rm -rf ~/public_html/build/*'
+                  tar czf - -C public/build . | ssh -i ~/.ssh/deploy_key -p ${{ secrets.DEPLOY_PORT }} -o StrictHostKeyChecking=yes \
+                    ${{ secrets.DEPLOY_USER }}@${{ secrets.DEPLOY_HOST }} 'cd ~/public_html/build && tar xzf -'
 
             - name: Sync static assets to docroot
               run: |
-                  rsync -avz \
-                    -e "ssh -i ~/.ssh/deploy_key -p ${{ secrets.DEPLOY_PORT }} -o StrictHostKeyChecking=yes" \
-                    public/images/ ${{ secrets.DEPLOY_USER }}@${{ secrets.DEPLOY_HOST }}:~/public_html/images/
-                  rsync -avz \
-                    -e "ssh -i ~/.ssh/deploy_key -p ${{ secrets.DEPLOY_PORT }} -o StrictHostKeyChecking=yes" \
-                    public/favicon.ico public/favicon.svg public/robots.txt public/apple-touch-icon.png \
-                    ${{ secrets.DEPLOY_USER }}@${{ secrets.DEPLOY_HOST }}:~/public_html/
+                  tar czf - -C public/images . | ssh -i ~/.ssh/deploy_key -p ${{ secrets.DEPLOY_PORT }} -o StrictHostKeyChecking=yes \
+                    ${{ secrets.DEPLOY_USER }}@${{ secrets.DEPLOY_HOST }} 'cd ~/public_html/images && tar xzf -'
+                  tar czf - -C public favicon.ico favicon.svg robots.txt apple-touch-icon.png | ssh -i ~/.ssh/deploy_key -p ${{ secrets.DEPLOY_PORT }} -o StrictHostKeyChecking=yes \
+                    ${{ secrets.DEPLOY_USER }}@${{ secrets.DEPLOY_HOST }} 'cd ~/public_html && tar xzf -'
 
             - name: Post-deploy
               run: |
