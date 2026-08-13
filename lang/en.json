@@ -1,0 +1,369 @@
+{
+    "ui": {
+        "nav": {
+            "home": "Home",
+            "about": "About",
+            "product": "Product",
+            "process": "Process & Quality",
+            "contact": "Contact",
+            "blog": "Journal",
+            "admin": "Admin"
+        },
+        "cta": {
+            "explore": "Explore",
+            "sample": "Request Sample",
+            "catalog": "Download Catalog",
+            "spec": "Download Spec Sheet",
+            "inquiry": "Send Inquiry",
+            "readMore": "Read article",
+            "viewAll": "View all articles",
+            "backToBlog": "Back to journal",
+            "goTo": "Read more",
+            "contactSales": "Talk to sales",
+            "orderWhatsapp": "Inquire via WhatsApp",
+            "inquire": "Request Sample"
+        },
+        "footer": {
+            "tagline": "Single-origin specialty coffee, grown by family farmers around Lake Toba, North Sumatra and exported directly to the world.",
+            "menu": "Menu",
+            "contact": "Contact",
+            "social": "Follow us",
+            "rights": "All rights reserved."
+        },
+        "locale": {
+            "label": "Language",
+            "en": "EN",
+            "id": "ID"
+        },
+        "meta": {
+            "defaultDescription": "Given Coffee is a single-origin specialty coffee exporter from Lintong, North Sumatra. Wet-hulled Arabica, directly traded from family farms around Lake Toba, shipped worldwide.",
+            "titleSuffix": "Given Coffee"
+        }
+    },
+    "home": {
+        "hero": {
+            "eyebrow": "Single-origin coffee from North Sumatra",
+            "title": "Taste the origin, straight from the farm.",
+            "subtitle": "Given Coffee sources single-origin Arabica from family farms around Lake Toba, North Sumatra — and exports it with full traceability, from cherry to container.",
+            "ctaPrimary": "Explore",
+            "ctaSecondary": "Request Sample",
+            "scroll": "Scroll"
+        },
+        "about": {
+            "eyebrow": "Our story",
+            "title": "Born on the shores of Lake Toba",
+            "body": "Given Coffee began with a simple idea: the people who grow the coffee should be seen, and the people who drink it should know exactly where it comes from. We work directly with farmers in the highlands of North Sumatra, pay above market rates, and measure quality at every step.",
+            "link": "Read our story"
+        },
+        "product": {
+            "eyebrow": "Our signature",
+            "title": "Arabika Lintong",
+            "subtitle": "Single-origin Arabica from Sumatra",
+            "body": "A semi-washed Arabica grown at 1,400–1,700 masl on the plateau south-west of Lake Toba. Heavy body, low acidity, and a full, earthy cup with notes of cocoa and cedar. Our flagship export lot — cupped and graded before it ever leaves the warehouse.",
+            "cta": "See full specs"
+        },
+        "why": {
+            "eyebrow": "Why Given Coffee",
+            "title": "Built for the long term",
+            "items": [
+                {
+                    "title": "Single origin",
+                    "text": "One farm, one region, one traceable lot."
+                },
+                {
+                    "title": "Direct trade",
+                    "text": "We buy directly from farmers, and pay above market price."
+                },
+                {
+                    "title": "Licensed exporter",
+                    "text": "Full export documentation, customs and shipping handled."
+                },
+                {
+                    "title": "Full traceability",
+                    "text": "Every lot is documented from harvest to container."
+                }
+            ]
+        },
+        "ceremony": {
+            "eyebrow": "The ceremony",
+            "title": "Every cup begins with thousands of hands",
+            "body": "Behind every shipment is a farmer, a sorter, a roaster, a cupper — and a morning ritual shared across continents. Let's brew something together.",
+            "ctaPrimary": "Request Sample",
+            "ctaSecondary": "Download Catalog"
+        }
+    },
+    "about": {
+        "hero": {
+            "eyebrow": "Our story",
+            "title": "The land that gives, and the hands that give back.",
+            "subtitle": "How a group of North Sumatra farmers and coffee traders became Given Coffee."
+        },
+        "story": {
+            "eyebrow": "About us",
+            "title": "Coffee is the reason we met.",
+            "body": "Given Coffee started with a friendship between a farmer and a trader who shared one frustration: the best Indonesian coffee was being exported in bulk, blended, and sold without a name. The farmer who grew it was invisible.",
+            "body2": "We decided to change that. Today we work with a small network of family farms around Lake Toba in North Sumatra — mostly in Lintong, Doloksanggul and the wider Humbang Hasundutan regency — buying their harvest directly, paying above market, and bringing each lot to the world with its origin intact. The coffee carries a name, a farm, and an altitude. That is the 'given' in our name — what the land gives us, we give forward."
+        },
+        "origin": {
+            "eyebrow": "Origin & farm",
+            "title": "From the high plateau of Lintong",
+            "body": "Our flagship lot comes from family farms in Lintong, on the high plateau south-west of Lake Toba, North Sumatra. Cool nights, volcanic soil and elevations above 1,400 meters give the cherries their density — and the coffee its character. Like most Sumatran arabica, it is processed wet-hulled (giling basah), which gives the beans their bluish tint and the cup its famously low acidity and heavy body.",
+            "altitude": "Altitude",
+            "altitudeValue": "1,400–1,700 masl",
+            "variety": "Varieties",
+            "varietyValue": "Sigararutang, Lini S, Ateng Super",
+            "process": "Process",
+            "processValue": "Semi-washed (giling basah)",
+            "harvest": "Harvest",
+            "harvestValue": "May – October"
+        },
+        "timeline": {
+            "eyebrow": "The journey",
+            "title": "From cherry to cargo",
+            "steps": [
+                {
+                    "title": "Cherry",
+                    "text": "Hand-picked ripe cherries, sorted on the same day."
+                },
+                {
+                    "title": "Pulping & hulling",
+                    "text": "Wet-hulled (giling basah) the traditional Sumatran way — pulped, fermented and hulled in parchment within hours of harvest."
+                },
+                {
+                    "title": "Drying",
+                    "text": "Sun-dried on raised beds until moisture hits export grade."
+                },
+                {
+                    "title": "Milling",
+                    "text": "Dry milled, graded and rested before export."
+                },
+                {
+                    "title": "Roasting",
+                    "text": "Roasted to order for our retail partners."
+                }
+            ]
+        },
+        "sustainability": {
+            "eyebrow": "Sustainability",
+            "title": "Good coffee shouldn't cost the earth",
+            "body": "We work with farms that use shade-grown, agroforestry methods — protecting soil and forest while producing better cherries. We pay at harvest time, support farm-gate pricing, and reinvest part of every sale into the farming communities we buy from. Certification is on our roadmap; the practice already runs through everything we do."
+        },
+        "quote": {
+            "text": "We don't sell beans. We sell the work of people who wake before sunrise to grow something honest — and we make sure the world knows their name.",
+            "name": "Founding team, Given Coffee",
+            "role": "Farm partners & traders, Humbang Hasundutan, North Sumatra"
+        }
+    },
+    "product": {
+        "hero": {
+            "eyebrow": "From the Lintong highlands",
+            "title": "Lintong, from the shores of Lake Toba.",
+            "subtitle": "Single-origin Arabica Lintong — Indonesia",
+            "body": "Grown on family farms around Lake Toba and wet-hulled the traditional Sumatran way — a heavy, low-acid cup that carries its origin from cherry to container. One origin, three forms."
+        },
+        "collection": {
+            "eyebrow": "The collection",
+            "title": "One lot, three ways to enjoy it",
+            "body": "Every product is the same Lintong lot — traced from a named farm to your shelf. Choose the form that fits your ritual.",
+            "viewDetails": "View details",
+            "price": "Price",
+            "details": "Product details",
+            "otherProducts": "Other offerings from Given Coffee"
+        },
+        "story": {
+            "eyebrow": "The lot",
+            "title": "Why this coffee is special",
+            "body": "Given Coffee is grown at 1,400–1,700 meters on the high plateau of Lintong, Doloksanggul, North Sumatra — a region with cool nights and mineral-rich volcanic soil that give the cherries their density. Processed wet-hulled (giling basah), it keeps a heavy body and famously low acidity: cocoa, earth and a whisper of cedar in the cup.",
+            "body2": "We keep it simple on purpose: no blending, no flavoring, no shortcuts. Just a traceable, single-origin lot with a cupping score we stand behind."
+        },
+        "origin": "Doloksanggul, Sumatra, Indonesia",
+        "specs": {
+            "eyebrow": "Technical specs",
+            "title": "Specifications",
+            "items": [
+                { "label": "Origin", "value": "Doloksanggul, Sumatra, Indonesia" },
+                { "label": "Altitude", "value": "1,400 – 1,700 masl" },
+                { "label": "Variety", "value": "Sigararutang, Lini S, Ateng Super" },
+                { "label": "Process", "value": "Semi-washed (giling basah)" },
+                { "label": "Roast profile", "value": "Medium (available light – dark)" },
+                { "label": "Cupping score", "value": "84 – 86 (SCA)" },
+                { "label": "Screen size", "value": "16 – 18" },
+                { "label": "Moisture", "value": "10.5 – 11.5%" },
+                { "label": "Packaging", "value": "Green bean: 60 kg jute + GrainPro; Roasted: 250 g / 1 kg valve bags" },
+                { "label": "MOQ", "value": "1 x 20ft container (green bean), 500 kg (roasted)" },
+                { "label": "HS code", "value": "0901.11 (green bean) / 0901.21 (roasted)" }
+            ]
+        },
+        "notes": {
+            "eyebrow": "Cupping notes",
+            "title": "What to expect in the cup",
+            "body": "Heavy body, low acidity, and a long earthy finish. Notes vary slightly by lot — this is the profile we ship most often.",
+            "traits": ["Cocoa", "Earth", "Cedar", "Cane sugar", "Tobacco"],
+            "alt": "Flavor profile"
+        },
+        "packaging": {
+            "eyebrow": "Packaging",
+            "title": "Packed for the market you sell to",
+            "items": [
+                {
+                    "title": "Green bean",
+                    "text": "60 kg jute bags with GrainPro liner, container-ready.",
+                    "tag": "Export"
+                },
+                {
+                    "title": "Roasted retail",
+                    "text": "250 g and 1 kg one-way valve bags, private-label ready.",
+                    "tag": "Retail"
+                },
+                {
+                    "title": "Private label",
+                    "text": "Your branding on our beans — design, roast and pack to order.",
+                    "tag": "Brands"
+                }
+            ]
+        },
+        "cta": {
+            "eyebrow": "Trade with us",
+            "title": "Let's talk specs over a sample",
+            "body": "Send us your market, volume and roast preference. We'll respond within one business day with a quote, spec sheet and sample options.",
+            "ctaPrimary": "Request Sample",
+            "ctaSecondary": "Contact Sales"
+        },
+        "catalog": {
+            "eyebrow": "The range",
+            "title": "Explore the collection",
+            "body": "Three ways to buy our Lintong lot — ground, whole roasted, or green for your own roast.",
+            "nowViewing": "Now viewing"
+        }
+    },
+    "process": {
+        "hero": {
+            "eyebrow": "Process & quality",
+            "title": "From farm to cup, in full view.",
+            "subtitle": "We keep every step of the journey visible — because traceability is the trust we trade on."
+        },
+        "journey": {
+            "eyebrow": "The journey",
+            "title": "Farm to cup",
+            "steps": [
+                {
+                    "title": "Harvesting",
+                    "text": "Ripe cherries are hand-picked, never stripped, and sorted the same day."
+                },
+                {
+                    "title": "Sorting",
+                    "text": "Floaters and defects are removed before processing begins."
+                },
+                {
+                    "title": "Drying",
+                    "text": "Sun-dried on raised beds, turned regularly for 12–15 days."
+                },
+                {
+                    "title": "Roasting",
+                    "text": "Roasted to order at our facility, profiled for your market."
+                },
+                {
+                    "title": "Packing",
+                    "text": "Graded, sealed and container-loaded under supervision."
+                }
+            ]
+        },
+        "qc": {
+            "eyebrow": "Quality control",
+            "title": "Measured, not guessed",
+            "body": "Every lot is cupped, graded and moisture-checked before it ships. We reject beans, not shipments.",
+            "points": [
+                {
+                    "title": "Cupping score",
+                    "text": "Each lot is cupped and scored (SCA) before export."
+                },
+                {
+                    "title": "Grading",
+                    "text": "Screen size, defects and moisture are checked against spec."
+                },
+                {
+                    "title": "Lab test",
+                    "text": "Physical and moisture analysis on every export lot."
+                }
+            ]
+        },
+        "export": {
+            "eyebrow": "Export readiness",
+            "title": "Ready when your container is",
+            "body": "We handle the paperwork, you receive the coffee. Export documentation, customs and logistics are managed end to end.",
+            "capacity": {
+                "label": "Capacity",
+                "value": "Up to 2 containers per month"
+            },
+            "lead": {
+                "label": "Lead time",
+                "value": "10 – 14 days after order confirmation"
+            },
+            "terms": {
+                "label": "Shipping terms",
+                "value": "FOB / CIF / EXW (Jakarta or Surabaya)"
+            },
+            "docs": {
+                "label": "Documentation",
+                "value": "Phytosanitary, COO, invoice, packing list, SGS report on request"
+            }
+        }
+    },
+    "contact": {
+        "hero": {
+            "eyebrow": "Contact",
+            "title": "Let's ship your next lot.",
+            "subtitle": "Tell us about your market and volume — a real person replies within one business day."
+        },
+        "form": {
+            "title": "Wholesale inquiry",
+            "description": "For retail and bulk orders. For anything else, use the contact details below.",
+            "name": "Full name",
+            "namePh": "Your name",
+            "company": "Company",
+            "companyPh": "Company or brand name",
+            "email": "Business email",
+            "emailPh": "you@company.com",
+            "country": "Country",
+            "countryPh": "Where is your business located?",
+            "quantity": "Estimated quantity",
+            "quantityPh": "e.g. 1 x 20ft container, 500 kg roasted",
+            "message": "Message",
+            "messagePh": "Roast preference, packaging, timeline...",
+            "submit": "Send Inquiry",
+            "success": "Thank you — your inquiry has been received. We'll reply within one business day.",
+            "error": "Something went wrong. Please try again."
+        },
+        "info": {
+            "title": "Business information",
+            "address": "Dolok Sanggul, Kec. Dolok sanggul, Kabupaten Humbang Hasundutan, Sumatera Utara 22457",
+            "hours": "Mon – Fri, 08.00 – 17.00 WIB",
+            "whatsapp": "WhatsApp Business",
+            "email": "Email",
+            "office": "Office"
+        },
+        "export": {
+            "title": "Export information",
+            "served": "Markets served",
+            "servedValue": "Europe, North America, Asia-Pacific, Middle East",
+            "terms": "Incoterms",
+            "termsValue": "FOB, CIF, EXW",
+            "min": "Minimum order",
+            "minValue": "1 x 20ft container (green bean) · 500 kg (roasted)",
+            "ports": "Loading ports",
+            "portsValue": "Jakarta, Surabaya"
+        },
+        "map": {
+            "title": "Find us"
+        }
+    },
+    "blog": {
+        "eyebrow": "Journal",
+        "title": "Notes from the highlands",
+        "subtitle": "Stories from the farms, the roastery, and the market.",
+        "empty": "No articles yet. Check back soon.",
+        "readTime": "min read",
+        "back": "Back to journal",
+        "share": "Share"
+    }
+}
