@@ -12,6 +12,7 @@
         "cta": {
             "explore": "Jelajahi",
             "sample": "Minta Sampel",
+            "quote": "Minta Penawaran",
             "catalog": "Unduh Katalog",
             "spec": "Unduh Spesifikasi",
             "inquiry": "Kirim Permintaan",
@@ -21,10 +22,10 @@
             "goTo": "Selengkapnya",
             "contactSales": "Hubungi Sales",
             "orderWhatsapp": "Tanya via WhatsApp",
-            "inquire": "Minta Sampel"
+            "inquire": "Tanya untuk Pesanan Besar"
         },
         "footer": {
-            "tagline": "Kopi spesialti single-origin, ditanam petani keluarga di sekitar Danau Toba, Sumatera Utara dan diekspor langsung ke seluruh dunia.",
+            "tagline": "Menghubungkan kopi spesialti dataran tinggi Indonesia ke dunia — asal murni, berkelanjutan, dan terlacak penuh.",
             "menu": "Menu",
             "contact": "Kontak",
             "social": "Ikuti kami",
@@ -36,30 +37,30 @@
             "id": "ID"
         },
         "meta": {
-            "defaultDescription": "Given Coffee adalah eksportir kopi spesialti single-origin dari Lintong, Sumatera Utara. Arabika wet-hulled, dibeli langsung dari petani keluarga di sekitar Danau Toba, dikirim ke seluruh dunia.",
+            "defaultDescription": "Given Coffee adalah eksportir green bean B2B yang menghubungkan kopi spesialti dataran tinggi Indonesia ke dunia. Asal murni, berkelanjutan, dan terlacak penuh.",
             "titleSuffix": "Given Coffee"
         }
     },
     "home": {
         "hero": {
-            "eyebrow": "Kopi single-origin dari Sumatera Utara",
-            "title": "Rasakan asal-usulnya, langsung dari kebun.",
-            "subtitle": "Given Coffee menyuplai Arabika single-origin dari kebun keluarga di sekitar Danau Toba, Sumatera Utara — dan mengekspornya dengan keterlacakan penuh, dari ceri hingga kontainer.",
+            "eyebrow": "Eksportir green bean B2B — Indonesia",
+            "title": "Menghubungkan Kopi Spesialti Dataran Tinggi Indonesia ke Dunia.",
+            "subtitle": "Asal murni, berkelanjutan, dan terlacak penuh. Given Coffee mengekspor green bean dari kebun mitra di dataran tinggi Indonesia — ditanam, diolah, dan dikemas untuk roaster dan importir di seluruh dunia.",
             "ctaPrimary": "Jelajahi",
             "ctaSecondary": "Minta Sampel",
             "scroll": "Gulir"
         },
         "about": {
             "eyebrow": "Cerita kami",
-            "title": "Lahir di tepian Danau Toba",
-            "body": "Given Coffee berawal dari satu gagasan sederhana: orang yang menanam kopi harus terlihat, dan orang yang meminumnya harus tahu dari mana kopi itu berasal. Kami bekerja langsung dengan petani di dataran tinggi Sumatera Utara, membayar di atas harga pasar, dan mengukur mutu di setiap langkah.",
+            "title": "Lebih dari 15 tahun kopi Indonesia",
+            "body": "Given Coffee beroperasi sebagai eksportir berizin dari Indonesia selama lebih dari 15 tahun. Kami bermitra dengan kebun-kebun di dataran tinggi — membayar dengan adil, mengukur mutu di setiap langkah, dan membawa setiap lot ke dunia dengan asal-usulnya tetap utuh.",
             "link": "Baca cerita kami"
         },
         "product": {
-            "eyebrow": "Produk andalan",
-            "title": "Arabika Lintong",
-            "subtitle": "Arabika single-origin dari Sumatra",
-            "body": "Arabika semi-washed yang ditanam di ketinggian 1.400–1.700 mdpl di dataran tinggi barat daya Danau Toba. Body pekat, asam rendah, dan cita rasa earthy yang penuh dengan aroma cokelat serta kayu cedar. Lot ekspor andalan kami — dicupping dan digrading sebelum meninggalkan gudang.",
+            "eyebrow": "Ekspor kami",
+            "title": "Green Bean Spesialti",
+            "subtitle": "Asal murni, terlacak penuh",
+            "body": "Kami mengekspor green bean spesialti dari kebun mitra di dataran tinggi Indonesia — digabung per varietas untuk lot yang konsisten, dengan kapasitas produksi 100 ton per tahun. Bersertifikat Halal, siap ekspor, dan dikemas dalam GrainPro hermetik + karung jute untuk pengiriman jarak jauh.",
             "cta": "Lihat spesifikasi"
         },
         "why": {
@@ -67,16 +68,16 @@
             "title": "Dibangun untuk jangka panjang",
             "items": [
                 {
-                    "title": "Single origin",
-                    "text": "Satu kebun, satu daerah, satu lot yang terlacak."
+                    "title": "Asal murni",
+                    "text": "Digabung dari kebun mitra per varietas — setiap lot terlacak ke sumbernya."
                 },
                 {
                     "title": "Direct trade",
-                    "text": "Kami membeli langsung dari petani, di atas harga pasar."
+                    "text": "Kami bekerja langsung dengan petani, membayar dengan adil dan tepat waktu."
                 },
                 {
-                    "title": "Eksportir berizin",
-                    "text": "Dokumen ekspor, bea cukai, dan pengiriman diurus tuntas."
+                    "title": "Eksportir tersertifikasi",
+                    "text": "Perusahaan PT, beroperasi 15+ tahun, tersertifikasi NIB & Halal."
                 },
                 {
                     "title": "Keterlacakan penuh",
@@ -85,37 +86,37 @@
             ]
         },
         "ceremony": {
-            "eyebrow": "Upacara",
-            "title": "Setiap cangkir dimulai dari ribuan tangan",
-            "body": "Di balik setiap pengiriman ada petani, penyortir, roaster, cupper — dan ritual pagi yang menyambung antar benua. Mari seduh bersama.",
+            "eyebrow": "Perjalanan",
+            "title": "Setiap lot dimulai dari ribuan tangan",
+            "body": "Di balik setiap pengiriman ada petani, penyortir, pengendali mutu — dan rantai pasok yang dibangun di atas kepercayaan. Mari wujudkan lot berikutnya bersama.",
             "ctaPrimary": "Minta Sampel",
-            "ctaSecondary": "Unduh Katalog"
+            "ctaSecondary": "Minta Penawaran"
         }
     },
     "about": {
         "hero": {
             "eyebrow": "Cerita kami",
-            "title": "Tanah yang memberi, dan tangan yang memberi kembali.",
-            "subtitle": "Bagaimana sekelompok petani dan pedagang kopi Sumatera Utara menjadi Given Coffee."
+            "title": "Dataran tinggi yang memberi, dan tangan yang memberi kembali.",
+            "subtitle": "Bagaimana lebih dari 15 tahun perdagangan kopi Indonesia menjadi Given Coffee — eksportir tersertifikasi yang dibangun di atas keterlacakan dan kepercayaan."
         },
         "story": {
             "eyebrow": "Tentang kami",
             "title": "Kopi adalah alasan kami bertemu.",
-            "body": "Given Coffee bermula dari persahabatan antara seorang petani dan seorang pedagang yang berbagi satu kekecewaan: kopi terbaik Indonesia diekspor dalam jumlah besar, dicampur, dan dijual tanpa nama. Petani yang menanamnya tak terlihat.",
-            "body2": "Kami memutuskan untuk mengubah itu. Hari ini kami bekerja dengan jaringan kecil kebun keluarga di sekitar Danau Toba, Sumatera Utara — sebagian besar di Lintong, Doloksanggul, dan wilayah Humbang Hasundutan — membeli panen mereka secara langsung, membayar di atas pasar, dan membawa setiap lot ke dunia dengan asal-usulnya tetap utuh. Kopi ini membawa nama, kebun, dan ketinggian. Itulah makna 'given' pada nama kami — apa yang diberikan tanah kepada kami, kami teruskan."
+            "body": "Given Coffee tumbuh dari satu kekecewaan sederhana yang dirasakan orang-orang yang paling memahami kopi Indonesia: terlalu sering biji berkualitas diekspor dalam jumlah besar, dicampur, dan dijual tanpa nama — sementara petani yang menanamnya tak terlihat.",
+            "body2": "Kami memutuskan untuk mengubah itu. Selama lebih dari 15 tahun kami bekerja sebagai eksportir PT berizin, bermitra dengan kebun keluarga di dataran tinggi Indonesia, membeli panen mereka langsung dan membayar dengan adil. Kami menggabungkan lot per varietas agar setiap kontainer konsisten — lalu membawanya ke dunia dengan asal-usulnya tetap utuh. Itulah makna 'given' pada nama kami: apa yang diberikan tanah kepada kami, kami teruskan."
         },
         "origin": {
-            "eyebrow": "Asal & kebun",
-            "title": "Dari dataran tinggi Lintong",
-            "body": "Lot andalan kami berasal dari kebun keluarga di Lintong, di dataran tinggi barat daya Danau Toba, Sumatera Utara. Malam yang sejuk, tanah vulkanik, dan ketinggian di atas 1.400 meter memberi ceri kopi kepadatan — dan karakternya. Seperti kebanyakan arabika Sumatra, kopi ini diolah dengan cara giling basah, yang memberi warna kebiruan pada biji dan cangkir dengan asam rendah serta body pekat yang khas.",
+            "eyebrow": "Asal & sumber",
+            "title": "Disuplai dari dataran tinggi Indonesia",
+            "body": "Kami menyuplai green bean dari kebun mitra di dataran tinggi Indonesia — wilayah yang dikenal dengan tanah vulkanik, malam sejuk, dan kopi bercita rasa kaya. Lot digabung dari beberapa kebun dengan varietas yang sama, memberi pembeli produk yang konsisten dan terlacak. Data teknis lengkap (ketinggian, varietas, pengolahan, cupping, dan kadar air) tersedia atas permintaan untuk setiap lot.",
             "altitude": "Ketinggian",
-            "altitudeValue": "1.400–1.700 mdpl",
+            "altitudeValue": "Tersedia atas permintaan per lot",
             "variety": "Varietas",
-            "varietyValue": "Sigararutang, Lini S, Ateng Super",
+            "varietyValue": "Digabung per varietas — atas permintaan",
             "process": "Proses",
-            "processValue": "Semi-washed (giling basah)",
-            "harvest": "Panen",
-            "harvestValue": "Mei – Oktober"
+            "processValue": "Tersedia atas permintaan per lot",
+            "harvest": "Kapasitas produksi",
+            "harvestValue": "100 ton per tahun"
         },
         "timeline": {
             "eyebrow": "Perjalanan",
@@ -123,148 +124,148 @@
             "steps": [
                 {
                     "title": "Ceri",
-                    "text": "Ceri matang dipetik tangan dan disortir di hari yang sama."
+                    "text": "Ceri matang dipetik tangan dari kebun mitra, disortir di hari yang sama."
                 },
                 {
-                    "title": "Pulping & pengelupasan",
-                    "text": "Giling basah ala Sumatera — dipulping, difermentasi, dan dikuliti dalam hitungan jam setelah panen."
+                    "title": "Pengolahan",
+                    "text": "Diolah dan dikeringkan hingga standar ekspor oleh kebun mitra, sesuai spesifikasi lot."
                 },
                 {
-                    "title": "Pengeringan",
-                    "text": "Dijemur di raised bed hingga kadar air mencapai standar ekspor."
+                    "title": "Grading",
+                    "text": "Dikeringkan, digrading, dan dicek kadar airnya sebelum meninggalkan gudang."
                 },
                 {
-                    "title": "Penggilingan",
-                    "text": "Dikeringkan, digrading, dan diistirahatkan sebelum ekspor."
+                    "title": "Pengemasan",
+                    "text": "Disegel dalam kantong hermetik GrainPro dan karung jute (60 kg / 30 kg)."
                 },
                 {
-                    "title": "Roasting",
-                    "text": "Di-roast sesuai pesanan untuk mitra ritel kami."
+                    "title": "Pengiriman",
+                    "text": "Dimuat kontainer dengan dokumentasi ekspor lengkap, siap berangkat."
                 }
             ]
         },
         "sustainability": {
-            "eyebrow": "Keberlanjutan",
-            "title": "Kopi yang baik tak boleh merusak bumi",
-            "body": "Kami bekerja dengan kebun yang menerapkan naungan (shade-grown) dan agroforestri — melindungi tanah dan hutan sambil menghasilkan ceri yang lebih baik. Kami membayar saat panen, mendukung harga di tingkat kebun, dan menyisihkan sebagian dari setiap penjualan untuk komunitas petani. Sertifikasi ada di peta jalan kami; praktiknya sudah berjalan di seluruh rantai."
+            "eyebrow": "Kepercayaan & kepatuhan",
+            "title": "Tersertifikasi, terlacak, siap ekspor",
+            "body": "Given Coffee beroperasi sebagai eksportir PT berizin dengan sertifikasi NIB dan Halal. Kami membayar saat panen, mendukung harga di tingkat kebun, dan menyisihkan sebagian dari setiap penjualan untuk komunitas petani. Setiap pengiriman didokumentasikan end-to-end — sehingga pembeli tahu persis apa yang mereka terima dan dari mana asalnya."
         },
         "quote": {
-            "text": "Kami tidak menjual biji kopi. Kami menjual kerja orang-orang yang bangun sebelum subuh untuk menumbuhkan sesuatu yang jujur — dan kami memastikan dunia tahu nama mereka.",
+            "text": "Kami tidak menjual biji tanpa nama. Kami menjual kerja orang-orang yang bangun sebelum subuh untuk menumbuhkan sesuatu yang jujur — dan kami memastikan dunia tahu nama mereka.",
             "name": "Tim pendiri, Given Coffee",
-            "role": "Mitra petani & pedagang, Humbang Hasundutan, Sumatera Utara"
+            "role": "Eksportir green bean Indonesia yang berizin"
         }
     },
     "product": {
         "hero": {
-            "eyebrow": "Dari dataran tinggi Lintong",
-            "title": "Lintong, dari tepian Danau Toba.",
-            "subtitle": "Arabika Lintong single-origin — Indonesia",
-            "body": "Ditanam di kebun keluarga di sekitar Danau Toba dan diolah dengan giling basah khas Sumatera — cangkir berbody pekat dan rendah asam yang membawa asal-usulnya dari ceri hingga kontainer. Satu asal, tiga bentuk."
+            "eyebrow": "Dari dataran tinggi Indonesia",
+            "title": "Green bean spesialti, asal murni.",
+            "subtitle": "Ekspor green bean B2B — Indonesia",
+            "body": "Green bean spesialti dari kebun mitra di dataran tinggi Indonesia, digabung per varietas untuk lot yang konsisten dan terlacak. Siap ekspor, bersertifikat Halal, dan dikemas untuk pengiriman jarak jauh."
         },
         "collection": {
-            "eyebrow": "Koleksi",
-            "title": "Satu lot, tiga cara menikmatinya",
-            "body": "Setiap produk adalah lot Lintong yang sama — terlacak dari kebun bernama hingga rak Anda. Pilih bentuk yang sesuai ritual Anda.",
+            "eyebrow": "Penawaran",
+            "title": "Dibangun untuk roaster dan importir",
+            "body": "Satu asal yang terlacak, beberapa cara membeli: green bean curah, private label, atau lot sampel. Pilih skema yang sesuai pasar Anda.",
             "viewDetails": "Lihat detail",
             "price": "Harga",
             "details": "Detail produk",
-            "otherProducts": "Produk lain dari Given Coffee"
+            "otherProducts": "Penawaran lain dari Given Coffee"
         },
         "story": {
-            "eyebrow": "Lot ini",
-            "title": "Mengapa kopi ini istimewa",
-            "body": "Given Coffee ditanam di ketinggian 1.400–1.700 meter di dataran tinggi Lintong, Doloksanggul, Sumatera Utara — wilayah dengan malam sejuk dan tanah vulkanik kaya mineral yang memberi kepadatan pada ceri. Diolah dengan giling basah, kopi ini mempertahankan body pekat dan keasaman rendah yang terkenal: cokelat, tanah, dan aroma cedar yang lembut di cangkir.",
-            "body2": "Kami sengaja menjaga kesederhanaan: tanpa campuran, tanpa perasa, tanpa jalan pintas. Hanya satu lot single-origin yang terlacak, dengan skor cupping yang kami pertanggungjawabkan."
+            "eyebrow": "Produk ini",
+            "title": "Mengapa green bean kami menonjol",
+            "body": "Given Coffee mengekspor green bean spesialti dari dataran tinggi Indonesia — tanah vulkanik, malam sejuk, dan pengalaman bertani lintas generasi. Lot digabung dari beberapa kebun mitra dengan varietas yang sama, sehingga Anda mendapat produk yang konsisten setiap pengiriman.",
+            "body2": "Setiap lot digrading, dicek kadar air, dan dicupping sebelum ekspor, serta dikirim dengan dokumentasi lengkap. Kami sengaja menjaga kesederhanaan: asal murni, tanpa kejutan."
         },
-        "origin": "Doloksanggul, Sumatra, Indonesia",
+        "origin": "Dataran tinggi Indonesia — atas permintaan per lot",
         "specs": {
             "eyebrow": "Spesifikasi teknis",
             "title": "Spesifikasi",
             "items": [
-                { "label": "Asal", "value": "Doloksanggul, Sumatra, Indonesia" },
-                { "label": "Ketinggian", "value": "1.400 – 1.700 mdpl" },
-                { "label": "Varietas", "value": "Sigararutang, Lini S, Ateng Super" },
-                { "label": "Proses", "value": "Semi-washed (giling basah)" },
-                { "label": "Profil roast", "value": "Medium (tersedia light – dark)" },
-                { "label": "Skor cupping", "value": "84 – 86 (SCA)" },
-                { "label": "Screen size", "value": "16 – 18" },
-                { "label": "Kadar air", "value": "10,5 – 11,5%" },
-                { "label": "Kemasan", "value": "Green bean: 60 kg karung jute + GrainPro; Roasted: kantong valve 250 g / 1 kg" },
-                { "label": "MOQ", "value": "1 x kontainer 20ft (green bean), 500 kg (roasted)" },
-                { "label": "HS code", "value": "0901.11 (green bean) / 0901.21 (roasted)" }
+                { "label": "Asal", "value": "Dataran tinggi Indonesia — atas permintaan per lot" },
+                { "label": "Bentuk", "value": "Green bean spesialti" },
+                { "label": "Ketinggian", "value": "Tersedia atas permintaan per lot" },
+                { "label": "Varietas", "value": "Digabung per varietas — atas permintaan" },
+                { "label": "Proses", "value": "Tersedia atas permintaan per lot" },
+                { "label": "Skor cupping", "value": "Tersedia atas permintaan per lot" },
+                { "label": "Kadar air", "value": "Standar ekspor — atas permintaan" },
+                { "label": "Kemasan", "value": "Kantong hermetik GrainPro + karung jute, 60 kg / 30 kg" },
+                { "label": "Private label", "value": "Tersedia — MOQ 2 ton" },
+                { "label": "Kapasitas", "value": "100 ton per tahun" },
+                { "label": "Sertifikasi", "value": "NIB & Halal" }
             ]
         },
         "notes": {
-            "eyebrow": "Cupping notes",
-            "title": "Yang akan Anda rasakan di cangkir",
-            "body": "Body pekat, keasaman rendah, dan finish earthy yang panjang. Catatan rasa bervariasi per lot — ini profil yang paling sering kami kirim.",
-            "traits": ["Kakao", "Tanah", "Cedar", "Gula tebu", "Tembakau"],
-            "alt": "Profil rasa"
+            "eyebrow": "Mutu",
+            "title": "Diukur, bukan ditebak",
+            "body": "Setiap lot dicupping, digrading, dan dicek kadar airnya sebelum dikirim — dan profil teknis lot spesifik yang Anda pesan dibagikan atas permintaan.",
+            "traits": ["Terlacak", "Konsisten", "Siap ekspor", "Halal", "Berkelanjutan"],
+            "alt": "Profil mutu"
         },
         "packaging": {
             "eyebrow": "Kemasan",
             "title": "Dikemas sesuai pasar Anda",
             "items": [
                 {
-                    "title": "Green bean",
-                    "text": "Karung jute 60 kg dengan lapisan GrainPro, siap kontainer.",
+                    "title": "Ekspor curah",
+                    "text": "Kantong hermetik GrainPro + karung jute dalam 60 kg / 30 kg, siap kontainer.",
                     "tag": "Ekspor"
                 },
                 {
-                    "title": "Roasted ritel",
-                    "text": "Kantong one-way valve 250 g dan 1 kg, siap private label.",
-                    "tag": "Ritel"
+                    "title": "Private label",
+                    "text": "Brand Anda di biji kami, dikemas sesuai spesifikasi — MOQ 2 ton.",
+                    "tag": "Brand"
                 },
                 {
-                    "title": "Private label",
-                    "text": "Brand Anda di biji kami — desain, roast, dan kemasan sesuai pesanan.",
-                    "tag": "Brand"
+                    "title": "Lot sampel",
+                    "text": "Lot sampel kecil tersedia agar Anda bisa menilai asal sebelum memesan.",
+                    "tag": "Sampel"
                 }
             ]
         },
         "cta": {
             "eyebrow": "Bermitra dengan kami",
             "title": "Mari bicarakan spesifikasi sambil mencoba sampel",
-            "body": "Kirimkan pasar, volume, dan preferensi roast Anda. Kami merespons dalam satu hari kerja dengan penawaran, lembar spesifikasi, dan opsi sampel.",
+            "body": "Kirimkan pasar, volume, dan preferensi kemasan Anda. Kami merespons dalam satu hari kerja dengan penawaran, lembar spesifikasi, dan opsi sampel.",
             "ctaPrimary": "Minta Sampel",
-            "ctaSecondary": "Hubungi Sales"
+            "ctaSecondary": "Minta Penawaran"
         },
         "catalog": {
-            "eyebrow": "Rangkaian produk",
-            "title": "Jelajahi koleksi",
-            "body": "Tiga cara membeli lot Lintong kami — bubuk, biji roast utuh, atau green bean untuk di-roast sendiri.",
+            "eyebrow": "Rangkaian",
+            "title": "Jelajahi penawaran",
+            "body": "Green bean spesialti, digabung per varietas — tersedia sebagai ekspor curah, private label, atau lot sampel.",
             "nowViewing": "Sedang dilihat"
         }
     },
     "process": {
         "hero": {
             "eyebrow": "Proses & mutu",
-            "title": "Dari kebun ke cangkir, terlihat penuh.",
+            "title": "Dari kebun dataran tinggi hingga kontainer, terlihat penuh.",
             "subtitle": "Kami menjaga setiap langkah tetap transparan — karena keterlacakan adalah kepercayaan yang kami perjualbelikan."
         },
         "journey": {
             "eyebrow": "Perjalanan",
-            "title": "Dari kebun ke cangkir",
+            "title": "Dari kebun ke kargo",
             "steps": [
                 {
                     "title": "Panen",
-                    "text": "Ceri matang dipetik tangan, tidak disisir, dan disortir di hari yang sama."
+                    "text": "Ceri matang dipetik tangan dari kebun mitra dan disortir di hari yang sama."
                 },
                 {
-                    "title": "Sortir",
-                    "text": "Biji yang mengapung dan cacat dibuang sebelum diproses."
+                    "title": "Pengolahan",
+                    "text": "Ceri diolah dan dijemur hingga standar ekspor oleh kebun mitra kami."
                 },
                 {
-                    "title": "Pengeringan",
-                    "text": "Dijemur di raised bed dan dibolak-balik selama 12–15 hari."
+                    "title": "Milling & grading",
+                    "text": "Dikeringkan, digrading berdasarkan screen size dan cacat, lalu diistirahatkan sebelum ekspor."
                 },
                 {
-                    "title": "Roasting",
-                    "text": "Di-roast sesuai pesanan di fasilitas kami, diprofilkan untuk pasar Anda."
+                    "title": "Kendali mutu",
+                    "text": "Dicupping, dicek kadar air, dan diverifikasi terhadap spesifikasi sebelum pengiriman."
                 },
                 {
-                    "title": "Pengemasan",
-                    "text": "Digrading, disegel, dan dimuat kontainer di bawah pengawasan."
+                    "title": "Pengemasan & pengiriman",
+                    "text": "Disegel dalam GrainPro hermetik + jute, dimuat kontainer, dan dikirim dengan dokumentasi lengkap."
                 }
             ]
         },
@@ -274,16 +275,16 @@
             "body": "Setiap lot dicupping, digrading, dan dicek kadar airnya sebelum dikirim. Kami menolak biji, bukan kiriman.",
             "points": [
                 {
-                    "title": "Skor cupping",
-                    "text": "Setiap lot dicupping dan diberi skor (SCA) sebelum ekspor."
+                    "title": "Cupping",
+                    "text": "Setiap lot dicupping dan diberi skor sebelum ekspor; profil dibagikan atas permintaan."
                 },
                 {
                     "title": "Grading",
                     "text": "Screen size, cacat, dan kadar air dicek sesuai spesifikasi."
                 },
                 {
-                    "title": "Uji laboratorium",
-                    "text": "Analisis fisik dan kadar air untuk setiap lot ekspor."
+                    "title": "Keterlacakan",
+                    "text": "Setiap lot didokumentasikan dari panen hingga kontainer."
                 }
             ]
         },
@@ -293,19 +294,19 @@
             "body": "Kami yang mengurus dokumen, Anda menerima kopinya. Dokumentasi ekspor, bea cukai, dan logistik dikelola end-to-end.",
             "capacity": {
                 "label": "Kapasitas",
-                "value": "Hingga 2 kontainer per bulan"
+                "value": "100 ton per tahun"
             },
             "lead": {
                 "label": "Lead time",
-                "value": "10 – 14 hari setelah konfirmasi pesanan"
+                "value": "Dikonfirmasi atas permintaan setelah pesanan"
             },
             "terms": {
                 "label": "Syarat pengiriman",
-                "value": "FOB / CIF / EXW (Jakarta atau Surabaya)"
+                "value": "FOB / CIF — Incoterms dibahas per pesanan"
             },
             "docs": {
                 "label": "Dokumentasi",
-                "value": "Phytosanitary, COO, invoice, packing list, laporan SGS atas permintaan"
+                "value": "Dokumen ekspor, sertifikat NIB & Halal; daftar lengkap atas permintaan"
             }
         }
     },
@@ -316,8 +317,8 @@
             "subtitle": "Ceritakan pasar dan volume Anda — kami membalas dalam satu hari kerja."
         },
         "form": {
-            "title": "Permintaan grosir",
-            "description": "Untuk pesanan ritel dan grosir. Untuk hal lain, gunakan detail kontak di bawah.",
+            "title": "Inquiry B2B",
+            "description": "Minta penawaran atau sampel. Untuk hal lain, gunakan detail kontak di bawah.",
             "name": "Nama lengkap",
             "namePh": "Nama Anda",
             "company": "Perusahaan",
@@ -327,9 +328,9 @@
             "country": "Negara",
             "countryPh": "Di mana bisnis Anda berada?",
             "quantity": "Perkiraan jumlah",
-            "quantityPh": "cth. 1 x kontainer 20ft, 500 kg roasted",
+            "quantityPh": "cth. 2 ton, 1 x kontainer 20ft, lot sampel",
             "message": "Pesan",
-            "messagePh": "Preferensi roast, kemasan, tenggat waktu...",
+            "messagePh": "Kemasan, private label, tenggat waktu...",
             "submit": "Kirim Permintaan",
             "success": "Terima kasih — permintaan Anda telah kami terima. Kami membalas dalam satu hari kerja.",
             "error": "Terjadi kesalahan. Silakan coba lagi."
@@ -345,13 +346,39 @@
         "export": {
             "title": "Informasi ekspor",
             "served": "Pasar yang dilayani",
-            "servedValue": "Eropa, Amerika Utara, Asia-Pasifik, Timur Tengah",
+            "servedValue": "Berkembang ke importir & roaster di seluruh dunia",
             "terms": "Incoterms",
-            "termsValue": "FOB, CIF, EXW",
+            "termsValue": "FOB, CIF — dibahas per pesanan",
             "min": "Minimum pesanan",
-            "minValue": "1 x kontainer 20ft (green bean) · 500 kg (roasted)",
-            "ports": "Pelabuhan muat",
-            "portsValue": "Jakarta, Surabaya"
+            "minValue": "2 ton (private label) · sampel tersedia",
+            "ports": "Sertifikasi",
+            "portsValue": "NIB & Halal"
+        },
+        "faq": {
+            "eyebrow": "FAQ B2B",
+            "title": "Pertanyaan yang sering diajukan",
+            "items": [
+                {
+                    "q": "Bagaimana cara meminta sampel green bean?",
+                    "a": "Gunakan formulir inquiry di atas atau hubungi kami via WhatsApp — kami akan atur lot sampel agar Anda bisa menilai asal sebelum memesan."
+                },
+                {
+                    "q": "Berapa jumlah minimum pesanan (MOQ) untuk pengiriman LCL dan FCL?",
+                    "a": "Pesanan private label mulai dari 2 ton. Untuk jumlah LCL dan FCL, beri tahu pasar dan volume Anda dan kami konfirmasikan skema yang sesuai."
+                },
+                {
+                    "q": "Term pembayaran dan Incoterms apa saja yang didukung (FOB, CIF, T/T, L/C)?",
+                    "a": "Kami mendukung Incoterms umum seperti FOB dan CIF, dengan term pembayaran (T/T, L/C, dan lainnya) dikonfirmasi per pesanan."
+                },
+                {
+                    "q": "Apakah bisa custom processing atau private label roasting?",
+                    "a": "Kami berfokus pada ekspor green bean. Kemasan private label tersedia mulai MOQ 2 ton; untuk kebutuhan roasting, kami bisa menghubungkan Anda dengan mitra yang sesuai."
+                },
+                {
+                    "q": "Dokumen ekspor apa saja yang disertakan pada setiap pengiriman?",
+                    "a": "Setiap pengiriman disertai dokumentasi ekspor yang diperlukan, termasuk sertifikat NIB dan Halal. Daftar dokumen lengkap untuk tujuan Anda dikonfirmasi per pesanan."
+                }
+            ]
         },
         "map": {
             "title": "Temukan kami"
@@ -360,7 +387,7 @@
     "blog": {
         "eyebrow": "Jurnal",
         "title": "Catatan dari dataran tinggi",
-        "subtitle": "Kisah dari kebun, roastery, dan pasar.",
+        "subtitle": "Kisah dari kebun dan pasar ekspor.",
         "empty": "Belum ada artikel. Kunjungi lagi nanti.",
         "readTime": "menit baca",
         "back": "Kembali ke jurnal",

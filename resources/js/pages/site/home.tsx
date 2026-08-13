@@ -44,7 +44,7 @@ export default function Home({ product, products = [] }: HomeProps) {
             <section className="relative flex min-h-[100dvh] items-end overflow-hidden bg-ink">
                 <img
                     src="/images/real/beansonacontainer.jpeg"
-                    alt="Freshly harvested coffee beans in Lintong, North Sumatra"
+                    alt="Freshly harvested coffee beans from the Indonesian highlands"
                     fetchPriority="high"
                     className="absolute inset-0 size-full object-cover"
                 />
@@ -88,9 +88,9 @@ export default function Home({ product, products = [] }: HomeProps) {
                                 className="aspect-3/2 w-full rounded-sm object-cover"
                             />
                             <div className="absolute -bottom-5 -right-5 hidden rounded-sm bg-olive px-6 py-5 md:block">
-                                <p className="font-display text-3xl text-forest">100%</p>
+                                <p className="font-display text-3xl text-forest">100</p>
                                 <p className="text-xs uppercase tracking-[0.18em] text-forest/70">
-                                    {locale === 'en' ? 'Premium Beans' : 'Biji Premium'}
+                                    {locale === 'en' ? 'Tonnes / Year' : 'Ton / Tahun'}
                                 </p>
                             </div>
                         </div>
@@ -119,7 +119,7 @@ export default function Home({ product, products = [] }: HomeProps) {
                     <Reveal>
                         <p className="eyebrow text-terra">{str(t('home.product.eyebrow'))}</p>
                         <h2 className="mt-3 font-display text-4xl leading-[1.05] tracking-tight md:text-6xl">
-                            Specialty Products
+                            {str(t('home.product.title'))}
                         </h2>
                     </Reveal>
 
@@ -230,7 +230,7 @@ export default function Home({ product, products = [] }: HomeProps) {
             <section className="relative overflow-hidden py-28 md:py-40">
                 <img
                     src="/images/real/pouchgreenbeans.jpeg"
-                    alt="Pouring a cup of Lintong coffee"
+                    alt="Roasted coffee in the Indonesian highlands"
                     loading="lazy"
                     className="absolute inset-0 size-full object-cover"
                 />

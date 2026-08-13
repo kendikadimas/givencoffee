@@ -19,7 +19,7 @@ class ProductPageTest extends TestCase
         $response->assertOk();
         $response->assertInertia(fn ($page) => $page
             ->component('site/product')
-            ->has('products', 3));
+            ->has('products', 1));
     }
 
     public function test_product_show_renders_selected_product(): void

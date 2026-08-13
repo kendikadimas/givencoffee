@@ -1,4 +1,4 @@
-import { Link } from '@inertiajs/react';
+import { Link, usePage } from '@inertiajs/react';
 import { ArrowLeft, FileText, MapPin, MessageCircle, ShieldCheck, Sparkles } from 'lucide-react';
 import { useState } from 'react';
 
@@ -31,6 +31,9 @@ type ProductProps = {
 
 export default function ProductShow({ product, products = [] }: ProductProps) {
     const { t, locale } = useTranslations();
+    const settings = ((usePage().props.settings ?? {}) as {
+        whatsapp_url?: string;
+    }) ?? {};
 
     const heroImage = product.images?.hero ?? '/images/real/product.jpeg';
     const packagingImage = product.images?.packaging ?? '/images/real/whitepouch2.jpeg';
@@ -41,24 +44,11 @@ export default function ProductShow({ product, products = [] }: ProductProps) {
     // Filter out any price specifications
     const cleanSpecs = product.specs.filter((s) => !/price|harga/i.test(s.label));
     const keySpecs = cleanSpecs.filter((s) => /type|jenis|weight|berat|form|bentuk|process|proses|altitude|ketinggian/i.test(s.label));
-    const traits = product.cupping?.traits ?? ['Tropical Fruit', 'Subtle Chocolate', 'Herbal Aroma', 'Low Acidity', 'Natural Sweetness'];
+    const traits = product.cupping?.traits ?? ['Traceable', 'Consistent', 'Export-ready', 'Halal'];
     const cuppingNotes = product.cupping?.notes ?? str(t('product.notes.body'));
 
-    const waText = encodeURIComponent(`Halo Given Coffee, saya ingin bertanya dan memesan produk ${product.name}.`);
-    const waUrl = `https://wa.me/6281234567890?text=${waText}`;
-
-    // Short variant names for pill tabs
-    const getShortVariantName = (p: Product) => {
-        if (/green/i.test(p.name)) {
-            return '02 Green Bean';
-        }
-
-        if (/roast/i.test(p.name)) {
-            return '03 Roasted 500g';
-        }
-
-        return '01 Ground 250g';
-    };
+    const waText = encodeURIComponent(`Halo Given Coffee, saya ingin bertanya tentang green bean ${product.name}.`);
+    const waUrl = `${settings.whatsapp_url ?? 'https://wa.me/6281234567890'}?text=${waText}`;
 
     const jsonLd = {
         '@context': 'https://schema.org',
@@ -90,7 +80,7 @@ export default function ProductShow({ product, products = [] }: ProductProps) {
                 <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/80 to-ink/60" />
 
                 <div className="relative mx-auto max-w-[1400px] px-5 md:px-8">
-                    {/* Top Bar: Back Link & Short Variant Selector Tabs */}
+                    {/* Top Bar: Back Link */}
                     <div className="flex flex-wrap items-center justify-between gap-4 border-b border-cream/15 pb-6">
                         <Link
                             href={`/${locale}/product`}
@@ -99,25 +89,6 @@ export default function ProductShow({ product, products = [] }: ProductProps) {
                             <ArrowLeft className="size-3.5" />
                             {str(t('product.collection.eyebrow'), 'Catalog Overview')}
                         </Link>
-
-                        {products.length > 1 && (
-                            <div className="flex flex-wrap items-center gap-2">
-                                {products.map((p) => (
-                                    <Link
-                                        key={p.id ?? p.name}
-                                        href={`/${locale}/product/${p.id}`}
-                                        className={cn(
-                                            'inline-flex items-center gap-1.5 rounded-full px-4 py-2 text-xs font-semibold uppercase tracking-wider transition-all border',
-                                            p.id === product.id
-                                                ? 'border-terra bg-terra text-cream shadow-md'
-                                                : 'border-cream/20 bg-white/10 text-cream/70 hover:border-cream/40 hover:text-cream'
-                                        )}
-                                    >
-                                        {getShortVariantName(p)}
-                                    </Link>
-                                ))}
-                            </div>
-                        )}
                     </div>
 
                     {/* Hero Title & Subtitle */}
@@ -146,7 +117,7 @@ export default function ProductShow({ product, products = [] }: ProductProps) {
                                     className="aspect-[4/4] w-full object-cover transition-transform duration-700 group-hover:scale-105"
                                 />
                                 <div className="absolute left-4 top-4 rounded-full bg-ink/75 px-3.5 py-1.5 text-[11px] font-semibold uppercase tracking-wider text-cream backdrop-blur-md">
-                                    Specialty Grade • Semi-Washed
+                                    Specialty Green Beans • Pure Origin
                                 </div>
                             </div>
 
@@ -181,12 +152,12 @@ export default function ProductShow({ product, products = [] }: ProductProps) {
                                     <div className="flex items-center gap-3">
                                         <MapPin className="size-4 text-terra" />
                                         <span className="text-xs font-semibold uppercase tracking-wider text-ink">
-                                            {str(t('product.origin'), 'Doloksanggul, Sumatra, Indonesia')}
+                                            {str(t('product.origin'), 'Indonesian highlands')}
                                         </span>
                                     </div>
                                     <span className="inline-flex items-center gap-1.5 rounded-full bg-olive/15 px-3.5 py-1.5 text-xs font-semibold text-olive">
                                         <ShieldCheck className="size-4" />
-                                        Authentic Lintong Specialty
+                                        Certified Export Quality
                                     </span>
                                 </div>
 
@@ -369,7 +340,7 @@ export default function ProductShow({ product, products = [] }: ProductProps) {
                                                 </h3>
                                                 <div className="mt-auto flex items-center justify-between pt-6 border-t border-border mt-6">
                                                     <span className="text-xs font-semibold uppercase tracking-wider text-olive">
-                                                        Specialty Lintong
+                                                        Green Bean Export
                                                     </span>
                                                     <span className="inline-flex items-center gap-1 text-xs font-semibold text-terra group-hover:text-terra-deep">
                                                         {str(t('ui.cta.readMore'), 'View Details')}

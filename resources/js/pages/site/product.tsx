@@ -39,7 +39,7 @@ export default function Product({ products = [] }: ProductProps) {
             <section className="relative flex min-h-[92vh] items-end overflow-hidden bg-ink pt-32 pb-16">
                 <img
                     src="/images/real/closeup-greenbeans.jpeg"
-                    alt="Lintong Arabica close-up"
+                    alt="Indonesian highland green beans close-up"
                     fetchPriority="high"
                     className="absolute inset-0 size-full object-cover opacity-60"
                 />

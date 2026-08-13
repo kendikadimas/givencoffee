@@ -331,6 +331,34 @@ export default function Contact({ settings }: ContactProps) {
                 </div>
             </section>
 
+            {/* FAQ */}
+            <section className="mx-auto max-w-[900px] px-5 pb-24 md:px-8 md:pb-32">
+                <SectionHeading
+                    eyebrow={str(t('contact.faq.eyebrow'))}
+                    title={str(t('contact.faq.title'))}
+                    align="center"
+                    className="mx-auto mb-12"
+                />
+                <div className="space-y-4">
+                    {(t('contact.faq.items') as unknown as Array<{ q: string; a: string }>).map(
+                        (item) => (
+                            <details
+                                key={item.q}
+                                className="group rounded-sm border border-border bg-white p-6 [&_summary::-webkit-details-marker]:hidden"
+                            >
+                                <summary className="flex cursor-pointer items-center justify-between gap-4 font-display text-lg text-ink">
+                                    {item.q}
+                                    <span className="grid size-8 shrink-0 place-items-center rounded-full border border-border text-terra transition-transform group-open:rotate-45">
+                                        <span className="text-xl leading-none">+</span>
+                                    </span>
+                                </summary>
+                                <p className="mt-3 leading-relaxed text-coffee">{item.a}</p>
+                            </details>
+                        ),
+                    )}
+                </div>
+            </section>
+
             {/* Map */}
             <section className="pb-24 md:pb-32">
                 <SectionHeading
