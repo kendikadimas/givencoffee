@@ -1,0 +1,74 @@
+name: Deploy
+
+on:
+    push:
+        branches: [main]
+
+concurrency:
+    group: deploy-production
+    cancel-in-progress: false
+
+jobs:
+    deploy:
+        runs-on: ubuntu-latest
+        timeout-minutes: 30
+        steps:
+            - uses: actions/checkout@v4
+
+            - uses: actions/setup-node@v4
+              with:
+                  node-version: 22
+                  cache: npm
+
+            - name: Install dependencies
+              run: npm ci
+
+            - name: Build frontend
+              run: npm run build
+
+            - name: Setup SSH
+              run: |
+                  mkdir -p ~/.ssh
+                  echo "${{ secrets.DEPLOY_SSH_KEY }}" > ~/.ssh/deploy_key
+                  chmod 600 ~/.ssh/deploy_key
+                  echo "${{ secrets.DEPLOY_KNOWN_HOSTS }}" > ~/.ssh/known_hosts
+                  chmod 600 ~/.ssh/known_hosts
+
+            - name: Sync application code
+              run: |
+                  rsync -avz --delete \
+                    --exclude '.env' --exclude '.env.*' \
+                    --exclude '.git' --exclude '.github' \
+                    --exclude 'vendor' --exclude 'node_modules' \
+                    --exclude 'bootstrap/cache/*' \
+                    --exclude 'storage/framework/cache/*' \
+                    --exclude 'storage/framework/sessions/*' \
+                    --exclude 'storage/framework/views/*' \
+                    --exclude 'storage/logs/*' \
+                    -e "ssh -i ~/.ssh/deploy_key -p ${{ secrets.DEPLOY_PORT }} -o StrictHostKeyChecking=yes" \
+                    ./ ${{ secrets.DEPLOY_USER }}@${{ secrets.DEPLOY_HOST }}:~/givencoffee/
+
+            - name: Sync build assets to docroot
+              run: |
+                  rsync -avz --delete \
+                    -e "ssh -i ~/.ssh/deploy_key -p ${{ secrets.DEPLOY_PORT }} -o StrictHostKeyChecking=yes" \
+                    public/build/ ${{ secrets.DEPLOY_USER }}@${{ secrets.DEPLOY_HOST }}:~/public_html/build/
+
+            - name: Sync static assets to docroot
+              run: |
+                  rsync -avz \
+                    -e "ssh -i ~/.ssh/deploy_key -p ${{ secrets.DEPLOY_PORT }} -o StrictHostKeyChecking=yes" \
+                    public/images/ ${{ secrets.DEPLOY_USER }}@${{ secrets.DEPLOY_HOST }}:~/public_html/images/
+                  rsync -avz \
+                    -e "ssh -i ~/.ssh/deploy_key -p ${{ secrets.DEPLOY_PORT }} -o StrictHostKeyChecking=yes" \
+                    public/favicon.ico public/favicon.svg public/robots.txt public/apple-touch-icon.png \
+                    ${{ secrets.DEPLOY_USER }}@${{ secrets.DEPLOY_HOST }}:~/public_html/
+
+            - name: Post-deploy
+              run: |
+                  ssh -i ~/.ssh/deploy_key -p ${{ secrets.DEPLOY_PORT }} -o StrictHostKeyChecking=yes \
+                    ${{ secrets.DEPLOY_USER }}@${{ secrets.DEPLOY_HOST }} \
+                    'cd ~/givencoffee && composer install --no-dev --optimize-autoloader --no-interaction --prefer-dist && php artisan migrate --force && php artisan optimize:clear && php artisan optimize'
+
+            - name: Verify site
+              run: curl -sf -o /dev/null -w "%{http_code}" https://givencoffeeid.com && echo " OK"
