@@ -62,15 +62,14 @@ export default function Product({ products = [] }: ProductProps) {
             </section>
 
             {/* Collection — one alternating section per product */}
-            {products.length > 1 && (
-                <section className="bg-white">
-                    <div className="mx-auto max-w-[1400px] px-5 py-16 md:px-8 md:py-20">
-                        <SectionHeading
-                            eyebrow={str(t('product.collection.eyebrow'))}
-                            title={str(t('product.collection.title'))}
-                            body={str(t('product.collection.body'))}
-                        />
-                    </div>
+            <section className="bg-white">
+                <div className="mx-auto max-w-[1400px] px-5 py-16 md:px-8 md:py-20">
+                    <SectionHeading
+                        eyebrow={str(t('product.collection.eyebrow'))}
+                        title={str(t('product.collection.title'))}
+                        body={str(t('product.collection.body'))}
+                    />
+                </div>
 
                     <div className="mx-auto max-w-[1400px] px-5 md:px-8">
                         <div className="space-y-20 pb-20 md:space-y-24 md:pb-24">
@@ -134,7 +133,6 @@ export default function Product({ products = [] }: ProductProps) {
                         </div>
                     </div>
                 </section>
-            )}
         </>
     );
 }
