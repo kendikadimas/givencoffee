@@ -110,11 +110,11 @@
             "title": "Sourced from the Indonesian highlands",
             "body": "We source green beans from partner farms in the Indonesian highlands — regions known for their volcanic soil, cool nights and densely-flavoured coffee. Lots are combined from several farms with the same variety, giving buyers a consistent, traceable product. Full technical data (altitude, variety, processing, cupping and moisture) is available on request for each lot.",
             "altitude": "Altitude",
-            "altitudeValue": "On request per lot",
+            "altitudeValue": "Details on request",
             "variety": "Varieties",
-            "varietyValue": "Combined by variety — on request",
+            "varietyValue": "Combined by variety — details on request",
             "process": "Process",
-            "processValue": "On request per lot",
+            "processValue": "Details on request",
             "harvest": "Production capacity",
             "harvestValue": "100 tonnes per year"
         },
@@ -177,23 +177,19 @@
             "body": "Given Coffee exports specialty green beans from the Indonesian highlands — volcanic soil, cool nights and generations of farming expertise. Lots are combined from several partner farms with the same variety, so you get a consistent product shipment after shipment.",
             "body2": "Every lot is graded, moisture-checked and cupped before export, and ships with full documentation. We keep it simple on purpose: pure origin, no surprises."
         },
-        "origin": "Indonesian highlands — on request per lot",
+        "origin": "Indonesian highlands",
         "specs": {
             "eyebrow": "Technical specs",
             "title": "Specifications",
             "items": [
-                { "label": "Origin", "value": "Indonesian highlands — on request per lot" },
+                { "label": "Origin", "value": "Indonesian highlands" },
                 { "label": "Form", "value": "Specialty green beans" },
-                { "label": "Altitude", "value": "On request per lot" },
-                { "label": "Variety", "value": "Combined by variety — on request" },
-                { "label": "Process", "value": "On request per lot" },
-                { "label": "Cupping score", "value": "On request per lot" },
-                { "label": "Moisture", "value": "Export grade — on request" },
                 { "label": "Packaging", "value": "GrainPro hermetic inner bag + gunny jute bag, 60 kg / 30 kg" },
                 { "label": "Private label", "value": "Available — MOQ 2 tonnes" },
                 { "label": "Capacity", "value": "100 tonnes per year" },
                 { "label": "Certification", "value": "NIB & Halal" }
-            ]
+            ],
+            "note": "Full technical data for the specific lot you order — altitude, variety, process, cupping score and moisture — is shared on request."
         },
         "notes": {
             "eyebrow": "Quality",

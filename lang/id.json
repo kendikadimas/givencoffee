@@ -110,11 +110,11 @@
             "title": "Disuplai dari dataran tinggi Indonesia",
             "body": "Kami menyuplai green bean dari kebun mitra di dataran tinggi Indonesia — wilayah yang dikenal dengan tanah vulkanik, malam sejuk, dan kopi bercita rasa kaya. Lot digabung dari beberapa kebun dengan varietas yang sama, memberi pembeli produk yang konsisten dan terlacak. Data teknis lengkap (ketinggian, varietas, pengolahan, cupping, dan kadar air) tersedia atas permintaan untuk setiap lot.",
             "altitude": "Ketinggian",
-            "altitudeValue": "Tersedia atas permintaan per lot",
+            "altitudeValue": "Detail atas permintaan",
             "variety": "Varietas",
-            "varietyValue": "Digabung per varietas — atas permintaan",
+            "varietyValue": "Digabung per varietas — detail atas permintaan",
             "process": "Proses",
-            "processValue": "Tersedia atas permintaan per lot",
+            "processValue": "Detail atas permintaan",
             "harvest": "Kapasitas produksi",
             "harvestValue": "100 ton per tahun"
         },
@@ -177,23 +177,19 @@
             "body": "Given Coffee mengekspor green bean spesialti dari dataran tinggi Indonesia — tanah vulkanik, malam sejuk, dan pengalaman bertani lintas generasi. Lot digabung dari beberapa kebun mitra dengan varietas yang sama, sehingga Anda mendapat produk yang konsisten setiap pengiriman.",
             "body2": "Setiap lot digrading, dicek kadar air, dan dicupping sebelum ekspor, serta dikirim dengan dokumentasi lengkap. Kami sengaja menjaga kesederhanaan: asal murni, tanpa kejutan."
         },
-        "origin": "Dataran tinggi Indonesia — atas permintaan per lot",
+        "origin": "Dataran tinggi Indonesia",
         "specs": {
             "eyebrow": "Spesifikasi teknis",
             "title": "Spesifikasi",
             "items": [
-                { "label": "Asal", "value": "Dataran tinggi Indonesia — atas permintaan per lot" },
+                { "label": "Asal", "value": "Dataran tinggi Indonesia" },
                 { "label": "Bentuk", "value": "Green bean spesialti" },
-                { "label": "Ketinggian", "value": "Tersedia atas permintaan per lot" },
-                { "label": "Varietas", "value": "Digabung per varietas — atas permintaan" },
-                { "label": "Proses", "value": "Tersedia atas permintaan per lot" },
-                { "label": "Skor cupping", "value": "Tersedia atas permintaan per lot" },
-                { "label": "Kadar air", "value": "Standar ekspor — atas permintaan" },
                 { "label": "Kemasan", "value": "Kantong hermetik GrainPro + karung jute, 60 kg / 30 kg" },
                 { "label": "Private label", "value": "Tersedia — MOQ 2 ton" },
                 { "label": "Kapasitas", "value": "100 ton per tahun" },
                 { "label": "Sertifikasi", "value": "NIB & Halal" }
-            ]
+            ],
+            "note": "Data teknis lengkap untuk lot spesifik yang Anda pesan — ketinggian, varietas, proses, skor cupping, dan kadar air — dibagikan atas permintaan."
         },
         "notes": {
             "eyebrow": "Mutu",
