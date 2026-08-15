@@ -1,5 +1,3 @@
-import { Quote } from 'lucide-react';
-
 import { PageHero } from '@/components/site/page-hero';
 import { Reveal } from '@/components/site/reveal';
 import { SectionHeading } from '@/components/site/section-heading';
@@ -152,29 +150,6 @@ export default function About() {
                 </div>
             </section>
 
-            {/* Founder quote */}
-            <section className="mx-auto max-w-[1200px] px-5 py-24 md:px-8 md:py-32">
-                <div className="grid items-center gap-12 md:grid-cols-5 md:gap-16">
-                    <Reveal className="md:col-span-2">
-                        <img
-                            src="/images/about-founder.jpg"
-                            alt="Founder portrait"
-                            loading="lazy"
-                            className="aspect-[4/5] w-full rounded-sm object-cover"
-                        />
-                    </Reveal>
-                    <Reveal delay={120} className="md:col-span-3">
-                        <Quote className="size-8 text-terra" />
-                        <blockquote className="mt-4 font-display text-2xl leading-[1.25] text-ink md:text-4xl">
-                            {str(t('about.quote.text'))}
-                        </blockquote>
-                        <p className="mt-6 text-sm font-semibold uppercase tracking-[0.18em] text-terra">
-                            {str(t('about.quote.name'))}
-                        </p>
-                        <p className="mt-1 text-sm text-coffee">{str(t('about.quote.role'))}</p>
-                    </Reveal>
-                </div>
-            </section>
         </>
     );
 }
