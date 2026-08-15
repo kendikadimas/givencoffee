@@ -26,6 +26,7 @@ type WhyItem = { title: string; text: string };
 export default function Home({ product, products = [] }: HomeProps) {
     const { t, locale } = useTranslations();
     const seoSettings = useSeoSettings();
+    const featuredProduct = product ?? products[0] ?? null;
 
     const whyItems = arr<WhyItem>(t('home.why.items'));
     const whyIcons = [MapPin, Handshake, BadgeCheck, Route];
@@ -123,71 +124,61 @@ export default function Home({ product, products = [] }: HomeProps) {
                         </h2>
                     </Reveal>
 
-                    {products.length > 0 ? (
-                        <div className="mt-12 grid gap-8 md:grid-cols-3">
-                            {products.map((p, i) => (
-                                <Reveal key={p.id ?? p.name} delay={i * 90}>
-                                    <div className="group flex h-full flex-col overflow-hidden rounded-sm border border-cream/15 bg-forest/40 transition-all hover:border-terra">
-                                        <div className="relative aspect-[4/3] overflow-hidden bg-ink">
-                                            <img
-                                                src={p.images?.hero ?? '/images/real/product.jpeg'}
-                                                alt={p.name}
-                                                loading="lazy"
-                                                className="size-full object-cover transition-transform duration-500 group-hover:scale-105"
-                                            />
-                                        </div>
-                                        <div className="flex flex-1 flex-col p-6">
-                                            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-terra">
-                                                {p.subtitle}
-                                            </p>
-                                            <h3 className="mt-2 font-display text-xl leading-snug text-cream">
-                                                {p.name}
-                                            </h3>
-                                            <div className="mt-auto pt-6">
-                                                <Link
-                                                    href={`/${locale}/product/${p.id}`}
-                                                    className="inline-flex items-center gap-2 text-sm font-semibold text-terra transition-colors hover:text-cream"
-                                                >
-                                                    {str(t('home.product.cta'))}
-                                                    <ArrowRight className="size-4" />
-                                                </Link>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </Reveal>
-                            ))}
-                        </div>
-                    ) : (
-                        <div className="mt-12 grid items-center gap-12 md:grid-cols-2 md:gap-20">
+                    {featuredProduct && (
+                        <div className="mt-12 grid items-stretch gap-10 md:grid-cols-[1.05fr_0.95fr] md:gap-16 lg:gap-24">
                             <Reveal>
-                                <div className="relative overflow-hidden rounded-sm">
+                                <div className="relative h-full min-h-[24rem] overflow-hidden rounded-sm bg-ink">
                                     <img
-                                        src={product?.images?.hero ?? '/images/real/product.jpeg'}
-                                        alt={product?.name ?? 'Given Coffee'}
+                                        src={featuredProduct.images?.hero ?? '/images/real/product.jpeg'}
+                                        alt={featuredProduct.name}
                                         loading="lazy"
-                                        className="w-full object-cover"
+                                        className="absolute inset-0 size-full object-cover transition-transform duration-700 hover:scale-105"
                                     />
+                                    <div className="absolute inset-0 bg-gradient-to-t from-ink/70 via-transparent to-transparent" />
+                                    <p className="absolute bottom-6 left-6 text-xs font-semibold uppercase tracking-[0.2em] text-cream/80">
+                                        {str(t('product.notes.eyebrow'))}
+                                    </p>
                                 </div>
                             </Reveal>
 
-                            <Reveal delay={120}>
-                                <h2 className="mt-3 font-display text-4xl leading-[1.05] tracking-tight md:text-6xl">
-                                    {product?.name ?? 'Given Coffee'}
-                                </h2>
-                                <p className="mt-2 text-sm font-semibold uppercase tracking-[0.2em] text-terra">
-                                    {product?.subtitle}
+                            <Reveal delay={120} className="flex flex-col justify-center">
+                                <p className="text-xs font-semibold uppercase tracking-[0.2em] text-terra">
+                                    {featuredProduct.subtitle}
                                 </p>
-                                <p className="mt-6 max-w-lg leading-relaxed text-cream/70">
+                                <h3 className="mt-4 max-w-xl font-display text-4xl leading-[1.04] tracking-tight text-cream md:text-6xl">
+                                    {featuredProduct.name}
+                                </h3>
+                                <p className="mt-6 max-w-xl leading-relaxed text-cream/70">
                                     {str(t('home.product.body'))}
                                 </p>
 
-                                <Link
-                                    href={`/${locale}/product`}
-                                    className="mt-9 inline-flex items-center gap-2 text-sm font-semibold text-terra transition-colors hover:text-terra-deep"
-                                >
-                                    {str(t('home.product.cta'))}
-                                    <ArrowRight className="size-4" />
-                                </Link>
+                                {featuredProduct.specs && featuredProduct.specs.length > 0 && (
+                                    <dl className="mt-8 grid max-w-xl grid-cols-2 gap-x-8 gap-y-5 border-y border-cream/15 py-6">
+                                        {featuredProduct.specs.slice(0, 4).map((spec) => (
+                                            <div key={spec.label}>
+                                                <dt className="text-[10px] font-semibold uppercase tracking-[0.18em] text-cream/45">
+                                                    {spec.label}
+                                                </dt>
+                                                <dd className="mt-1 text-sm leading-snug text-cream">
+                                                    {spec.value}
+                                                </dd>
+                                            </div>
+                                        ))}
+                                    </dl>
+                                )}
+
+                                <div className="mt-8 flex flex-wrap items-center gap-5">
+                                    <Link
+                                        href={`/${locale}/product/${featuredProduct.id ?? ''}`}
+                                        className="inline-flex items-center gap-2 text-sm font-semibold text-terra transition-colors hover:text-cream"
+                                    >
+                                        {str(t('home.product.cta'))}
+                                        <ArrowRight className="size-4" />
+                                    </Link>
+                                    <Cta href={`/${locale}/contact`} variant="outline-light">
+                                        {str(t('ui.cta.sample'))}
+                                    </Cta>
+                                </div>
                             </Reveal>
                         </div>
                     )}
