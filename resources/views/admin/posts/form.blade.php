@@ -25,7 +25,7 @@
         $method = $post ? 'PUT' : 'POST';
     @endphp
 
-    <form method="POST" action="{{ $action }}" class="max-w-3xl space-y-8">
+    <form method="POST" action="{{ $action }}" enctype="multipart/form-data" class="max-w-3xl space-y-8">
         @csrf
         @method($method)
 
@@ -59,8 +59,9 @@
         </div>
 
         <div>
-            <label class="mb-2 block text-sm font-medium text-ink">Cover image path</label>
-            <input name="cover_image" value="{{ old('cover_image', $defaults['cover_image']) }}" placeholder="/images/blog-1.jpg" class="w-full rounded-md border border-input bg-bone px-4 py-2.5 text-sm outline-none focus:border-terra focus:ring-2 focus:ring-terra/30">
+            <label class="mb-2 block text-sm font-medium text-ink">Cover image</label>
+            <input type="file" name="cover_image" accept="image/*" class="w-full rounded-md border border-input bg-bone px-4 py-2.5 text-sm outline-none focus:border-terra focus:ring-2 focus:ring-terra/30">
+            <p class="mt-1 text-xs text-coffee">Current: {{ $defaults['cover_image'] ?: '—' }}</p>
         </div>
 
         <div class="grid gap-5 sm:grid-cols-2">

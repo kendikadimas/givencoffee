@@ -20,6 +20,8 @@
                             ['route' => 'admin.dashboard', 'label' => 'Dashboard'],
                             ['route' => 'admin.posts.index', 'label' => 'Posts'],
                             ['route' => 'admin.categories.index', 'label' => 'Categories'],
+                            ['route' => 'admin.faqs.index', 'label' => 'FAQs'],
+                            ['route' => 'admin.testimonials.index', 'label' => 'Testimonials'],
                             ['route' => 'admin.product.edit', 'label' => 'Product'],
                             ['route' => 'admin.settings.index', 'label' => 'Settings'],
                             ['route' => 'admin.inquiries.index', 'label' => 'Inquiries'],

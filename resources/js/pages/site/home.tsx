@@ -1,7 +1,8 @@
 import { Link } from '@inertiajs/react';
-import { ArrowDown, ArrowRight, BadgeCheck, Handshake, MapPin, Route } from 'lucide-react';
+import { ArrowDown, ArrowRight, BadgeCheck, Handshake, MapPin, Quote, Route } from 'lucide-react';
 
 import { Cta } from '@/components/site/cta';
+import { InstagramFeed } from '@/components/site/instagram-feed';
 import { Reveal } from '@/components/site/reveal';
 import { SectionHeading } from '@/components/site/section-heading';
 import { Seo, organizationJsonLd, useSeoSettings } from '@/components/site/seo';
@@ -19,11 +20,12 @@ type Product = {
 type HomeProps = {
     product?: Product | null;
     products?: Product[];
+    testimonials?: Array<{ id?: number; name: string; role: string; quote: string; image?: string | null }>;
 };
 
 type WhyItem = { title: string; text: string };
 
-export default function Home({ product, products = [] }: HomeProps) {
+export default function Home({ product, products = [], testimonials = [] }: HomeProps) {
     const { t, locale } = useTranslations();
     const seoSettings = useSeoSettings();
     const featuredProduct = product ?? products[0] ?? null;
@@ -217,6 +219,50 @@ export default function Home({ product, products = [] }: HomeProps) {
                 </div>
             </section>
 
+            {/* Testimonials */}
+            {testimonials.length > 0 && (
+                <section className="bg-olive py-24 md:py-32">
+                    <div className="mx-auto max-w-[1400px] px-5 md:px-8">
+                        <SectionHeading
+                            eyebrow={str(t('home.testimonials.eyebrow'))}
+                            title={str(t('home.testimonials.title'))}
+                            align="center"
+                            className="mx-auto"
+                        />
+                        <div className="mt-14 grid gap-6 md:grid-cols-3">
+                            {testimonials.map((item, i) => (
+                                <Reveal key={item.id ?? item.name} delay={i * 90}>
+                                    <figure className="flex h-full flex-col rounded-sm bg-white p-8">
+                                        <Quote className="size-7 text-terra" />
+                                        <blockquote className="mt-5 flex-1 leading-relaxed text-coffee">
+                                            {item.quote}
+                                        </blockquote>
+                                        <figcaption className="mt-6 flex items-center gap-4 border-t border-border pt-5">
+                                            {item.image && (
+                                                <img
+                                                    src={item.image}
+                                                    alt={item.name}
+                                                    loading="lazy"
+                                                    className="size-11 rounded-full object-cover"
+                                                />
+                                            )}
+                                            <div>
+                                                <p className="font-display text-lg text-ink">{item.name}</p>
+                                                {item.role && (
+                                                    <p className="text-xs uppercase tracking-[0.14em] text-coffee">
+                                                        {item.role}
+                                                    </p>
+                                                )}
+                                            </div>
+                                        </figcaption>
+                                    </figure>
+                                </Reveal>
+                            ))}
+                        </div>
+                    </div>
+                </section>
+            )}
+
             {/* Ceremony CTA */}
             <section className="relative overflow-hidden py-28 md:py-40">
                 <img
@@ -247,6 +293,9 @@ export default function Home({ product, products = [] }: HomeProps) {
                     </Reveal>
                 </div>
             </section>
+
+            {/* Instagram feed */}
+            <InstagramFeed />
         </>
     );
 }

@@ -3,8 +3,9 @@
 @section('title', 'Inquiries')
 
 @section('content')
-    <div class="mb-6">
+    <div class="mb-6 flex items-center justify-between">
         <p class="text-sm text-coffee">{{ $inquiries->count() }} inquiries</p>
+        <a href="{{ route('admin.inquiries.export') }}" class="rounded-full border border-terra px-4 py-1.5 text-sm font-semibold text-terra transition-colors hover:bg-terra hover:text-cream">Export CSV</a>
     </div>
 
     <div class="overflow-hidden rounded-md border border-border bg-cream">

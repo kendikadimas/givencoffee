@@ -24,7 +24,7 @@ class SettingController extends Controller
             'company_name', 'email', 'phone', 'whatsapp', 'whatsapp_url',
             'address', 'hours',
             'social_instagram', 'social_facebook', 'social_linkedin', 'social_youtube',
-            'map_embed', 'ga_id', 'catalog_url',
+            'instagram_embed', 'map_embed', 'ga_id', 'catalog_url',
         ];
 
         $validated = $request->validate([
@@ -39,6 +39,7 @@ class SettingController extends Controller
             'social_facebook' => ['nullable', 'url', 'max:255'],
             'social_linkedin' => ['nullable', 'url', 'max:255'],
             'social_youtube' => ['nullable', 'url', 'max:255'],
+            'instagram_embed' => ['nullable', 'string'],
             'map_embed' => ['nullable', 'string'],
             'ga_id' => ['nullable', 'string', 'max:255'],
             'catalog_url' => ['nullable', 'string', 'max:255'],

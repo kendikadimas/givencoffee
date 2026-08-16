@@ -47,6 +47,18 @@ return [
             'report' => false,
         ],
 
+        // Admin uploads are written straight into the web root (`public_html/uploads`
+        // on the shared host, `public/uploads` locally) so they are served at /uploads
+        // without a symlink — docroot is a sibling of the app on this hosting.
+        'uploads' => [
+            'driver' => 'local',
+            'root' => env('UPLOADS_DISK_ROOT', public_path('uploads')),
+            'url' => rtrim((string) env('APP_URL', 'http://localhost'), '/').'/uploads',
+            'visibility' => 'public',
+            'throw' => false,
+            'report' => false,
+        ],
+
         's3' => [
             'driver' => 's3',
             'key' => env('AWS_ACCESS_KEY_ID'),

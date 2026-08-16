@@ -80,7 +80,7 @@ jobs:
               run: |
                   ssh -i ~/.ssh/deploy_key -p ${{ secrets.DEPLOY_PORT }} -o StrictHostKeyChecking=yes \
                     ${{ secrets.DEPLOY_USER }}@${{ secrets.DEPLOY_HOST }} \
-                    'cd ~/givencoffee && composer install --no-dev --optimize-autoloader --no-interaction --prefer-dist && php artisan migrate --force && php artisan optimize:clear && php artisan optimize'
+                    'mkdir -p ~/public_html/uploads && cd ~/givencoffee && composer install --no-dev --optimize-autoloader --no-interaction --prefer-dist && php artisan migrate --force && php artisan optimize:clear && php artisan optimize'
 
             - name: Verify site
               run: curl -sf -o /dev/null -w "%{http_code}" https://givencoffeeid.com && echo " OK"

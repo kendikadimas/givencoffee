@@ -11,7 +11,7 @@
         $story = $p->story ?? [['en' => '', 'id' => '']];
     @endphp
 
-    <form method="POST" action="{{ route('admin.product.update', $p) }}" class="max-w-3xl space-y-8">
+    <form method="POST" action="{{ route('admin.product.update', $p) }}" enctype="multipart/form-data" class="max-w-3xl space-y-8">
         @csrf
         @method('PUT')
 
@@ -123,19 +123,22 @@
 
         <div class="grid gap-5 sm:grid-cols-2">
             <div>
-                <label class="mb-2 block text-sm font-medium text-ink">Hero image path</label>
-                <input name="image_hero" value="{{ old('image_hero', $p->images['hero'] ?? '') }}" class="w-full rounded-md border border-input bg-bone px-4 py-2.5 text-sm outline-none focus:border-terra focus:ring-2 focus:ring-terra/30">
+                <label class="mb-2 block text-sm font-medium text-ink">Hero image</label>
+                <input type="file" name="image_hero" accept="image/*" class="w-full rounded-md border border-input bg-bone px-4 py-2.5 text-sm outline-none focus:border-terra focus:ring-2 focus:ring-terra/30">
+                <p class="mt-1 text-xs text-coffee">Current: {{ $p->images['hero'] ?? '—' }}</p>
             </div>
             <div>
-                <label class="mb-2 block text-sm font-medium text-ink">Packaging image path</label>
-                <input name="image_packaging" value="{{ old('image_packaging', $p->images['packaging'] ?? '') }}" class="w-full rounded-md border border-input bg-bone px-4 py-2.5 text-sm outline-none focus:border-terra focus:ring-2 focus:ring-terra/30">
+                <label class="mb-2 block text-sm font-medium text-ink">Packaging image</label>
+                <input type="file" name="image_packaging" accept="image/*" class="w-full rounded-md border border-input bg-bone px-4 py-2.5 text-sm outline-none focus:border-terra focus:ring-2 focus:ring-terra/30">
+                <p class="mt-1 text-xs text-coffee">Current: {{ $p->images['packaging'] ?? '—' }}</p>
             </div>
         </div>
 
         <div class="grid gap-5 sm:grid-cols-2">
             <div>
-                <label class="mb-2 block text-sm font-medium text-ink">Spec sheet PDF path</label>
-                <input name="spec_pdf" value="{{ old('spec_pdf', $p->spec_pdf ?? '') }}" placeholder="/catalog/spec-sheet.pdf (leave empty for now)" class="w-full rounded-md border border-input bg-bone px-4 py-2.5 text-sm outline-none focus:border-terra focus:ring-2 focus:ring-terra/30">
+                <label class="mb-2 block text-sm font-medium text-ink">Spec sheet PDF</label>
+                <input type="file" name="spec_pdf" accept="application/pdf" class="w-full rounded-md border border-input bg-bone px-4 py-2.5 text-sm outline-none focus:border-terra focus:ring-2 focus:ring-terra/30">
+                <p class="mt-1 text-xs text-coffee">Current: {{ $p->spec_pdf ?? 'none' }}</p>
             </div>
             <div class="flex items-end pb-1">
                 <label class="flex items-center gap-2 text-sm text-ink">

@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+use App\Models\Faq;
 use App\Models\Post;
 use App\Models\Product;
+use App\Models\Testimonial;
 use App\Support\SiteSettings;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
@@ -19,6 +21,10 @@ class SiteController extends Controller
         return Inertia::render('site/home', [
             'product' => $products->first(),
             'products' => $products,
+            'testimonials' => Testimonial::where('active', true)
+                ->orderBy('sort_order')
+                ->get()
+                ->map(fn (Testimonial $t) => $t->localized()),
         ]);
     }
 
@@ -60,6 +66,10 @@ class SiteController extends Controller
     {
         return Inertia::render('site/contact', [
             'settings' => SiteSettings::all(),
+            'faqs' => Faq::where('active', true)
+                ->orderBy('sort_order')
+                ->get()
+                ->map(fn (Faq $faq) => $faq->localized()),
         ]);
     }
 

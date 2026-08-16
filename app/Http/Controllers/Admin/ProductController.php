@@ -33,11 +33,27 @@ class ProductController extends Controller
             'traits_id' => ['required', 'string'],
             'specs_en' => ['required', 'string'],
             'specs_id' => ['required', 'string'],
-            'image_hero' => ['nullable', 'string', 'max:255'],
-            'image_packaging' => ['nullable', 'string', 'max:255'],
-            'spec_pdf' => ['nullable', 'string', 'max:255'],
+            'image_hero' => ['nullable', 'file', 'image', 'max:5120'],
+            'image_packaging' => ['nullable', 'file', 'image', 'max:5120'],
+            'spec_pdf' => ['nullable', 'file', 'mimes:pdf', 'max:10240'],
             'active' => ['sometimes', 'boolean'],
         ]);
+
+        $images = [
+            'hero' => $product->images['hero'] ?? '/images/real/product.jpeg',
+            'packaging' => $product->images['packaging'] ?? '/images/journey-5.jpg',
+        ];
+
+        foreach (['image_hero' => 'hero', 'image_packaging' => 'packaging'] as $field => $key) {
+            if ($request->hasFile($field)) {
+                $images[$key] = '/uploads/'.$request->file($field)->store('products', 'uploads');
+            }
+        }
+
+        $specPdf = $product->spec_pdf;
+        if ($request->hasFile('spec_pdf')) {
+            $specPdf = '/uploads/'.$request->file('spec_pdf')->store('specs', 'uploads');
+        }
 
         $specsEn = ContentParser::labelValue($data['specs_en']);
         $specsId = ContentParser::labelValue($data['specs_id']);
@@ -73,11 +89,8 @@ class ProductController extends Controller
                 ],
             ],
             'packaging' => $packaging,
-            'images' => [
-                'hero' => $data['image_hero'] ?? '/images/real/product.jpeg',
-                'packaging' => $data['image_packaging'] ?? '/images/journey-5.jpg',
-            ],
-            'spec_pdf' => $data['spec_pdf'] ?? null,
+            'images' => $images,
+            'spec_pdf' => $specPdf,
             'active' => $request->boolean('active'),
         ]);
 

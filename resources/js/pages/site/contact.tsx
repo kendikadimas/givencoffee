@@ -33,6 +33,7 @@ type ExportInfo = {
 
 type ContactProps = {
     settings: SiteSettings;
+    faqs?: Array<{ id?: number; question: string; answer: string }>;
 };
 
 function Field({
@@ -61,7 +62,7 @@ function Field({
 const inputClass =
     'w-full rounded-md border border-input bg-white px-4 py-3 text-sm text-ink outline-none transition-[border-color,box-shadow] placeholder:text-coffee/50 focus:border-terra focus:ring-2 focus:ring-terra/30';
 
-export default function Contact({ settings }: ContactProps) {
+export default function Contact({ settings, faqs = [] }: ContactProps) {
     const { t, locale } = useTranslations();
     const page = usePage();
     const errors = (page.props.errors ?? {}) as Record<string, string>;
@@ -340,22 +341,25 @@ export default function Contact({ settings }: ContactProps) {
                     className="mx-auto mb-12"
                 />
                 <div className="space-y-4">
-                    {(t('contact.faq.items') as unknown as Array<{ q: string; a: string }>).map(
-                        (item) => (
-                            <details
-                                key={item.q}
-                                className="group rounded-sm border border-border bg-white p-6 [&_summary::-webkit-details-marker]:hidden"
-                            >
-                                <summary className="flex cursor-pointer items-center justify-between gap-4 font-display text-lg text-ink">
-                                    {item.q}
-                                    <span className="grid size-8 shrink-0 place-items-center rounded-full border border-border text-terra transition-transform group-open:rotate-45">
-                                        <span className="text-xl leading-none">+</span>
-                                    </span>
-                                </summary>
-                                <p className="mt-3 leading-relaxed text-coffee">{item.a}</p>
-                            </details>
-                        ),
-                    )}
+                    {(faqs.length > 0
+                        ? faqs
+                        : (t('contact.faq.items') as unknown as Array<{ q: string; a: string }>).map(
+                              (item) => ({ question: item.q, answer: item.a }),
+                          )
+                    ).map((item) => (
+                        <details
+                            key={item.question}
+                            className="group rounded-sm border border-border bg-white p-6 [&_summary::-webkit-details-marker]:hidden"
+                        >
+                            <summary className="flex cursor-pointer items-center justify-between gap-4 font-display text-lg text-ink">
+                                {item.question}
+                                <span className="grid size-8 shrink-0 place-items-center rounded-full border border-border text-terra transition-transform group-open:rotate-45">
+                                    <span className="text-xl leading-none">+</span>
+                                </span>
+                            </summary>
+                            <p className="mt-3 leading-relaxed text-coffee">{item.answer}</p>
+                        </details>
+                    ))}
                 </div>
             </section>
 

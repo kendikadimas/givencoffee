@@ -50,6 +50,10 @@ class PostController extends Controller
     {
         $data = $this->validatePost($request);
 
+        if (! $request->hasFile('cover_image')) {
+            $data['cover_image'] = $post->cover_image;
+        }
+
         if ($request->filled('slug') && $request->input('slug') !== $post->slug) {
             $data['slug'] = $this->uniqueSlug($request->input('slug'));
         }
@@ -76,10 +80,14 @@ class PostController extends Controller
             'content_en' => ['required', 'string'],
             'content_id' => ['required', 'string'],
             'category_id' => ['nullable', 'exists:categories,id'],
-            'cover_image' => ['nullable', 'string', 'max:255'],
+            'cover_image' => ['nullable', 'file', 'image', 'max:5120'],
             'featured' => ['sometimes', 'boolean'],
             'published' => ['sometimes', 'boolean'],
         ]);
+
+        $cover = $request->hasFile('cover_image')
+            ? '/uploads/'.$request->file('cover_image')->store('posts', 'uploads')
+            : ($data['cover_image'] ?? null);
 
         return [
             'title' => ['en' => $data['title_en'], 'id' => $data['title_id']],
@@ -89,7 +97,7 @@ class PostController extends Controller
                 'id' => ContentParser::blocks($data['content_id']),
             ],
             'category_id' => $data['category_id'] ?? null,
-            'cover_image' => $data['cover_image'] ?? null,
+            'cover_image' => $cover,
             'featured' => $request->boolean('featured'),
             'published_at' => $request->boolean('published') ? now() : null,
         ];

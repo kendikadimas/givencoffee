@@ -60,6 +60,11 @@
                     </div>
                 @endforeach
             </div>
+            <div class="mt-4">
+                <label class="mb-2 block text-sm font-medium text-ink">Instagram feed embed code</label>
+                <textarea name="instagram_embed" rows="4" placeholder="Paste LightWidget / SnapWidget embed code here. Leave empty to hide the section." class="w-full rounded-md border border-input bg-bone px-4 py-2.5 font-mono text-sm outline-none focus:border-terra focus:ring-2 focus:ring-terra/30">{{ old('instagram_embed', $settings['instagram_embed']) }}</textarea>
+                <p class="mt-1 text-xs text-coffee">Create a free widget at lightwidget.com or snapwidget.com, connect your Instagram, then paste the iframe embed code here.</p>
+            </div>
         </div>
 
         <div>

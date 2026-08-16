@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Inquiry;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Response;
 use Illuminate\View\View;
 
 class InquiryController extends Controller
@@ -14,6 +15,36 @@ class InquiryController extends Controller
     {
         return view('admin.inquiries.index', [
             'inquiries' => Inquiry::latest()->get(),
+        ]);
+    }
+
+    public function export(): \Symfony\Component\HttpFoundation\StreamedResponse
+    {
+        $rows = Inquiry::latest()->get();
+
+        $output = fopen('php://temp', 'r+');
+
+        fputcsv($output, ['Date', 'Name', 'Company', 'Email', 'Country', 'Quantity', 'Message', 'Status']);
+
+        foreach ($rows as $inquiry) {
+            fputcsv($output, [
+                $inquiry->created_at->format('d M Y H:i'),
+                $inquiry->name,
+                $inquiry->company,
+                $inquiry->email,
+                $inquiry->country,
+                $inquiry->quantity,
+                $inquiry->message,
+                $inquiry->status,
+            ]);
+        }
+
+        rewind($output);
+        $csv = stream_get_contents($output);
+        fclose($output);
+
+        return Response::streamDownload(fn () => print $csv, 'inquiries-'.now()->format('Y-m-d').'.csv', [
+            'Content-Type' => 'text/csv',
         ]);
     }
 
