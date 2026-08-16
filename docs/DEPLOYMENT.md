@@ -71,3 +71,14 @@ icacls <path> /grant:r "$env:USERNAME:R"
 - [ ] Ubah konten di `lang/en.json` & `lang/id.json` (teks statis tidak bisa diedit dari admin panel)
 - [ ] Produk & settings (email/WA/alamat/map) bisa diedit dari **admin panel** (`/admin`)
 - [ ] Commit & push → auto deploy
+
+## Email & upload media
+
+- **Email inquiry**: server memakai `MAIL_MAILER=sendmail` (placeholder). Untuk pakai akun email cPanel (mis. `export@givencoffeeid.com`): buat akun di cPanel → set di `~/givencoffee/.env`: `MAIL_MAILER=smtp`, `MAIL_HOST=mail.givencoffeeid.com`, `MAIL_PORT=465`, `MAIL_USERNAME`, `MAIL_PASSWORD`, lalu `php artisan config:clear`. Ubah `.env` di server saja (tidak di-git).
+- **Upload media** (produk/post PDF & foto): tersimpan di `~/public_html/uploads` (docroot) via disk `uploads` → di-serve di `/uploads/...`. `UPLOADS_DISK_ROOT` di `.env` server harus menunjuk `~/public_html/uploads`. Lokal default ke `public/uploads` (gitignored).
+
+## Fitur admin panel
+
+- **Posts** (blog CMS), **Categories**, **FAQs** (ditampilkan di halaman contact, editable), **Testimonials** (ditampilkan di homepage bila ada data), **Product** (termasuk upload foto & spec PDF), **Settings** (kontak, sosmed, Instagram embed code, GA4, map), **Inquiries** (list, detail, status, **Export CSV**).
+- **Instagram feed**: paste embed code (LightWidget/SnapWidget) di Admin → Settings → "Instagram feed embed code". Section tampil di homepage hanya jika embed diisi.
+- **WhatsApp float button**: muncul otomatis di semua halaman bila `whatsapp_url` terisi (Admin → Settings).
