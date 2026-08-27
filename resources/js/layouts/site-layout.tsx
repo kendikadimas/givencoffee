@@ -24,7 +24,7 @@ export default function SiteLayout({ children }: SiteLayoutProps) {
     }, []);
 
     return (
-        <div className="flex min-h-[100dvh] flex-col bg-white text-ink">
+        <div className="flex min-h-[100dvh] flex-col bg-bone text-ink selection:bg-terra/20 selection:text-ink">
             <Analytics gaId={settings.ga_id} />
             <SiteHeader />
             <main className="flex-1">{children}</main>

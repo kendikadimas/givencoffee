@@ -1,5 +1,5 @@
 import { router, usePage } from '@inertiajs/react';
-import { Clock, Mail, MapPin, MessageCircle, Send } from 'lucide-react';
+import { Clock, Globe2, HelpCircle, Mail, MapPin, MessageCircle, Send, ShieldCheck, Sparkles } from 'lucide-react';
 import { useState } from 'react';
 import type { FormEvent, ReactNode } from 'react';
 
@@ -49,18 +49,18 @@ function Field({
 }) {
     return (
         <label className="block">
-            <span className="mb-2 block text-sm font-medium text-ink">
+            <span className="mb-2 block text-xs font-semibold uppercase tracking-wider text-ink">
                 {label}
                 {required && <span className="text-terra"> *</span>}
             </span>
             {children}
-            {error && <span className="mt-2 block text-sm text-terra-deep">{error}</span>}
+            {error && <span className="mt-2 block text-xs font-medium text-destructive">{error}</span>}
         </label>
     );
 }
 
 const inputClass =
-    'w-full rounded-md border border-input bg-white px-4 py-3 text-sm text-ink outline-none transition-[border-color,box-shadow] placeholder:text-coffee/50 focus:border-terra focus:ring-2 focus:ring-terra/30';
+    'w-full rounded-sm border border-border/90 bg-card px-4 py-3 text-sm text-ink outline-none transition-all placeholder:text-coffee/50 focus:border-terra focus:ring-2 focus:ring-terra/20';
 
 export default function Contact({ settings, faqs = [] }: ContactProps) {
     const { t, locale } = useTranslations();
@@ -123,262 +123,284 @@ export default function Contact({ settings, faqs = [] }: ContactProps) {
                 subtitle={str(t('contact.hero.subtitle'))}
             />
 
-            <section className="mx-auto max-w-[1400px] px-5 py-24 md:px-8 md:py-32">
-                <div className="grid gap-14 lg:grid-cols-5 lg:gap-20">
-                    {/* Form */}
-                    <Reveal className="lg:col-span-3">
-                        <div className="rounded-sm border border-border bg-white p-7 md:p-10">
-                            <h2 className="font-display text-2xl text-ink md:text-3xl">
-                                {str(t('contact.form.title'))}
-                            </h2>
-                            <p className="mt-2 text-sm text-coffee">
-                                {str(t('contact.form.description'))}
-                            </p>
+            {/* Wholesale Inquiry Section */}
+            <section className="relative bg-bone py-24 md:py-32">
+                <div className="mx-auto max-w-[1400px] px-5 md:px-8">
+                    <div className="grid gap-12 lg:grid-cols-12 lg:gap-16">
+                        {/* Form Column (7 Cols) */}
+                        <Reveal className="lg:col-span-7">
+                            <div className="card-luxury p-8 md:p-12">
+                                <span className="badge-pill mb-3 border-terra/30 bg-terra/10 text-terra">
+                                    <Sparkles className="size-3 text-terra" />
+                                    B2B Direct Trade
+                                </span>
+                                <h2 className="font-display text-2xl font-bold text-ink md:text-4xl">
+                                    {str(t('contact.form.title'))}
+                                </h2>
+                                <p className="mt-2 text-sm leading-relaxed text-coffee">
+                                    {str(t('contact.form.description'))}
+                                </p>
 
-                            {submitted ? (
-                                <div className="mt-8 rounded-md bg-olive px-6 py-8 text-center">
-                                    <p className="font-display text-xl text-forest-deep">
-                                        {str(t('contact.form.success'))}
-                                    </p>
-                                </div>
-                            ) : (
-                                <form onSubmit={submit} className="mt-8 space-y-5" noValidate>
-                                    <div className="grid gap-5 sm:grid-cols-2">
+                                {submitted ? (
+                                    <div className="mt-8 rounded-sm border border-forest/30 bg-olive/80 p-8 text-center">
+                                        <ShieldCheck className="mx-auto size-10 text-forest" />
+                                        <p className="mt-3 font-display text-2xl font-bold text-forest-deep">
+                                            {str(t('contact.form.success'))}
+                                        </p>
+                                        <p className="mt-2 text-sm text-forest-deep/80">
+                                            {locale === 'en'
+                                                ? 'Our export sales team will review your inquiry and contact you within 24 business hours.'
+                                                : 'Tim ekspor kami akan meninjau pesan Anda dan merespons dalam 24 jam kerja.'}
+                                        </p>
+                                    </div>
+                                ) : (
+                                    <form onSubmit={submit} className="mt-8 space-y-5" noValidate>
+                                        <div className="grid gap-5 sm:grid-cols-2">
+                                            <Field
+                                                label={str(t('contact.form.name'))}
+                                                required
+                                                error={errors.name}
+                                            >
+                                                <input
+                                                    className={inputClass}
+                                                    placeholder={str(t('contact.form.namePh'))}
+                                                    value={form.name}
+                                                    onChange={update('name')}
+                                                    required
+                                                />
+                                            </Field>
+                                            <Field
+                                                label={str(t('contact.form.company'))}
+                                                error={errors.company}
+                                            >
+                                                <input
+                                                    className={inputClass}
+                                                    placeholder={str(t('contact.form.companyPh'))}
+                                                    value={form.company}
+                                                    onChange={update('company')}
+                                                />
+                                            </Field>
+                                        </div>
+
+                                        <div className="grid gap-5 sm:grid-cols-2">
+                                            <Field
+                                                label={str(t('contact.form.email'))}
+                                                required
+                                                error={errors.email}
+                                            >
+                                                <input
+                                                    type="email"
+                                                    className={inputClass}
+                                                    placeholder={str(t('contact.form.emailPh'))}
+                                                    value={form.email}
+                                                    onChange={update('email')}
+                                                    required
+                                                />
+                                            </Field>
+                                            <Field
+                                                label={str(t('contact.form.country'))}
+                                                error={errors.country}
+                                            >
+                                                <input
+                                                    className={inputClass}
+                                                    placeholder={str(t('contact.form.countryPh'))}
+                                                    value={form.country}
+                                                    onChange={update('country')}
+                                                />
+                                            </Field>
+                                        </div>
+
                                         <Field
-                                            label={str(t('contact.form.name'))}
-                                            required
-                                            error={errors.name}
+                                            label={str(t('contact.form.quantity'))}
+                                            error={errors.quantity}
                                         >
                                             <input
                                                 className={inputClass}
-                                                placeholder={str(t('contact.form.namePh'))}
-                                                value={form.name}
-                                                onChange={update('name')}
+                                                placeholder={str(t('contact.form.quantityPh'))}
+                                                value={form.quantity}
+                                                onChange={update('quantity')}
+                                            />
+                                        </Field>
+
+                                        <Field
+                                            label={str(t('contact.form.message'))}
+                                            required
+                                            error={errors.message}
+                                        >
+                                            <textarea
+                                                className={cn(inputClass, 'min-h-36 resize-y')}
+                                                placeholder={str(t('contact.form.messagePh'))}
+                                                value={form.message}
+                                                onChange={update('message')}
                                                 required
                                             />
                                         </Field>
-                                        <Field
-                                            label={str(t('contact.form.company'))}
-                                            error={errors.company}
+
+                                        <button
+                                            type="submit"
+                                            disabled={processing}
+                                            className="inline-flex h-12 items-center justify-center gap-2 rounded-full bg-terra px-8 text-sm font-semibold text-cream shadow-sm transition-all hover:bg-terra-deep hover:shadow-glow-terra active:translate-y-0 disabled:opacity-60"
                                         >
-                                            <input
-                                                className={inputClass}
-                                                placeholder={str(t('contact.form.companyPh'))}
-                                                value={form.company}
-                                                onChange={update('company')}
-                                            />
-                                        </Field>
-                                    </div>
-
-                                    <div className="grid gap-5 sm:grid-cols-2">
-                                        <Field
-                                            label={str(t('contact.form.email'))}
-                                            required
-                                            error={errors.email}
-                                        >
-                                            <input
-                                                type="email"
-                                                className={inputClass}
-                                                placeholder={str(t('contact.form.emailPh'))}
-                                                value={form.email}
-                                                onChange={update('email')}
-                                                required
-                                            />
-                                        </Field>
-                                        <Field
-                                            label={str(t('contact.form.country'))}
-                                            error={errors.country}
-                                        >
-                                            <input
-                                                className={inputClass}
-                                                placeholder={str(t('contact.form.countryPh'))}
-                                                value={form.country}
-                                                onChange={update('country')}
-                                            />
-                                        </Field>
-                                    </div>
-
-                                    <Field
-                                        label={str(t('contact.form.quantity'))}
-                                        error={errors.quantity}
-                                    >
-                                        <input
-                                            className={inputClass}
-                                            placeholder={str(t('contact.form.quantityPh'))}
-                                            value={form.quantity}
-                                            onChange={update('quantity')}
-                                        />
-                                    </Field>
-
-                                    <Field
-                                        label={str(t('contact.form.message'))}
-                                        required
-                                        error={errors.message}
-                                    >
-                                        <textarea
-                                            className={cn(inputClass, 'min-h-36 resize-y')}
-                                            placeholder={str(t('contact.form.messagePh'))}
-                                            value={form.message}
-                                            onChange={update('message')}
-                                            required
-                                        />
-                                    </Field>
-
-                                    <button
-                                        type="submit"
-                                        disabled={processing}
-                                        className="inline-flex h-12 items-center justify-center gap-2 rounded-full bg-terra px-7 text-sm font-semibold text-cream transition-all hover:bg-terra-deep active:translate-y-px disabled:opacity-60"
-                                    >
-                                        <Send className="size-4" />
-                                        {str(t('contact.form.submit'))}
-                                    </button>
-                                </form>
-                            )}
-                        </div>
-                    </Reveal>
-
-                    {/* Business info */}
-                    <Reveal delay={120} className="lg:col-span-2">
-                        <h3 className="text-xs font-semibold uppercase tracking-[0.2em] text-coffee">
-                            {str(t('contact.info.title'))}
-                        </h3>
-                        <ul className="mt-6 space-y-5">
-                            {settings.address && (
-                                <li className="flex gap-4">
-                                    <span className="grid size-11 shrink-0 place-items-center rounded-full bg-olive text-forest">
-                                        <MapPin className="size-5" />
-                                    </span>
-                                    <div>
-                                        <p className="text-sm font-semibold text-ink">
-                                            {str(t('contact.info.office'))}
-                                        </p>
-                                        <p className="mt-0.5 text-sm text-coffee">
-                                            {settings.address}
-                                        </p>
-                                    </div>
-                                </li>
-                            )}
-                            {settings.email && (
-                                <li className="flex gap-4">
-                                    <span className="grid size-11 shrink-0 place-items-center rounded-full bg-olive text-forest">
-                                        <Mail className="size-5" />
-                                    </span>
-                                    <div>
-                                        <p className="text-sm font-semibold text-ink">
-                                            {str(t('contact.info.email'))}
-                                        </p>
-                                        <a
-                                            href={`mailto:${settings.email}`}
-                                            className="mt-0.5 block text-sm text-coffee hover:text-terra"
-                                        >
-                                            {settings.email}
-                                        </a>
-                                    </div>
-                                </li>
-                            )}
-                            {settings.whatsapp && (
-                                <li className="flex gap-4">
-                                    <span className="grid size-11 shrink-0 place-items-center rounded-full bg-olive text-forest">
-                                        <MessageCircle className="size-5" />
-                                    </span>
-                                    <div>
-                                        <p className="text-sm font-semibold text-ink">
-                                            {str(t('contact.info.whatsapp'))}
-                                        </p>
-                                        <a
-                                            href={settings.whatsapp_url ?? '#'}
-                                            target="_blank"
-                                            rel="noreferrer"
-                                            className="mt-0.5 block text-sm text-coffee hover:text-terra"
-                                        >
-                                            {settings.whatsapp}
-                                        </a>
-                                    </div>
-                                </li>
-                            )}
-                            {settings.hours && (
-                                <li className="flex gap-4">
-                                    <span className="grid size-11 shrink-0 place-items-center rounded-full bg-olive text-forest">
-                                        <Clock className="size-5" />
-                                    </span>
-                                    <div>
-                                        <p className="text-sm font-semibold text-ink">
-                                            {str(t('contact.info.office'))}
-                                        </p>
-                                        <p className="mt-0.5 text-sm text-coffee">
-                                            {settings.hours}
-                                        </p>
-                                    </div>
-                                </li>
-                            )}
-                        </ul>
-                    </Reveal>
-                </div>
-
-                {/* Export info */}
-                <div className="mt-20 grid gap-px overflow-hidden rounded-sm bg-border sm:grid-cols-2 lg:grid-cols-4">
-                    {exportRows.map((row, i) => (
-                        <Reveal key={row.label} delay={i * 80} className="bg-white">
-                            <div className="flex h-full flex-col p-7">
-                                <dt className="text-xs font-semibold uppercase tracking-[0.18em] text-coffee">
-                                    {row.label}
-                                </dt>
-                                <dd className="mt-3 font-display text-lg leading-snug text-ink">
-                                    {row.value}
-                                </dd>
+                                            <Send className="size-4" />
+                                            {str(t('contact.form.submit'))}
+                                        </button>
+                                    </form>
+                                )}
                             </div>
                         </Reveal>
-                    ))}
+
+                        {/* Business Info Column (5 Cols) */}
+                        <Reveal delay={120} className="lg:col-span-5">
+                            <div className="space-y-6">
+                                <div className="card-luxury p-8">
+                                    <span className="badge-origin mb-4">Official Channels</span>
+                                    <h3 className="font-display text-2xl font-bold text-ink">
+                                        {str(t('contact.info.title'))}
+                                    </h3>
+
+                                    <ul className="mt-6 space-y-6">
+                                        {settings.address && (
+                                            <li className="flex items-start gap-4">
+                                                <span className="grid size-11 shrink-0 place-items-center rounded-full border border-forest/20 bg-olive text-forest">
+                                                    <MapPin className="size-5" />
+                                                </span>
+                                                <div>
+                                                    <p className="text-xs font-semibold uppercase tracking-wider text-coffee">
+                                                        {str(t('contact.info.office'))}
+                                                    </p>
+                                                    <p className="mt-1 text-sm font-medium text-ink leading-relaxed">
+                                                        {settings.address}
+                                                    </p>
+                                                </div>
+                                            </li>
+                                        )}
+                                        {settings.email && (
+                                            <li className="flex items-start gap-4">
+                                                <span className="grid size-11 shrink-0 place-items-center rounded-full border border-forest/20 bg-olive text-forest">
+                                                    <Mail className="size-5" />
+                                                </span>
+                                                <div>
+                                                    <p className="text-xs font-semibold uppercase tracking-wider text-coffee">
+                                                        {str(t('contact.info.email'))}
+                                                    </p>
+                                                    <a
+                                                        href={`mailto:${settings.email}`}
+                                                        className="mt-1 block text-sm font-medium text-ink transition-colors hover:text-terra"
+                                                    >
+                                                        {settings.email}
+                                                    </a>
+                                                </div>
+                                            </li>
+                                        )}
+                                        {settings.whatsapp && (
+                                            <li className="flex items-start gap-4">
+                                                <span className="grid size-11 shrink-0 place-items-center rounded-full border border-forest/20 bg-olive text-forest">
+                                                    <MessageCircle className="size-5" />
+                                                </span>
+                                                <div>
+                                                    <p className="text-xs font-semibold uppercase tracking-wider text-coffee">
+                                                        {str(t('contact.info.whatsapp'))}
+                                                    </p>
+                                                    <a
+                                                        href={settings.whatsapp_url ?? '#'}
+                                                        target="_blank"
+                                                        rel="noreferrer"
+                                                        className="mt-1 block text-sm font-medium text-ink transition-colors hover:text-terra"
+                                                    >
+                                                        {settings.whatsapp}
+                                                    </a>
+                                                </div>
+                                            </li>
+                                        )}
+                                        {settings.hours && (
+                                            <li className="flex items-start gap-4">
+                                                <span className="grid size-11 shrink-0 place-items-center rounded-full border border-forest/20 bg-olive text-forest">
+                                                    <Clock className="size-5" />
+                                                </span>
+                                                <div>
+                                                    <p className="text-xs font-semibold uppercase tracking-wider text-coffee">
+                                                        Operational Hours
+                                                    </p>
+                                                    <p className="mt-1 text-sm font-medium text-ink">
+                                                        {settings.hours}
+                                                    </p>
+                                                </div>
+                                            </li>
+                                        )}
+                                    </ul>
+                                </div>
+                            </div>
+                        </Reveal>
+                    </div>
+
+                    {/* Export Information Matrix Strip */}
+                    <div className="mt-16 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+                        {exportRows.map((row, i) => (
+                            <Reveal key={row.label} delay={i * 80}>
+                                <div className="card-luxury p-6">
+                                    <dt className="text-xs font-semibold uppercase tracking-[0.18em] text-coffee">
+                                        {row.label}
+                                    </dt>
+                                    <dd className="mt-3 font-display text-xl font-bold leading-snug text-ink">
+                                        {row.value}
+                                    </dd>
+                                </div>
+                            </Reveal>
+                        ))}
+                    </div>
                 </div>
             </section>
 
-            {/* FAQ */}
-            <section className="mx-auto max-w-[900px] px-5 pb-24 md:px-8 md:pb-32">
-                <SectionHeading
-                    eyebrow={str(t('contact.faq.eyebrow'))}
-                    title={str(t('contact.faq.title'))}
-                    align="center"
-                    className="mx-auto mb-12"
-                />
-                <div className="space-y-4">
-                    {(faqs.length > 0
-                        ? faqs
-                        : (t('contact.faq.items') as unknown as Array<{ q: string; a: string }>).map(
-                              (item) => ({ question: item.q, answer: item.a }),
-                          )
-                    ).map((item) => (
-                        <details
-                            key={item.question}
-                            className="group rounded-sm border border-border bg-white p-6 [&_summary::-webkit-details-marker]:hidden"
-                        >
-                            <summary className="flex cursor-pointer items-center justify-between gap-4 font-display text-lg text-ink">
-                                {item.question}
-                                <span className="grid size-8 shrink-0 place-items-center rounded-full border border-border text-terra transition-transform group-open:rotate-45">
-                                    <span className="text-xl leading-none">+</span>
-                                </span>
-                            </summary>
-                            <p className="mt-3 leading-relaxed text-coffee">{item.answer}</p>
-                        </details>
-                    ))}
-                </div>
-            </section>
-
-            {/* Map */}
-            <section className="pb-24 md:pb-32">
-                <SectionHeading
-                    title={str(t('contact.map.title'))}
-                    align="center"
-                    className="mx-auto mb-10"
-                />
-                <div className="mx-auto max-w-[1400px] px-5 md:px-8">
-                    <div
-                        className="overflow-hidden rounded-sm border border-border bg-olive [&>iframe]:block [&>iframe]:h-[420px] [&>iframe]:w-full [&>iframe]:border-0"
-                        dangerouslySetInnerHTML={{
-                            __html: settings.map_embed ?? '',
-                        }}
+            {/* Frequently Asked Questions */}
+            <section className="relative bg-cream py-24 md:py-32">
+                <div className="mx-auto max-w-[900px] px-5 md:px-8">
+                    <SectionHeading
+                        eyebrow={str(t('contact.faq.eyebrow'))}
+                        title={str(t('contact.faq.title'))}
+                        align="center"
+                        className="mx-auto mb-14"
                     />
+                    <div className="space-y-4">
+                        {(faqs.length > 0
+                            ? faqs
+                            : (t('contact.faq.items') as unknown as Array<{ q: string; a: string }>).map(
+                                  (item) => ({ question: item.q, answer: item.a }),
+                              )
+                        ).map((item) => (
+                            <details
+                                key={item.question}
+                                className="group card-luxury p-6 transition-all [&_summary::-webkit-details-marker]:hidden"
+                            >
+                                <summary className="flex cursor-pointer items-center justify-between gap-4 font-display text-lg font-bold text-ink">
+                                    <span>{item.question}</span>
+                                    <span className="grid size-8 shrink-0 place-items-center rounded-full border border-border bg-bone text-terra transition-transform group-open:rotate-45">
+                                        <span className="text-xl leading-none">+</span>
+                                    </span>
+                                </summary>
+                                <p className="mt-4 text-sm leading-relaxed text-coffee">{item.answer}</p>
+                            </details>
+                        ))}
+                    </div>
                 </div>
             </section>
+
+            {/* Map Section */}
+            {settings.map_embed && (
+                <section className="relative bg-bone pb-24 md:pb-32">
+                    <div className="mx-auto max-w-[1400px] px-5 md:px-8">
+                        <SectionHeading
+                            title={str(t('contact.map.title'))}
+                            align="center"
+                            className="mx-auto mb-10"
+                        />
+                        <div className="overflow-hidden rounded-sm border border-border/80 bg-olive shadow-earth [&>iframe]:block [&>iframe]:h-[420px] [&>iframe]:w-full [&>iframe]:border-0"
+                            dangerouslySetInnerHTML={{
+                                __html: settings.map_embed,
+                            }}
+                        />
+                    </div>
+                </section>
+            )}
         </>
     );
 }

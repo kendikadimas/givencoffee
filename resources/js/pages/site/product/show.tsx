@@ -1,5 +1,5 @@
 import { Link, usePage } from '@inertiajs/react';
-import { ArrowLeft, FileText, MapPin, MessageCircle, ShieldCheck, Sparkles } from 'lucide-react';
+import { ArrowLeft, Check, Compass, FileText, Globe, Layers, MapPin, MessageCircle, ShieldCheck, Sparkles } from 'lucide-react';
 import { useState } from 'react';
 
 import { Cta } from '@/components/site/cta';
@@ -44,10 +44,10 @@ export default function ProductShow({ product, products = [] }: ProductProps) {
     // Filter out any price specifications
     const cleanSpecs = product.specs.filter((s) => !/price|harga/i.test(s.label));
     const keySpecs = cleanSpecs.filter((s) => /type|jenis|weight|berat|form|bentuk|process|proses|altitude|ketinggian/i.test(s.label));
-    const traits = product.cupping?.traits ?? ['Traceable', 'Consistent', 'Export-ready', 'Halal'];
+    const traits = product.cupping?.traits ?? ['Traceable', 'Consistent', 'Export-ready', 'Grade 1 Specialty'];
     const cuppingNotes = product.cupping?.notes ?? str(t('product.notes.body'));
 
-    const waText = encodeURIComponent(`Halo Given Coffee, saya ingin bertanya tentang green bean ${product.name}.`);
+    const waText = encodeURIComponent(`Halo Given Coffee, saya ingin bertanya tentang spesifikasi ekspor green bean ${product.name}.`);
     const waUrl = `${settings.whatsapp_url ?? 'https://wa.me/6281234567890'}?text=${waText}`;
 
     const jsonLd = {
@@ -71,13 +71,14 @@ export default function ProductShow({ product, products = [] }: ProductProps) {
             />
 
             {/* Dark Premium Hero Section Header */}
-            <section className="relative overflow-hidden bg-ink pt-32 pb-16 text-cream">
+            <section className="relative overflow-hidden bg-ink pt-36 pb-20 text-cream md:pb-24">
                 <img
                     src={heroImage}
                     alt={product.name}
-                    className="absolute inset-0 size-full object-cover opacity-25"
+                    className="absolute inset-0 size-full object-cover opacity-30 transition-transform duration-1000"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/80 to-ink/60" />
+                <div className="pointer-events-none absolute -bottom-10 right-10 size-96 rounded-full bg-terra/20 blur-3xl" />
 
                 <div className="relative mx-auto max-w-[1400px] px-5 md:px-8">
                     {/* Top Bar: Back Link */}
@@ -89,12 +90,17 @@ export default function ProductShow({ product, products = [] }: ProductProps) {
                             <ArrowLeft className="size-3.5" />
                             {str(t('product.collection.eyebrow'), 'Catalog Overview')}
                         </Link>
+                        <span className="badge-origin border-terra/40 bg-terra/20 text-cream">
+                            Indonesian Specialty Green Bean
+                        </span>
                     </div>
 
                     {/* Hero Title & Subtitle */}
                     <div className="mt-8 max-w-4xl">
-                        <p className="eyebrow text-terra">{str(t('product.hero.eyebrow'), 'Given Coffee Specialty')}</p>
-                        <h1 className="mt-3 font-display text-4xl leading-tight tracking-tight text-cream md:text-6xl">
+                        <span className="badge-pill mb-3 border-terra/40 bg-terra/20 text-cream">
+                            {str(t('product.hero.eyebrow'), 'Given Coffee Specialty')}
+                        </span>
+                        <h1 className="font-display text-4xl leading-tight tracking-tight text-cream md:text-6xl lg:text-7xl">
                             {product.name}
                         </h1>
                         <p className="mt-4 text-xs font-semibold uppercase tracking-[0.22em] text-terra">
@@ -105,18 +111,18 @@ export default function ProductShow({ product, products = [] }: ProductProps) {
             </section>
 
             {/* Main Product Showcase Section */}
-            <section className="bg-white py-12 md:py-20">
+            <section className="relative bg-bone py-16 md:py-24">
                 <div className="mx-auto grid max-w-[1400px] gap-12 px-5 md:grid-cols-12 md:gap-16 md:px-8">
                     {/* Interactive Gallery Showcase (5 Cols) */}
                     <Reveal className="md:col-span-6 lg:col-span-5">
                         <div className="sticky top-28 space-y-4">
-                            <div className="group relative overflow-hidden rounded-sm border border-border bg-ink shadow-xl">
+                            <div className="group relative overflow-hidden rounded-sm border border-border/80 bg-ink shadow-earth-lg">
                                 <img
                                     src={activeImage}
                                     alt={product.name}
-                                    className="aspect-[4/4] w-full object-cover transition-transform duration-700 group-hover:scale-105"
+                                    className="aspect-square w-full object-cover transition-transform duration-700 group-hover:scale-105"
                                 />
-                                <div className="absolute left-4 top-4 rounded-full bg-ink/75 px-3.5 py-1.5 text-[11px] font-semibold uppercase tracking-wider text-cream backdrop-blur-md">
+                                <div className="absolute left-4 top-4 rounded-full border border-cream/30 bg-ink/80 px-3.5 py-1.5 text-[11px] font-semibold uppercase tracking-wider text-cream backdrop-blur-md">
                                     Specialty Green Beans • Pure Origin
                                 </div>
                             </div>
@@ -129,10 +135,10 @@ export default function ProductShow({ product, products = [] }: ProductProps) {
                                             type="button"
                                             onClick={() => setActiveImage(img)}
                                             className={cn(
-                                                'overflow-hidden rounded-sm border transition-all aspect-[4/3] bg-ink',
+                                                'aspect-[4/3] overflow-hidden rounded-sm border bg-ink transition-all',
                                                 activeImage === img
-                                                    ? 'border-terra ring-2 ring-terra/30'
-                                                    : 'border-border opacity-70 hover:opacity-100'
+                                                    ? 'border-terra ring-2 ring-terra/40 shadow-sm'
+                                                    : 'border-border/80 opacity-70 hover:opacity-100',
                                             )}
                                         >
                                             <img src={img} alt={`View ${idx + 1}`} className="size-full object-cover" />
@@ -145,19 +151,22 @@ export default function ProductShow({ product, products = [] }: ProductProps) {
 
                     {/* Product Story & Key Specs Info (7 Cols) */}
                     <Reveal delay={120} className="md:col-span-6 lg:col-span-7">
-                        <div className="flex flex-col h-full justify-between">
+                        <div className="flex h-full flex-col justify-between">
                             <div>
                                 {/* Specialty Guarantee Badge */}
-                                <div className="flex items-center justify-between rounded-sm border border-terra/30 bg-white px-6 py-4 shadow-sm">
+                                <div className="flex flex-wrap items-center justify-between gap-3 rounded-sm border border-terra/30 bg-cream p-5 shadow-earth">
                                     <div className="flex items-center gap-3">
-                                        <MapPin className="size-4 text-terra" />
-                                        <span className="text-xs font-semibold uppercase tracking-wider text-ink">
-                                            {str(t('product.origin'), 'Indonesian highlands')}
-                                        </span>
+                                        <MapPin className="size-5 text-terra" />
+                                        <div>
+                                            <span className="text-xs font-semibold uppercase tracking-wider text-ink">
+                                                {str(t('product.origin'), 'Dolok Sanggul, North Sumatra')}
+                                            </span>
+                                            <p className="text-[11px] text-coffee">1,400 – 1,750 MASL Elevation</p>
+                                        </div>
                                     </div>
-                                    <span className="inline-flex items-center gap-1.5 rounded-full bg-olive/15 px-3.5 py-1.5 text-xs font-semibold text-olive">
-                                        <ShieldCheck className="size-4" />
-                                        Certified Export Quality
+                                    <span className="badge-origin">
+                                        <ShieldCheck className="size-4 text-forest" />
+                                        Grade 1 Export Ready
                                     </span>
                                 </div>
 
@@ -170,13 +179,13 @@ export default function ProductShow({ product, products = [] }: ProductProps) {
 
                                 {/* Key Specs 4-Box Grid */}
                                 {keySpecs.length > 0 && (
-                                    <div className="mt-8 grid grid-cols-2 gap-px overflow-hidden rounded-sm border border-border bg-border">
+                                    <div className="mt-8 grid grid-cols-2 gap-3 sm:grid-cols-4">
                                         {keySpecs.slice(0, 4).map((spec) => (
-                                            <div key={spec.label} className="bg-white p-4">
+                                            <div key={spec.label} className="rounded-sm border border-border/80 bg-card p-4 shadow-xs">
                                                 <dt className="text-[10px] font-semibold uppercase tracking-[0.18em] text-coffee">
                                                     {spec.label}
                                                 </dt>
-                                                <dd className="mt-1 font-display text-sm font-semibold text-ink">
+                                                <dd className="mt-1 font-display text-sm font-bold text-ink">
                                                     {spec.value}
                                                 </dd>
                                             </div>
@@ -186,18 +195,18 @@ export default function ProductShow({ product, products = [] }: ProductProps) {
                             </div>
 
                             {/* Action CTAs */}
-                            <div className="mt-10 pt-6 border-t border-border flex flex-wrap items-center gap-4">
+                            <div className="mt-10 flex flex-wrap items-center gap-4 border-t border-border/80 pt-8">
                                 <a
                                     href={waUrl}
                                     target="_blank"
                                     rel="noreferrer"
-                                    className="inline-flex h-12 items-center gap-2.5 rounded-full bg-terra px-7 text-sm font-semibold text-cream shadow-md transition-all hover:bg-terra-deep hover:shadow-lg"
+                                    className="inline-flex h-12 items-center gap-2.5 rounded-full bg-terra px-7 text-sm font-semibold text-cream shadow-sm transition-all hover:bg-terra-deep hover:shadow-glow-terra hover:-translate-y-0.5"
                                 >
                                     <MessageCircle className="size-4" />
                                     {str(t('ui.cta.orderWhatsapp'), 'Inquire via WhatsApp')}
                                 </a>
 
-                                <Cta href={`/${locale}/contact`} variant="outline">
+                                <Cta href={`/${locale}/contact`} variant="dark" className="h-12">
                                     {str(t('ui.cta.inquire'), 'Request Sample')}
                                 </Cta>
 
@@ -206,7 +215,7 @@ export default function ProductShow({ product, products = [] }: ProductProps) {
                                         href={product.spec_pdf}
                                         target="_blank"
                                         rel="noreferrer"
-                                        className="inline-flex h-12 items-center gap-2 rounded-full border border-border px-5 text-xs font-semibold uppercase tracking-wider text-coffee transition-colors hover:border-ink hover:text-ink"
+                                        className="inline-flex h-12 items-center gap-2 rounded-full border border-border/90 bg-card px-5 text-xs font-semibold uppercase tracking-wider text-ink transition-colors hover:border-terra hover:text-terra"
                                     >
                                         <FileText className="size-4 text-terra" />
                                         PDF Spec Sheet
@@ -219,52 +228,54 @@ export default function ProductShow({ product, products = [] }: ProductProps) {
             </section>
 
             {/* Cupping Profile & Taste Traits Section */}
-            <section className="bg-white py-20 md:py-28">
+            <section className="relative bg-cream py-20 md:py-28">
                 <div className="mx-auto max-w-[1400px] px-5 md:px-8">
                     <Reveal>
-                        <SectionHeading
-                            eyebrow={str(t('product.notes.eyebrow'), 'Cupping Profile')}
-                            title={str(t('product.notes.title'), 'Taste & Flavor Traits')}
-                            body={cuppingNotes}
-                        />
+                        <div className="card-luxury p-8 md:p-12">
+                            <SectionHeading
+                                eyebrow={str(t('product.notes.eyebrow'), 'Cupping Profile')}
+                                title={str(t('product.notes.title'), 'Taste & Flavor Profile')}
+                                body={cuppingNotes}
+                            />
 
-                        <div className="mt-8 flex flex-wrap gap-2.5">
-                            {traits.map((trait) => (
-                                <span
-                                    key={trait}
-                                    className="inline-flex items-center gap-1.5 rounded-full border border-terra/30 bg-white px-4 py-2 text-xs font-semibold uppercase tracking-wider text-terra-deep shadow-xs"
-                                >
-                                    <Sparkles className="size-3 text-terra" />
-                                    {trait}
-                                </span>
-                            ))}
+                            <div className="mt-8 flex flex-wrap gap-3">
+                                {traits.map((trait) => (
+                                    <span
+                                        key={trait}
+                                        className="inline-flex items-center gap-1.5 rounded-full border border-terra/30 bg-terra/10 px-4 py-2 text-xs font-semibold uppercase tracking-wider text-terra shadow-xs"
+                                    >
+                                        <Sparkles className="size-3.5 text-terra" />
+                                        {trait}
+                                    </span>
+                                ))}
+                            </div>
                         </div>
                     </Reveal>
                 </div>
             </section>
 
             {/* Technical Specifications Matrix */}
-            <section className="bg-white py-20 md:py-28">
+            <section className="relative bg-bone py-20 md:py-28">
                 <div className="mx-auto max-w-[1400px] px-5 md:px-8">
                     <SectionHeading
                         eyebrow={str(t('product.specs.eyebrow'), 'Technical Matrix')}
-                        title={str(t('product.specs.title'), 'Specifications')}
+                        title={str(t('product.specs.title'), 'Export Specifications')}
                     />
 
                     <Reveal delay={120}>
-                        <dl className="mt-12 overflow-hidden rounded-sm border border-border bg-white shadow-sm">
+                        <dl className="card-luxury mt-10 overflow-hidden p-0 shadow-earth">
                             {cleanSpecs.map((spec, i) => (
                                 <div
                                     key={spec.label}
                                     className={cn(
-                                        'grid grid-cols-1 gap-y-1 px-6 py-4 md:grid-cols-[14rem_1fr] md:items-baseline md:gap-x-8 md:px-10',
-                                        i !== cleanSpecs.length - 1 && 'border-b border-border'
+                                        'grid grid-cols-1 gap-y-1 px-6 py-4.5 transition-colors hover:bg-olive/20 md:grid-cols-[14rem_1fr] md:items-baseline md:gap-x-8 md:px-10',
+                                        i !== cleanSpecs.length - 1 && 'border-b border-border/70',
                                     )}
                                 >
                                     <dt className="text-xs font-semibold uppercase tracking-[0.18em] text-coffee">
                                         {spec.label}
                                     </dt>
-                                    <dd className="font-display text-base font-semibold text-ink">
+                                    <dd className="font-display text-base font-bold text-ink">
                                         {spec.value}
                                     </dd>
                                 </div>
@@ -277,7 +288,7 @@ export default function ProductShow({ product, products = [] }: ProductProps) {
 
             {/* Packaging Options */}
             {product.packaging && product.packaging.length > 0 && (
-                <section className="bg-forest-deep py-20 text-cream md:py-28">
+                <section className="relative overflow-hidden bg-forest-deep py-20 text-cream md:py-28">
                     <div className="mx-auto max-w-[1400px] px-5 md:px-8">
                         <SectionHeading
                             eyebrow={str(t('product.packaging.eyebrow'), 'Packaging')}
@@ -288,16 +299,22 @@ export default function ProductShow({ product, products = [] }: ProductProps) {
                         <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
                             {product.packaging.map((item, i) => (
                                 <Reveal key={item.title} delay={i * 90}>
-                                    <div className="flex h-full flex-col overflow-hidden rounded-sm border border-cream/15 bg-forest/40 p-7">
-                                        <span className="inline-flex w-fit rounded-full bg-terra px-3 py-1 text-[11px] font-semibold uppercase tracking-wider text-cream">
-                                            {item.tag}
-                                        </span>
-                                        <h3 className="mt-4 font-display text-xl text-cream">
-                                            {item.title}
-                                        </h3>
-                                        <p className="mt-2 text-sm leading-relaxed text-cream/70">
-                                            {item.text}
-                                        </p>
+                                    <div className="flex h-full flex-col justify-between overflow-hidden rounded-sm border border-cream/15 bg-white/5 p-8 backdrop-blur-sm transition-all hover:border-cream/30 hover:bg-white/10">
+                                        <div>
+                                            <span className="badge-pill border-terra/40 bg-terra text-cream">
+                                                {item.tag}
+                                            </span>
+                                            <h3 className="mt-5 font-display text-2xl font-bold text-cream">
+                                                {item.title}
+                                            </h3>
+                                            <p className="mt-3 text-sm leading-relaxed text-cream/70">
+                                                {item.text}
+                                            </p>
+                                        </div>
+                                        <div className="mt-6 flex items-center gap-1 text-xs font-semibold text-terra">
+                                            <Check className="size-4" />
+                                            <span>Export Standard</span>
+                                        </div>
                                     </div>
                                 </Reveal>
                             ))}
@@ -308,7 +325,7 @@ export default function ProductShow({ product, products = [] }: ProductProps) {
 
             {/* Related Products Section */}
             {products.length > 1 && (
-                <section className="bg-white py-20 md:py-28">
+                <section className="relative bg-cream py-20 md:py-28">
                     <div className="mx-auto max-w-[1400px] px-5 md:px-8">
                         <SectionHeading
                             eyebrow={str(t('product.collection.eyebrow'), 'Explore More')}
@@ -322,7 +339,7 @@ export default function ProductShow({ product, products = [] }: ProductProps) {
                                     <Reveal key={p.id ?? p.name} delay={i * 100}>
                                         <Link
                                             href={`/${locale}/product/${p.id}`}
-                                            className="group flex h-full flex-col overflow-hidden rounded-sm border border-border bg-white transition-all hover:border-terra hover:shadow-md"
+                                            className="card-luxury group flex h-full flex-col overflow-hidden p-0"
                                         >
                                             <div className="relative aspect-[4/3] overflow-hidden bg-ink">
                                                 <img
@@ -333,17 +350,15 @@ export default function ProductShow({ product, products = [] }: ProductProps) {
                                                 />
                                             </div>
                                             <div className="flex flex-1 flex-col p-6">
-                                                <p className="text-xs font-semibold uppercase tracking-[0.18em] text-terra">
-                                                    {p.subtitle}
-                                                </p>
-                                                <h3 className="mt-2 font-display text-xl leading-snug text-ink">
+                                                <span className="badge-origin mb-2 self-start">{p.subtitle}</span>
+                                                <h3 className="mt-1 font-display text-xl font-bold text-ink transition-colors group-hover:text-terra">
                                                     {p.name}
                                                 </h3>
-                                                <div className="mt-auto flex items-center justify-between pt-6 border-t border-border mt-6">
-                                                    <span className="text-xs font-semibold uppercase tracking-wider text-olive">
+                                                <div className="mt-auto flex items-center justify-between border-t border-border/80 pt-6 mt-6">
+                                                    <span className="text-xs font-semibold uppercase tracking-wider text-coffee">
                                                         Green Bean Export
                                                     </span>
-                                                    <span className="inline-flex items-center gap-1 text-xs font-semibold text-terra group-hover:text-terra-deep">
+                                                    <span className="inline-flex items-center gap-1 text-xs font-semibold text-terra">
                                                         {str(t('ui.cta.readMore'), 'View Details')}
                                                         <ArrowLeft className="size-4 rotate-180" />
                                                     </span>

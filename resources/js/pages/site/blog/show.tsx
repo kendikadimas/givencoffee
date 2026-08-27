@@ -1,5 +1,5 @@
 import { Link } from '@inertiajs/react';
-import { ArrowLeft } from 'lucide-react';
+import { ArrowLeft, ArrowUpRight, Calendar, Share2, Sparkles, Tag, User } from 'lucide-react';
 
 import { Reveal } from '@/components/site/reveal';
 import { Seo, useSeoSettings } from '@/components/site/seo';
@@ -49,73 +49,109 @@ export default function BlogShow({ post, recent }: BlogShowProps) {
                 jsonLd={jsonLd}
             />
 
-            {/* Cover hero */}
-            <section className="relative flex min-h-[65vh] items-end overflow-hidden bg-ink pt-32 pb-16">
+            {/* Cover Hero */}
+            <section className="relative flex min-h-[60vh] items-end overflow-hidden bg-ink pt-36 pb-20 md:min-h-[66vh] md:pb-24">
                 <img
                     src={post.cover_image ?? '/images/blog-1.jpg'}
                     alt={post.title}
                     fetchPriority="high"
-                    className="absolute inset-0 size-full object-cover opacity-65"
+                    className="absolute inset-0 size-full object-cover opacity-60 transition-transform duration-1000 ease-out"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/45 to-ink/10" />
+                <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/80 to-ink/40" />
+                <div className="pointer-events-none absolute -bottom-10 right-10 size-96 rounded-full bg-terra/20 blur-3xl" />
 
-                <div className="relative mx-auto w-full max-w-[900px] px-5 md:px-8">
+                <div className="relative mx-auto w-full max-w-[1000px] px-5 md:px-8">
                     <Link
                         href={`/${locale}/blog`}
-                        className="mb-6 inline-flex items-center gap-2 text-sm font-medium text-cream/70 transition-colors hover:text-cream"
+                        className="mb-6 inline-flex items-center gap-2 rounded-full border border-cream/25 bg-white/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-wider text-cream backdrop-blur-xs transition-colors hover:border-terra hover:bg-terra"
                     >
-                        <ArrowLeft className="size-4" />
+                        <ArrowLeft className="size-3.5" />
                         {str(t('blog.back'))}
                     </Link>
-                    <div className="flex items-center gap-3 text-xs text-cream/60">
+                    
+                    <div className="flex flex-wrap items-center gap-3 text-xs">
                         {post.category && (
-                            <span className="font-semibold uppercase tracking-[0.16em] text-terra">
+                            <span className="badge-pill border-terra/40 bg-terra/20 text-cream">
                                 {post.category.name}
                             </span>
                         )}
-                        <span>{post.published_at}</span>
+                        <span className="flex items-center gap-1.5 text-cream/70">
+                            <Calendar className="size-3.5 text-terra" />
+                            {post.published_at}
+                        </span>
                     </div>
-                    <h1 className="mt-4 font-display text-4xl leading-[1.08] tracking-tight text-cream md:text-5xl">
+
+                    <h1 className="mt-4 font-display text-4xl leading-[1.08] tracking-tight text-cream md:text-5xl lg:text-6xl">
                         {post.title}
                     </h1>
                 </div>
             </section>
 
-            {/* Body */}
-            <article className="mx-auto max-w-[760px] px-5 py-16 md:py-24">
-                <p className="text-lg font-medium leading-relaxed text-ink">{post.excerpt}</p>
-                <div className="mt-8 space-y-6">
-                    {blocks.map((block, i) =>
-                        block.type === 'h2' ? (
-                            <Reveal key={i} delay={0}>
-                                <h2 className="pt-4 font-display text-2xl text-ink md:text-3xl">
-                                    {block.text}
-                                </h2>
-                            </Reveal>
-                        ) : (
-                            <Reveal key={i} delay={0}>
-                                <p className="leading-relaxed text-coffee">{block.text}</p>
-                            </Reveal>
-                        ),
-                    )}
+            {/* Article Body */}
+            <article className="relative bg-bone py-16 md:py-24">
+                <div className="mx-auto max-w-[840px] px-5 md:px-8">
+                    <div className="card-luxury p-8 md:p-14">
+                        <p className="border-b border-border/80 pb-8 text-xl font-medium leading-relaxed text-ink">
+                            {post.excerpt}
+                        </p>
+
+                        <div className="mt-8 space-y-6 text-lg leading-relaxed text-coffee">
+                            {blocks.map((block, i) =>
+                                block.type === 'h2' ? (
+                                    <Reveal key={i} delay={0}>
+                                        <h2 className="pt-6 font-display text-2xl font-bold text-ink md:text-3xl">
+                                            {block.text}
+                                        </h2>
+                                    </Reveal>
+                                ) : (
+                                    <Reveal key={i} delay={0}>
+                                        <p className="leading-relaxed">{block.text}</p>
+                                    </Reveal>
+                                ),
+                            )}
+                        </div>
+
+                        {/* Article Footer Strip */}
+                        <div className="mt-12 flex flex-wrap items-center justify-between gap-4 border-t border-border/80 pt-6">
+                            <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-coffee">
+                                <span className="badge-origin">Given Coffee Editorial</span>
+                            </div>
+                            <Link
+                                href={`/${locale}/blog`}
+                                className="inline-flex items-center gap-1 text-sm font-semibold text-terra transition-colors hover:text-terra-deep"
+                            >
+                                <ArrowLeft className="size-4" />
+                                {str(t('blog.back'))}
+                            </Link>
+                        </div>
+                    </div>
                 </div>
             </article>
 
-            {/* Recent */}
+            {/* Recent Articles */}
             {recent.length > 0 && (
-                <section className="border-t border-border bg-white py-20">
+                <section className="relative bg-cream py-20 md:py-28">
                     <div className="mx-auto max-w-[1400px] px-5 md:px-8">
-                        <h2 className="font-display text-2xl text-ink md:text-3xl">
-                            {str(t('blog.subtitle'))}
-                        </h2>
-                        <div className="mt-8 grid gap-px overflow-hidden rounded-sm bg-border sm:grid-cols-2 lg:grid-cols-3">
+                        <div className="flex items-center justify-between">
+                            <h2 className="font-display text-3xl font-bold text-ink md:text-4xl">
+                                {str(t('blog.subtitle'))}
+                            </h2>
+                            <Link
+                                href={`/${locale}/blog`}
+                                className="text-sm font-semibold text-terra hover:underline"
+                            >
+                                View All Articles →
+                            </Link>
+                        </div>
+
+                        <div className="mt-12 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
                             {recent.map((item) => (
                                 <Link
                                     key={item.slug}
                                     href={`/${locale}/blog/${item.slug}`}
-                                    className="group bg-white"
+                                    className="card-luxury group flex h-full flex-col overflow-hidden p-0"
                                 >
-                                    <div className="overflow-hidden">
+                                    <div className="overflow-hidden bg-ink">
                                         <img
                                             src={item.cover_image ?? '/images/blog-2.jpg'}
                                             alt={item.title}
@@ -123,11 +159,19 @@ export default function BlogShow({ post, recent }: BlogShowProps) {
                                             className="aspect-[16/10] w-full object-cover transition-transform duration-500 group-hover:scale-105"
                                         />
                                     </div>
-                                    <div className="p-6">
+                                    <div className="flex flex-1 flex-col p-6">
                                         <p className="text-xs text-coffee">{item.published_at}</p>
-                                        <h3 className="mt-2 font-display text-lg leading-snug text-ink transition-colors group-hover:text-terra-deep">
+                                        <h3 className="mt-2 font-display text-xl font-bold leading-snug text-ink transition-colors group-hover:text-terra">
                                             {item.title}
                                         </h3>
+                                        <div className="mt-auto flex items-center justify-between border-t border-border/80 pt-4 mt-6">
+                                            <span className="text-xs font-semibold uppercase tracking-wider text-coffee">
+                                                Read Article
+                                            </span>
+                                            <span className="inline-flex items-center gap-1 text-sm font-semibold text-terra">
+                                                <ArrowUpRight className="size-4" />
+                                            </span>
+                                        </div>
                                     </div>
                                 </Link>
                             ))}

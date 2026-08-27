@@ -13,7 +13,7 @@ export function SiteHeader() {
     const [open, setOpen] = useState(false);
 
     useEffect(() => {
-        const onScroll = (): void => setScrolled(window.scrollY > 24);
+        const onScroll = (): void => setScrolled(window.scrollY > 20);
         onScroll();
         window.addEventListener('scroll', onScroll, { passive: true });
 
@@ -34,71 +34,117 @@ export function SiteHeader() {
         typeof window !== 'undefined'
             ? window.location.pathname.replace(/^\/(en|id)(?=\/|$)/, '')
             : '';
-    const localeHref = `/${otherLocale}${currentPath}`;
+    const localeHref = `/${otherLocale}${currentPath || ''}`;
 
     const dark = !scrolled && !open;
+
+    const isActive = (href: string) => {
+        if (typeof window === 'undefined') return false;
+        const pathname = window.location.pathname;
+        if (href === `/${locale}`) {
+            return pathname === `/${locale}` || pathname === `/${locale}/`;
+        }
+        return pathname.startsWith(href);
+    };
 
     return (
         <header
             className={cn(
-                'fixed inset-x-0 top-0 z-50 transition-colors duration-300',
+                'fixed inset-x-0 top-0 z-50 transition-all duration-300',
                 scrolled || open
-                    ? 'border-b border-border/70 bg-white/95 text-ink backdrop-blur-md'
-                    : 'border-b border-transparent bg-transparent text-cream',
+                    ? 'border-b border-border/80 bg-cream/92 text-ink shadow-[0_4px_24px_-4px_rgba(34,26,18,0.06)] backdrop-blur-md'
+                    : 'border-b border-white/10 bg-gradient-to-b from-ink/60 via-ink/20 to-transparent text-cream backdrop-blur-[2px]',
             )}
         >
             <div className="mx-auto flex h-16 max-w-[1400px] items-center justify-between px-5 md:h-[72px] md:px-8">
                 <Logo href={`/${locale}`} variant={dark ? 'white' : 'color'} />
 
-                <nav className="hidden items-center gap-7 lg:flex">
-                    {items.map((item) => (
-                        <Link
-                            key={item.href}
-                            href={item.href}
-                            className="text-sm font-medium opacity-80 transition-opacity hover:opacity-100"
-                        >
-                            {item.label}
-                        </Link>
-                    ))}
+                <nav className="hidden items-center gap-8 lg:flex">
+                    {items.map((item) => {
+                        const active = isActive(item.href);
+                        return (
+                            <Link
+                                key={item.href}
+                                href={item.href}
+                                className={cn(
+                                    'relative text-sm font-medium tracking-wide transition-all duration-200',
+                                    active
+                                        ? dark
+                                            ? 'font-semibold text-cream'
+                                            : 'font-semibold text-terra'
+                                        : dark
+                                          ? 'text-cream/80 hover:text-cream'
+                                          : 'text-ink/75 hover:text-terra',
+                                )}
+                            >
+                                {item.label}
+                                {active && (
+                                    <span
+                                        className={cn(
+                                            'absolute -bottom-1.5 left-0 h-0.5 w-full rounded-full',
+                                            dark ? 'bg-terra' : 'bg-terra',
+                                        )}
+                                    />
+                                )}
+                            </Link>
+                        );
+                    })}
                 </nav>
 
-                <div className="flex items-center gap-3">
+                <div className="flex items-center gap-3.5">
                     <Link
                         href={localeHref}
+                        aria-label="Switch Language"
                         className={cn(
-                            'flex items-center gap-1 rounded-full border px-3 py-1.5 text-xs font-semibold transition-colors',
+                            'flex items-center gap-1 rounded-full border p-1 text-[11px] font-semibold tracking-wider transition-all',
                             dark
-                                ? 'border-cream/30 text-cream hover:bg-white/10'
-                                : 'border-ink/20 text-ink hover:border-ink',
+                                ? 'border-cream/25 bg-black/20 text-cream backdrop-blur-xs hover:border-cream/50'
+                                : 'border-border/90 bg-white/70 text-ink shadow-xs hover:border-terra/60',
                         )}
                     >
                         <span
                             className={cn(
-                                'rounded-full px-1.5 py-0.5',
-                                locale === 'en' ? 'bg-terra text-cream' : 'opacity-60',
+                                'rounded-full px-2 py-0.5 transition-all',
+                                locale === 'en'
+                                    ? 'bg-terra text-cream shadow-xs'
+                                    : dark
+                                      ? 'text-cream/70 hover:text-cream'
+                                      : 'text-ink/60 hover:text-ink',
                             )}
                         >
                             EN
                         </span>
-                        <span className="opacity-40">/</span>
                         <span
                             className={cn(
-                                'rounded-full px-1.5 py-0.5',
-                                locale === 'id' ? 'bg-terra text-cream' : 'opacity-60',
+                                'rounded-full px-2 py-0.5 transition-all',
+                                locale === 'id'
+                                    ? 'bg-terra text-cream shadow-xs'
+                                    : dark
+                                      ? 'text-cream/70 hover:text-cream'
+                                      : 'text-ink/60 hover:text-ink',
                             )}
                         >
                             ID
                         </span>
                     </Link>
 
-                    <Cta href={`/${locale}/contact`} className="hidden md:inline-flex">
+                    <Cta
+                        href={`/${locale}/contact`}
+                        variant={dark ? 'outline-light' : 'terra'}
+                        className="hidden md:inline-flex"
+                    >
                         {str(t('ui.cta.sample'))}
                     </Cta>
 
                     <button
                         type="button"
                         aria-label="Menu"
-                        className="grid size-10 place-items-center rounded-full lg:hidden"
+                        className={cn(
+                            'grid size-10 place-items-center rounded-full border transition-colors lg:hidden',
+                            dark
+                                ? 'border-cream/25 bg-black/20 text-cream'
+                                : 'border-border bg-white text-ink',
+                        )}
                         onClick={() => setOpen((v) => !v)}
                     >
                         {open ? <X className="size-5" /> : <Menu className="size-5" />}
@@ -107,22 +153,25 @@ export function SiteHeader() {
             </div>
 
             {open && (
-                <nav className="border-t border-border/70 bg-white/95 px-5 pb-6 pt-3 backdrop-blur-md lg:hidden">
+                <nav className="border-t border-border/80 bg-cream/95 px-6 pb-8 pt-4 backdrop-blur-lg lg:hidden">
                     <ul className="flex flex-col">
                         {items.map((item) => (
                             <li key={item.href}>
                                 <Link
                                     href={item.href}
                                     onClick={() => setOpen(false)}
-                                    className="flex items-center justify-between border-b border-border/50 py-4 font-display text-xl"
+                                    className="flex items-center justify-between border-b border-border/60 py-4 font-display text-xl text-ink transition-colors hover:text-terra"
                                 >
-                                    {item.label}
+                                    <span>{item.label}</span>
+                                    {isActive(item.href) && (
+                                        <span className="size-2 rounded-full bg-terra" />
+                                    )}
                                 </Link>
                             </li>
                         ))}
                     </ul>
-                    <div className="mt-5">
-                        <Cta href={`/${locale}/contact`} className="w-full">
+                    <div className="mt-6">
+                        <Cta href={`/${locale}/contact`} variant="terra" className="w-full">
                             {str(t('ui.cta.sample'))}
                         </Cta>
                     </div>
