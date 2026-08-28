@@ -1,5 +1,5 @@
 import { router, usePage } from '@inertiajs/react';
-import { Clock, Globe2, HelpCircle, Mail, MapPin, MessageCircle, Send, ShieldCheck, Sparkles } from 'lucide-react';
+import { Clock, Globe2, Mail, MapPin, MessageCircle, Send, ShieldCheck } from 'lucide-react';
 import { useState } from 'react';
 import type { FormEvent, ReactNode } from 'react';
 
@@ -107,6 +107,12 @@ export default function Contact({ settings, faqs = [] }: ContactProps) {
         { label: exportInfo.ports, value: exportInfo.portsValue },
     ];
 
+    const faqItems = faqs.length > 0
+        ? faqs
+        : (t('contact.faq.items') as unknown as Array<{ q: string; a: string }>).map(
+              (item) => ({ question: item.q, answer: item.a }),
+          );
+
     return (
         <>
             <Seo
@@ -116,6 +122,7 @@ export default function Contact({ settings, faqs = [] }: ContactProps) {
                 image="/images/contact-hero.jpg"
             />
 
+            {/* Hero — eyebrow #1 (only eyebrow in this section) */}
             <PageHero
                 image="/images/contact-hero.jpg"
                 eyebrow={str(t('contact.hero.eyebrow'))}
@@ -123,17 +130,14 @@ export default function Contact({ settings, faqs = [] }: ContactProps) {
                 subtitle={str(t('contact.hero.subtitle'))}
             />
 
-            {/* Wholesale Inquiry Section */}
+            {/* Main Contact Section: form (7 cols) + business info (5 cols) */}
             <section className="relative bg-bone py-24 md:py-32">
                 <div className="mx-auto max-w-[1400px] px-5 md:px-8">
                     <div className="grid gap-12 lg:grid-cols-12 lg:gap-16">
-                        {/* Form Column (7 Cols) */}
+
+                        {/* Form — col-span-7 */}
                         <Reveal className="lg:col-span-7">
                             <div className="card-luxury p-8 md:p-12">
-                                <span className="badge-pill mb-3 border-terra/30 bg-terra/10 text-terra">
-                                    <Sparkles className="size-3 text-terra" />
-                                    B2B Direct Trade
-                                </span>
                                 <h2 className="font-display text-2xl font-bold text-ink md:text-4xl">
                                     {str(t('contact.form.title'))}
                                 </h2>
@@ -249,142 +253,146 @@ export default function Contact({ settings, faqs = [] }: ContactProps) {
                             </div>
                         </Reveal>
 
-                        {/* Business Info Column (5 Cols) */}
+                        {/* Business Info — col-span-5, simple stack (no cards) */}
                         <Reveal delay={120} className="lg:col-span-5">
-                            <div className="space-y-6">
-                                <div className="card-luxury p-8">
-                                    <span className="badge-origin mb-4">Official Channels</span>
-                                    <h3 className="font-display text-2xl font-bold text-ink">
-                                        {str(t('contact.info.title'))}
-                                    </h3>
+                            <h3 className="font-display text-2xl font-bold text-ink">
+                                {str(t('contact.info.title'))}
+                            </h3>
 
-                                    <ul className="mt-6 space-y-6">
-                                        {settings.address && (
-                                            <li className="flex items-start gap-4">
-                                                <span className="grid size-11 shrink-0 place-items-center rounded-full border border-forest/20 bg-olive text-forest">
-                                                    <MapPin className="size-5" />
-                                                </span>
-                                                <div>
-                                                    <p className="text-xs font-semibold uppercase tracking-wider text-coffee">
-                                                        {str(t('contact.info.office'))}
-                                                    </p>
-                                                    <p className="mt-1 text-sm font-medium text-ink leading-relaxed">
-                                                        {settings.address}
-                                                    </p>
-                                                </div>
-                                            </li>
-                                        )}
-                                        {settings.email && (
-                                            <li className="flex items-start gap-4">
-                                                <span className="grid size-11 shrink-0 place-items-center rounded-full border border-forest/20 bg-olive text-forest">
-                                                    <Mail className="size-5" />
-                                                </span>
-                                                <div>
-                                                    <p className="text-xs font-semibold uppercase tracking-wider text-coffee">
-                                                        {str(t('contact.info.email'))}
-                                                    </p>
-                                                    <a
-                                                        href={`mailto:${settings.email}`}
-                                                        className="mt-1 block text-sm font-medium text-ink transition-colors hover:text-terra"
-                                                    >
-                                                        {settings.email}
-                                                    </a>
-                                                </div>
-                                            </li>
-                                        )}
-                                        {settings.whatsapp && (
-                                            <li className="flex items-start gap-4">
-                                                <span className="grid size-11 shrink-0 place-items-center rounded-full border border-forest/20 bg-olive text-forest">
-                                                    <MessageCircle className="size-5" />
-                                                </span>
-                                                <div>
-                                                    <p className="text-xs font-semibold uppercase tracking-wider text-coffee">
-                                                        {str(t('contact.info.whatsapp'))}
-                                                    </p>
-                                                    <a
-                                                        href={settings.whatsapp_url ?? '#'}
-                                                        target="_blank"
-                                                        rel="noreferrer"
-                                                        className="mt-1 block text-sm font-medium text-ink transition-colors hover:text-terra"
-                                                    >
-                                                        {settings.whatsapp}
-                                                    </a>
-                                                </div>
-                                            </li>
-                                        )}
-                                        {settings.hours && (
-                                            <li className="flex items-start gap-4">
-                                                <span className="grid size-11 shrink-0 place-items-center rounded-full border border-forest/20 bg-olive text-forest">
-                                                    <Clock className="size-5" />
-                                                </span>
-                                                <div>
-                                                    <p className="text-xs font-semibold uppercase tracking-wider text-coffee">
-                                                        Operational Hours
-                                                    </p>
-                                                    <p className="mt-1 text-sm font-medium text-ink">
-                                                        {settings.hours}
-                                                    </p>
-                                                </div>
-                                            </li>
-                                        )}
-                                    </ul>
-                                </div>
-                            </div>
+                            <ul className="mt-6 divide-y divide-border/60">
+                                {settings.address && (
+                                    <li className="flex items-start gap-4 py-5">
+                                        <MapPin className="mt-0.5 size-5 shrink-0 text-forest" />
+                                        <div>
+                                            <p className="text-xs font-semibold uppercase tracking-wider text-coffee">
+                                                {str(t('contact.info.office'))}
+                                            </p>
+                                            <p className="mt-1 text-sm font-medium text-ink leading-relaxed">
+                                                {settings.address}
+                                            </p>
+                                        </div>
+                                    </li>
+                                )}
+                                {settings.email && (
+                                    <li className="flex items-start gap-4 py-5">
+                                        <Mail className="mt-0.5 size-5 shrink-0 text-forest" />
+                                        <div>
+                                            <p className="text-xs font-semibold uppercase tracking-wider text-coffee">
+                                                {str(t('contact.info.email'))}
+                                            </p>
+                                            <a
+                                                href={`mailto:${settings.email}`}
+                                                className="mt-1 block text-sm font-medium text-ink transition-colors hover:text-terra"
+                                            >
+                                                {settings.email}
+                                            </a>
+                                        </div>
+                                    </li>
+                                )}
+                                {settings.whatsapp && (
+                                    <li className="flex items-start gap-4 py-5">
+                                        <MessageCircle className="mt-0.5 size-5 shrink-0 text-forest" />
+                                        <div>
+                                            <p className="text-xs font-semibold uppercase tracking-wider text-coffee">
+                                                {str(t('contact.info.whatsapp'))}
+                                            </p>
+                                            <a
+                                                href={settings.whatsapp_url ?? '#'}
+                                                target="_blank"
+                                                rel="noreferrer"
+                                                className="mt-1 block text-sm font-medium text-ink transition-colors hover:text-terra"
+                                            >
+                                                {settings.whatsapp}
+                                            </a>
+                                        </div>
+                                    </li>
+                                )}
+                                {settings.hours && (
+                                    <li className="flex items-start gap-4 py-5">
+                                        <Clock className="mt-0.5 size-5 shrink-0 text-forest" />
+                                        <div>
+                                            <p className="text-xs font-semibold uppercase tracking-wider text-coffee">
+                                                Operational Hours
+                                            </p>
+                                            <p className="mt-1 text-sm font-medium text-ink">
+                                                {settings.hours}
+                                            </p>
+                                        </div>
+                                    </li>
+                                )}
+                            </ul>
                         </Reveal>
                     </div>
+                </div>
+            </section>
 
-                    {/* Export Information Matrix Strip */}
-                    <div className="mt-16 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-                        {exportRows.map((row, i) => (
-                            <Reveal key={row.label} delay={i * 80}>
-                                <div className="card-luxury p-6">
-                                    <dt className="text-xs font-semibold uppercase tracking-[0.18em] text-coffee">
-                                        {row.label}
-                                    </dt>
-                                    <dd className="mt-3 font-display text-xl font-bold leading-snug text-ink">
-                                        {row.value}
-                                    </dd>
-                                </div>
+            {/* Export Info — dark (ink) bg, eyebrow #2 (only 1 more after hero), asymmetric layout */}
+            <section className="bg-ink py-24 md:py-32">
+                <div className="mx-auto max-w-[1400px] px-5 md:px-8">
+                    <Reveal>
+                        <p className="mb-2 text-xs font-semibold uppercase tracking-[0.18em] text-terra">
+                            {str(t('contact.export.eyebrow' as any) || 'Export Ready')}
+                        </p>
+                    </Reveal>
+
+                    {/* First stat: Markets — full-width horizontal banner */}
+                    <Reveal>
+                        <div className="mt-4 flex items-baseline justify-between border-b border-cream/10 pb-8">
+                            <p className="text-sm font-semibold uppercase tracking-[0.18em] text-cream/50">
+                                {exportRows[0].label}
+                            </p>
+                            <p className="font-display text-5xl font-bold text-cream md:text-7xl">
+                                {exportRows[0].value}
+                            </p>
+                        </div>
+                    </Reveal>
+
+                    {/* Remaining 3 stats — 3-col grid */}
+                    <div className="mt-8 grid gap-8 sm:grid-cols-3">
+                        {exportRows.slice(1).map((row, i) => (
+                            <Reveal key={row.label} delay={(i + 1) * 80}>
+                                <dt className="text-xs font-semibold uppercase tracking-[0.18em] text-cream/50">
+                                    {row.label}
+                                </dt>
+                                <dd className="mt-3 font-display text-3xl font-bold text-cream md:text-4xl">
+                                    {row.value}
+                                </dd>
                             </Reveal>
                         ))}
                     </div>
                 </div>
             </section>
 
-            {/* Frequently Asked Questions */}
+            {/* FAQ — 2-col split, no accordion, no eyebrow */}
             <section className="relative bg-cream py-24 md:py-32">
-                <div className="mx-auto max-w-[900px] px-5 md:px-8">
-                    <SectionHeading
-                        eyebrow={str(t('contact.faq.eyebrow'))}
-                        title={str(t('contact.faq.title'))}
-                        align="center"
-                        className="mx-auto mb-14"
-                    />
-                    <div className="space-y-4">
-                        {(faqs.length > 0
-                            ? faqs
-                            : (t('contact.faq.items') as unknown as Array<{ q: string; a: string }>).map(
-                                  (item) => ({ question: item.q, answer: item.a }),
-                              )
-                        ).map((item) => (
-                            <details
-                                key={item.question}
-                                className="group card-luxury p-6 transition-all [&_summary::-webkit-details-marker]:hidden"
-                            >
-                                <summary className="flex cursor-pointer items-center justify-between gap-4 font-display text-lg font-bold text-ink">
-                                    <span>{item.question}</span>
-                                    <span className="grid size-8 shrink-0 place-items-center rounded-full border border-border bg-bone text-terra transition-transform group-open:rotate-45">
-                                        <span className="text-xl leading-none">+</span>
-                                    </span>
-                                </summary>
-                                <p className="mt-4 text-sm leading-relaxed text-coffee">{item.answer}</p>
-                            </details>
-                        ))}
+                <div className="mx-auto max-w-[1400px] px-5 md:px-8">
+                    <div className="grid gap-16 lg:grid-cols-12">
+                        {/* Left: heading + description */}
+                        <Reveal className="lg:col-span-4">
+                            <h2 className="font-display text-3xl font-bold text-ink md:text-4xl">
+                                {str(t('contact.faq.title'))}
+                            </h2>
+                            <p className="mt-4 text-sm leading-relaxed text-coffee">
+                                {str(t('contact.faq.description' as any) || '')}
+                            </p>
+                        </Reveal>
+
+                        {/* Right: plain divide-y FAQ rows */}
+                        <Reveal delay={80} className="lg:col-span-8">
+                            <dl className="divide-y divide-border/60">
+                                {faqItems.map((item) => (
+                                    <div key={item.question} className="pt-5 first:pt-0">
+                                        <dt className="font-semibold text-ink">{item.question}</dt>
+                                        <dd className="mt-1 pb-5 text-sm text-coffee">{item.answer}</dd>
+                                    </div>
+                                ))}
+                            </dl>
+                        </Reveal>
                     </div>
                 </div>
             </section>
 
-            {/* Map Section */}
+            {/* Map Section — kept as-is */}
             {settings.map_embed && (
                 <section className="relative bg-bone pb-24 md:pb-32">
                     <div className="mx-auto max-w-[1400px] px-5 md:px-8">
