@@ -316,7 +316,6 @@ export default function ProductShow({ product, products = [] }: ProductProps) {
                             ) : null
                         )}
                     </div>
-                    </div>
                     <p className="mt-4 text-sm text-coffee">{str(t('product.specs.note'))}</p>
                 </div>
             </section>
