@@ -242,8 +242,8 @@ export default function Home({ product, products = [], testimonials = [] }: Home
                             </Reveal>
 
                             {/* Right — tall portrait image, no border-radius */}
-                            <Reveal delay={100} className="hidden lg:block">
-                                <div className="relative h-full min-h-[560px] overflow-hidden">
+                            <Reveal delay={100}>
+                                <div className="relative aspect-[4/3] overflow-hidden lg:aspect-auto lg:h-full lg:min-h-[560px]">
                                     <img
                                         src={featuredProduct.images?.hero ?? '/images/real/product.jpeg'}
                                         alt={featuredProduct.name}
