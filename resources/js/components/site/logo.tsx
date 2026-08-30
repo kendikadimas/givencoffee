@@ -14,7 +14,7 @@ export function Logo({ href, className, variant = 'color' }: LogoProps) {
             <img
                 src={variant === 'white' ? '/images/real/logo-white.png' : '/images/real/logo.png'}
                 alt="Given Coffee"
-                className="h-10 w-auto object-contain md:h-12"
+                className="h-[84px] w-auto object-contain md:h-[120px]"
             />
         </Link>
     );

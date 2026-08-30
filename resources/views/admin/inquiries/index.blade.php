@@ -14,7 +14,7 @@
                 <tr>
                     <th class="px-5 py-3 font-semibold">Name</th>
                     <th class="hidden px-5 py-3 font-semibold md:table-cell">Company / Country</th>
-                    <th class="hidden px-5 py-3 font-semibold lg:table-cell">Quantity</th>
+                    <th class="hidden px-5 py-3 font-semibold lg:table-cell">Annual Demand</th>
                     <th class="hidden px-5 py-3 font-semibold lg:table-cell">Received</th>
                     <th class="px-5 py-3 font-semibold">Status</th>
                     <th class="px-5 py-3 text-right font-semibold">Actions</th>
@@ -31,7 +31,7 @@
                             <p>{{ $inquiry->company ?? '—' }}</p>
                             <p class="text-xs">{{ $inquiry->country ?? '' }}</p>
                         </td>
-                        <td class="hidden px-5 py-4 text-coffee lg:table-cell">{{ $inquiry->quantity ?? '—' }}</td>
+                        <td class="hidden px-5 py-4 text-coffee lg:table-cell">{{ $inquiry->annual_demand ?? $inquiry->quantity ?? '—' }}</td>
                         <td class="hidden px-5 py-4 text-coffee lg:table-cell">{{ $inquiry->created_at->format('d M Y H:i') }}</td>
                         <td class="px-5 py-4">
                             <span class="rounded-full px-2.5 py-1 text-xs font-medium {{ $inquiry->status === 'new' ? 'bg-terra/15 text-terra-deep' : ($inquiry->status === 'read' ? 'bg-olive text-forest-deep' : 'bg-border text-coffee') }}">

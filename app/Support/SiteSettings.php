@@ -13,10 +13,11 @@ class SiteSettings
         if (self::$data === null) {
             $defaults = [
                 'company_name' => 'Given Coffee',
-                'email' => 'hello@givencoffeeid.com',
-                'phone' => '+62 812 3456 7890',
-                'whatsapp' => '+62 812 3456 7890',
-                'whatsapp_url' => 'https://wa.me/6281234567890',
+                'email' => 'export@givencoffeeid.com',
+                'email_sample' => 'sample@givencoffeeid.com',
+                'phone' => '+62 852 6225 0583',
+                'whatsapp' => '+62 852 6225 0583',
+                'whatsapp_url' => 'https://wa.me/6285262250583',
                 'address' => 'Dolok Sanggul, Kec. Dolok sanggul, Kabupaten Humbang Hasundutan, Sumatera Utara 22457',
                 'hours' => 'Mon – Fri, 08.00 – 17.00 WIB',
                 'social_instagram' => 'https://instagram.com/givencoffee',

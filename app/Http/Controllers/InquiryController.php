@@ -16,12 +16,16 @@ class InquiryController extends Controller
     {
         $validated = $request->validate([
             'name' => ['required', 'string', 'max:255'],
-            'company' => ['nullable', 'string', 'max:255'],
+            'company' => ['required', 'string', 'max:255'],
             'email' => ['required', 'email', 'max:255'],
-            'country' => ['nullable', 'string', 'max:255'],
-            'quantity' => ['nullable', 'string', 'max:255'],
-            'message' => ['required', 'string', 'max:5000'],
+            'phone' => ['required', 'string', 'max:255'],
+            'country' => ['required', 'string', 'max:255'],
+            'annual_demand' => ['required', 'string', 'max:255'],
+            'shipping_address' => ['required', 'string', 'max:1000'],
         ]);
+
+        // ponytail: brief has no message field; keep column for legacy rows
+        $validated['message'] = '';
 
         $inquiry = Inquiry::create($validated);
 

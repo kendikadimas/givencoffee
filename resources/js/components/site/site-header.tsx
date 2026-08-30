@@ -1,4 +1,4 @@
-import { Link } from '@inertiajs/react';
+import { Link, usePage } from '@inertiajs/react';
 import { Menu, X } from 'lucide-react';
 import { useEffect, useState } from 'react';
 
@@ -25,22 +25,23 @@ export function SiteHeader() {
         { label: str(t('ui.nav.about')), href: `/${locale}/about` },
         { label: str(t('ui.nav.product')), href: `/${locale}/product` },
         { label: str(t('ui.nav.process')), href: `/${locale}/process` },
+        { label: str(t('ui.nav.export')), href: `/${locale}/export` },
         { label: str(t('ui.nav.contact')), href: `/${locale}/contact` },
         { label: str(t('ui.nav.blog')), href: `/${locale}/blog` },
     ];
 
+    const { url } = usePage();
+    const pathname = url.split('?')[0];
+
     const otherLocale = locale === 'en' ? 'id' : 'en';
-    const currentPath =
-        typeof window !== 'undefined'
-            ? window.location.pathname.replace(/^\/(en|id)(?=\/|$)/, '')
-            : '';
+    const currentPath = pathname.replace(/^\/(en|id)(?=\/|$)/, '');
     const localeHref = `/${otherLocale}${currentPath || ''}`;
 
-    const dark = !scrolled && !open;
+    const isContactPage = pathname.includes('/contact');
+    const solid = scrolled || open || isContactPage;
+    const dark = !solid;
 
     const isActive = (href: string) => {
-        if (typeof window === 'undefined') return false;
-        const pathname = window.location.pathname;
         if (href === `/${locale}`) {
             return pathname === `/${locale}` || pathname === `/${locale}/`;
         }
@@ -51,7 +52,7 @@ export function SiteHeader() {
         <header
             className={cn(
                 'fixed inset-x-0 top-0 z-50 transition-all duration-300',
-                scrolled || open
+                solid
                     ? 'border-b border-border/80 bg-cream/92 text-ink shadow-[0_4px_24px_-4px_rgba(34,26,18,0.06)] backdrop-blur-md'
                     : 'border-b border-white/10 bg-gradient-to-b from-ink/60 via-ink/20 to-transparent text-cream backdrop-blur-[2px]',
             )}
@@ -62,6 +63,7 @@ export function SiteHeader() {
                 <nav className="hidden items-center gap-8 lg:flex">
                     {items.map((item) => {
                         const active = isActive(item.href);
+
                         return (
                             <Link
                                 key={item.href}

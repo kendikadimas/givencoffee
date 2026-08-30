@@ -62,6 +62,11 @@ class SiteController extends Controller
         return Inertia::render('site/process');
     }
 
+    public function export(): Response
+    {
+        return Inertia::render('site/export');
+    }
+
     public function contact(): Response
     {
         return Inertia::render('site/contact', [

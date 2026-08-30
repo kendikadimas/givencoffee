@@ -13,7 +13,7 @@ class SitemapController extends Controller
         $urls = [];
 
         foreach (['en', 'id'] as $locale) {
-            foreach (['', 'about', 'product', 'process', 'contact', 'blog'] as $path) {
+            foreach (['', 'about', 'product', 'process', 'export', 'contact', 'blog'] as $path) {
                 $urls[] = ['loc' => url("/{$locale}/{$path}"), 'lastmod' => now()->toDateString()];
             }
 

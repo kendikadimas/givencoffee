@@ -24,7 +24,7 @@ class InquiryController extends Controller
 
         $output = fopen('php://temp', 'r+');
 
-        fputcsv($output, ['Date', 'Name', 'Company', 'Email', 'Country', 'Quantity', 'Message', 'Status']);
+        fputcsv($output, ['Date', 'Name', 'Company', 'Email', 'Phone', 'Country', 'Annual Demand', 'Shipping Address', 'Message', 'Status']);
 
         foreach ($rows as $inquiry) {
             fputcsv($output, [
@@ -32,8 +32,10 @@ class InquiryController extends Controller
                 $inquiry->name,
                 $inquiry->company,
                 $inquiry->email,
+                $inquiry->phone,
                 $inquiry->country,
-                $inquiry->quantity,
+                $inquiry->annual_demand ?? $inquiry->quantity,
+                $inquiry->shipping_address,
                 $inquiry->message,
                 $inquiry->status,
             ]);

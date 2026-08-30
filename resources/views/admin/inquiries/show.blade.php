@@ -23,8 +23,16 @@
                     <dd class="mt-1 font-medium text-ink"><a href="mailto:{{ $inquiry->email }}" class="text-terra hover:text-terra-deep">{{ $inquiry->email }}</a></dd>
                 </div>
                 <div>
-                    <dt class="text-xs uppercase tracking-[0.16em] text-coffee">Quantity</dt>
-                    <dd class="mt-1 font-medium text-ink">{{ $inquiry->quantity ?? '—' }}</dd>
+                    <dt class="text-xs uppercase tracking-[0.16em] text-coffee">Phone / WhatsApp</dt>
+                    <dd class="mt-1 font-medium text-ink">{{ $inquiry->phone ?? '—' }}</dd>
+                </div>
+                <div>
+                    <dt class="text-xs uppercase tracking-[0.16em] text-coffee">Destination Country</dt>
+                    <dd class="mt-1 font-medium text-ink">{{ $inquiry->country ?? '—' }}</dd>
+                </div>
+                <div>
+                    <dt class="text-xs uppercase tracking-[0.16em] text-coffee">Estimated Annual Demand</dt>
+                    <dd class="mt-1 font-medium text-ink">{{ $inquiry->annual_demand ?? $inquiry->quantity ?? '—' }}</dd>
                 </div>
                 <div>
                     <dt class="text-xs uppercase tracking-[0.16em] text-coffee">Received</dt>
@@ -32,10 +40,19 @@
                 </div>
             </dl>
 
-            <div class="border-t border-border pt-5">
-                <dt class="text-xs uppercase tracking-[0.16em] text-coffee">Message</dt>
-                <p class="mt-2 whitespace-pre-line leading-relaxed text-ink">{{ $inquiry->message }}</p>
-            </div>
+            @if ($inquiry->shipping_address)
+                <div class="border-t border-border pt-5">
+                    <dt class="text-xs uppercase tracking-[0.16em] text-coffee">Shipping Address (Sample Delivery)</dt>
+                    <p class="mt-2 whitespace-pre-line leading-relaxed text-ink">{{ $inquiry->shipping_address }}</p>
+                </div>
+            @endif
+
+            @if ($inquiry->message)
+                <div class="mt-5">
+                    <dt class="text-xs uppercase tracking-[0.16em] text-coffee">Message</dt>
+                    <p class="mt-2 whitespace-pre-line leading-relaxed text-ink">{{ $inquiry->message }}</p>
+                </div>
+            @endif
         </div>
 
         <div class="mt-6 flex flex-wrap items-center gap-4">

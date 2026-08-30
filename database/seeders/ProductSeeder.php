@@ -9,53 +9,57 @@ class ProductSeeder extends Seeder
 {
     public function run(): void
     {
-        // Product 1: Specialty Green Beans (B2B export)
+        // Single product per brief: Specialty Arabica Lintong Doloksanggul (green beans)
         Product::updateOrCreate(
             ['id' => 1],
             [
                 'name' => [
-                    'en' => 'Specialty Green Beans — Indonesian Highlands',
-                    'id' => 'Green Bean Spesialti — Dataran Tinggi Indonesia',
+                    'en' => 'Specialty Arabica Lintong Doloksanggul (Green Beans)',
+                    'id' => 'Arabika Lintong Doloksanggul Spesialti (Green Bean)',
                 ],
                 'subtitle' => [
-                    'en' => 'Pure origin, fully traceable',
-                    'id' => 'Asal murni, terlacak penuh',
+                    'en' => 'Single-Origin Green Beans',
+                    'id' => 'Green Bean Single-Origin',
                 ],
                 'story' => [
                     [
-                        'en' => 'Given Coffee exports specialty green beans sourced from partner farms in the Indonesian highlands — volcanic soil, cool nights and generations of farming expertise. Lots are combined from several partner farms with the same variety, so you get a consistent product shipment after shipment.',
-                        'id' => 'Given Coffee mengekspor green bean spesialti dari kebun mitra di dataran tinggi Indonesia — tanah vulkanik, malam sejuk, dan pengalaman bertani lintas generasi. Lot digabung dari beberapa kebun mitra dengan varietas yang sama, sehingga Anda mendapat produk yang konsisten setiap pengiriman.',
+                        'en' => 'Given Coffee was established with a singular vision: to bring the authentic, complex flavor profile of Lintong Doloksanggul Arabica to the global coffee stage. Situated in the high-altitude volcanic highlands of Humbang Hasundutan, North Sumatra, our partner farms benefit from a unique microclimate and mineral-rich volcanic soil.',
+                        'id' => 'Given Coffee didirikan dengan satu visi: membawa profil rasa Arabika Lintong Doloksanggul yang autentik dan kompleks ke panggung kopi global. Terletak di dataran tinggi vulkanik Humbang Hasundutan, Sumatera Utara, kebun mitra kami menikmati mikroklimat unik dan tanah vulkanik kaya mineral.',
                     ],
                     [
-                        'en' => 'Every lot is graded, moisture-checked and cupped before export, and ships with full documentation. NIB & Halal certified, with a production capacity of 100 tonnes per year.',
-                        'id' => 'Setiap lot digrading, dicek kadar air, dan dicupping sebelum ekspor, serta dikirim dengan dokumentasi lengkap. Tersertifikasi NIB & Halal, dengan kapasitas produksi 100 ton per tahun.',
+                        'en' => 'We work directly with local smallholder farmers, ensuring sustainable agricultural practices, fair prices, and meticulous harvesting protocols. Every bag of green beans leaving our facility represents the true beauty and heritage of North Sumatran coffee.',
+                        'id' => 'Kami bekerja langsung dengan petani smallholder lokal, memastikan praktik pertanian berkelanjutan, harga adil, dan protokol panen yang teliti. Setiap karung green bean yang keluar dari fasilitas kami merepresentasikan keindahan dan warisan kopi Sumatera Utara.',
                     ],
                 ],
                 'specs' => [
-                    ['label' => ['en' => 'Origin', 'id' => 'Asal'], 'value' => ['en' => 'Indonesian highlands', 'id' => 'Dataran tinggi Indonesia']],
-                    ['label' => ['en' => 'Form', 'id' => 'Bentuk'], 'value' => ['en' => 'Specialty green beans', 'id' => 'Green bean spesialti']],
-                    ['label' => ['en' => 'Packaging', 'id' => 'Kemasan'], 'value' => ['en' => 'GrainPro hermetic inner bag + gunny jute bag, 60 kg / 30 kg', 'id' => 'Kantong hermetik GrainPro + karung jute, 60 kg / 30 kg']],
-                    ['label' => ['en' => 'Private label', 'id' => 'Private label'], 'value' => ['en' => 'Available — MOQ 2 tonnes', 'id' => 'Tersedia — MOQ 2 ton']],
-                    ['label' => ['en' => 'Capacity', 'id' => 'Kapasitas'], 'value' => ['en' => '100 tonnes per year', 'id' => '100 ton per tahun']],
-                    ['label' => ['en' => 'Certification', 'id' => 'Sertifikasi'], 'value' => ['en' => 'NIB & Halal', 'id' => 'NIB & Halal']],
+                    ['label' => ['en' => 'Product Name', 'id' => 'Nama Produk'], 'value' => ['en' => 'Specialty Arabica Lintong Doloksanggul', 'id' => 'Arabika Lintong Doloksanggul Spesialti']],
+                    ['label' => ['en' => 'Origin / Region', 'id' => 'Asal / Wilayah'], 'value' => ['en' => 'Lintong Nihuta & Doloksanggul, Humbang Hasundutan, North Sumatra', 'id' => 'Lintong Nihuta & Doloksanggul, Humbang Hasundutan, Sumatera Utara']],
+                    ['label' => ['en' => 'Altitude', 'id' => 'Ketinggian'], 'value' => ['en' => '1,500 – 1,700 MASL', 'id' => '1.500 – 1.700 MDPL']],
+                    ['label' => ['en' => 'Soil Type', 'id' => 'Jenis Tanah'], 'value' => ['en' => 'Rich Volcanic Soil (Lake Toba Highland Ecosystem)', 'id' => 'Tanah Vulkanik Subur (Ekosistem Dataran Tinggi Danau Toba)']],
+                    ['label' => ['en' => 'Form / Product State', 'id' => 'Bentuk / Kondisi Produk'], 'value' => ['en' => 'Raw Green Coffee Beans (Unroasted)', 'id' => 'Biji Kopi Hijau Mentah (Belum Disangrai)']],
+                    ['label' => ['en' => 'Processing Method', 'id' => 'Metode Pengolahan'], 'value' => ['en' => 'Traditional Semi-Washed (Wet-Hulled / Giling Basah)', 'id' => 'Semi-Washed Tradisional (Giling Basah)']],
+                    ['label' => ['en' => 'Grade & Defect', 'id' => 'Grade & Cacat'], 'value' => ['en' => 'Specialty Grade / Defect < 5 (SCA Standards)', 'id' => 'Grade Spesialti / Cacat < 5 (Standar SCA)']],
+                    ['label' => ['en' => 'Moisture Content', 'id' => 'Kadar Air'], 'value' => ['en' => '12% – 12.5%', 'id' => '12% – 12,5%']],
+                    ['label' => ['en' => 'Cupping Score', 'id' => 'Skor Cupping'], 'value' => ['en' => '85.5+ (Specialty Grade)', 'id' => '85.5+ (Grade Spesialti)']],
+                    ['label' => ['en' => 'Cupping Notes', 'id' => 'Catatan Cupping'], 'value' => ['en' => 'Tropical fruits, dark chocolate, cedar, signature fresh herbal notes', 'id' => 'Buah tropis, cokelat gelap, cedar, catatan herbal segar khas']],
+                    ['label' => ['en' => 'Acidity & Body', 'id' => 'Asam & Body'], 'value' => ['en' => 'Low, well-balanced acidity with a smooth, heavy syrup body', 'id' => 'Asam rendah seimbang dengan body sirup tebal yang halus']],
+                    ['label' => ['en' => 'Sweetness', 'id' => 'Kemanisan'], 'value' => ['en' => 'High natural sweetness with a clean, lingering finish', 'id' => 'Kemanisan alami tinggi dengan finish bersih dan panjang']],
                 ],
                 'cupping' => [
                     'notes' => [
-                        'en' => 'Each lot is cupped, graded and moisture-checked before it ships — the technical profile for the specific lot you order is shared on request.',
-                        'id' => 'Setiap lot dicupping, digrading, dan dicek kadar airnya sebelum dikirim — profil teknis lot spesifik yang Anda pesan dibagikan atas permintaan.',
+                        'en' => 'Tropical fruits, dark chocolate, cedar, signature fresh herbal notes. Low, well-balanced acidity with a smooth, heavy syrup body and high natural sweetness with a clean, lingering finish.',
+                        'id' => 'Buah tropis, cokelat gelap, cedar, catatan herbal segar khas. Asam rendah seimbang dengan body sirup tebal yang halus, kemanisan alami tinggi dengan finish bersih dan panjang.',
                     ],
                     'traits' => [
-                        ['en' => 'Traceable', 'id' => 'Terlacak'],
-                        ['en' => 'Consistent', 'id' => 'Konsisten'],
+                        ['en' => 'Specialty Grade', 'id' => 'Grade Spesialti'],
+                        ['en' => 'Fully Traceable', 'id' => 'Terlacak Penuh'],
                         ['en' => 'Export-ready', 'id' => 'Siap ekspor'],
-                        ['en' => 'Halal', 'id' => 'Halal'],
                         ['en' => 'Sustainable', 'id' => 'Berkelanjutan'],
                     ],
                 ],
                 'packaging' => [
-                    ['title' => ['en' => 'Bulk export', 'id' => 'Ekspor curah'], 'text' => ['en' => 'GrainPro hermetic inner bag + gunny jute bag in 60 kg / 30 kg, container-ready.', 'id' => 'Kantong hermetik GrainPro + karung jute dalam 60 kg / 30 kg, siap kontainer.'], 'tag' => ['en' => 'Export', 'id' => 'Ekspor']],
-                    ['title' => ['en' => 'Private label', 'id' => 'Private label'], 'text' => ['en' => 'Your branding on our beans, packed to your spec — MOQ 2 tonnes.', 'id' => 'Brand Anda di biji kami, dikemas sesuai spesifikasi — MOQ 2 ton.'], 'tag' => ['en' => 'Brands', 'id' => 'Brand']],
-                    ['title' => ['en' => 'Sample lots', 'id' => 'Lot sampel'], 'text' => ['en' => 'Small sample lots available so you can evaluate the origin before ordering.', 'id' => 'Lot sampel kecil tersedia agar Anda bisa menilai asal sebelum memesan.'], 'tag' => ['en' => 'Sample', 'id' => 'Sampel']],
+                    ['title' => ['en' => 'Standard Export Packaging', 'id' => 'Kemasan Ekspor Standar'], 'text' => ['en' => '60kg Jute Bags with GrainPro Hermetic Inner Liner — preserves fresh-crop aromatics during ocean transit.', 'id' => 'Karung Jute 60kg dengan Liner Hermetik GrainPro — menjaga aroma panen segar selama transit laut.'], 'tag' => ['en' => 'Standard Export', 'id' => 'Ekspor Standar']],
+                    ['title' => ['en' => 'Sample Packaging', 'id' => 'Kemasan Sampel'], 'text' => ['en' => '500g–1kg sample bags shipped via DHL/FedEx directly to your roastery.', 'id' => 'Kantong sampel 500g–1kg dikirim via DHL/FedEx langsung ke roastery Anda.'], 'tag' => ['en' => 'Samples', 'id' => 'Sampel']],
                 ],
                 'images' => [
                     'hero' => '/images/real/beansonacontainer.jpeg',

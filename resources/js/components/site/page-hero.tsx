@@ -36,11 +36,11 @@ export function PageHero({ image, eyebrow, title, subtitle, align = 'center' }: 
                             </span>
                         </div>
                     )}
-                    <h1 className="mx-auto max-w-4xl font-display text-4xl leading-[1.08] tracking-tight text-cream md:text-6xl lg:text-7xl">
+                    <h1 className={cn('max-w-4xl font-display text-4xl leading-[1.08] tracking-tight text-cream md:text-6xl lg:text-7xl', align === 'center' && 'mx-auto')}>
                         {title}
                     </h1>
                     {subtitle && (
-                        <p className="mx-auto mt-5 max-w-2xl text-base leading-relaxed text-cream/75 md:text-lg">
+                        <p className={cn('mt-5 max-w-2xl text-base leading-relaxed text-cream/75 md:text-lg', align === 'center' && 'mx-auto')}>
                             {subtitle}
                         </p>
                     )}

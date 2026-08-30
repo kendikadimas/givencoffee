@@ -161,7 +161,7 @@ export default function ProductShow({ product, products = [] }: ProductProps) {
                                             <span className="text-xs font-semibold uppercase tracking-wider text-ink">
                                                 {str(t('product.origin'), 'Dolok Sanggul, North Sumatra')}
                                             </span>
-                                            <p className="text-[11px] text-coffee">1,400 – 1,750 MASL Elevation</p>
+                                            <p className="text-[11px] text-coffee">1,500 – 1,700 MASL Elevation</p>
                                         </div>
                                     </div>
                                     <span className="badge-origin">
@@ -254,7 +254,7 @@ export default function ProductShow({ product, products = [] }: ProductProps) {
                 </div>
             </section>
 
-            {/* Technical Specifications Matrix */}
+            {/* Technical Specifications — 3-col cards */}
             <section className="relative bg-bone py-20 md:py-28">
                 <div className="mx-auto max-w-[1400px] px-5 md:px-8">
                     <SectionHeading
@@ -262,27 +262,62 @@ export default function ProductShow({ product, products = [] }: ProductProps) {
                         title={str(t('product.specs.title'), 'Export Specifications')}
                     />
 
-                    <Reveal delay={120}>
-                        <dl className="card-luxury mt-10 overflow-hidden p-0 shadow-earth">
-                            {cleanSpecs.map((spec, i) => (
-                                <div
-                                    key={spec.label}
-                                    className={cn(
-                                        'grid grid-cols-1 gap-y-1 px-6 py-4.5 transition-colors hover:bg-olive/20 md:grid-cols-[14rem_1fr] md:items-baseline md:gap-x-8 md:px-10',
-                                        i !== cleanSpecs.length - 1 && 'border-b border-border/70',
-                                    )}
-                                >
-                                    <dt className="text-xs font-semibold uppercase tracking-[0.18em] text-coffee">
-                                        {spec.label}
-                                    </dt>
-                                    <dd className="font-display text-base font-bold text-ink">
-                                        {spec.value}
-                                    </dd>
-                                </div>
-                            ))}
-                        </dl>
-                        <p className="mt-4 text-sm text-coffee">{str(t('product.specs.note'))}</p>
-                    </Reveal>
+                    <div className="mt-10 grid gap-4 lg:grid-cols-3">
+                        {[
+                            {
+                                label: 'Origin & Terroir',
+                                specs: cleanSpecs.filter((s) =>
+                                    /name|origin|region|altitude|soil/i.test(s.label)
+                                ),
+                            },
+                            {
+                                label: 'Processing',
+                                specs: cleanSpecs.filter((s) =>
+                                    /form|state|process|grade|defect|moisture/i.test(s.label)
+                                ),
+                            },
+                            {
+                                label: 'Cup Profile',
+                                specs: cleanSpecs.filter((s) =>
+                                    /cupping|acidity|body|sweetness/i.test(s.label)
+                                ),
+                            },
+                        ].map((group) =>
+                            group.specs.length > 0 ? (
+                                <Reveal key={group.label}>
+                                    <div className="overflow-hidden border border-border/60 bg-cream">
+                                        {/* Card header */}
+                                        <div className="border-b border-border/60 bg-ink px-5 py-3.5">
+                                            <p className="text-[10px] font-semibold uppercase tracking-[0.28em] text-terra">
+                                                {group.label}
+                                            </p>
+                                        </div>
+                                        {/* Rows */}
+                                        <dl>
+                                            {group.specs.map((spec, i) => (
+                                                <div
+                                                    key={spec.label}
+                                                    className={cn(
+                                                        'px-5 py-4',
+                                                        i !== group.specs.length - 1 && 'border-b border-border/40',
+                                                    )}
+                                                >
+                                                    <dt className="text-[10px] font-semibold uppercase tracking-[0.18em] text-coffee/50">
+                                                        {spec.label}
+                                                    </dt>
+                                                    <dd className="mt-1 text-sm text-ink">
+                                                        {spec.value}
+                                                    </dd>
+                                                </div>
+                                            ))}
+                                        </dl>
+                                    </div>
+                                </Reveal>
+                            ) : null
+                        )}
+                    </div>
+                    </div>
+                    <p className="mt-4 text-sm text-coffee">{str(t('product.specs.note'))}</p>
                 </div>
             </section>
 

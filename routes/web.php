@@ -18,6 +18,7 @@ Route::prefix('{locale}')
         Route::get('/product', [SiteController::class, 'product'])->name('product');
         Route::get('/product/{product}', [SiteController::class, 'productShow'])->name('product.show');
         Route::get('/process', [SiteController::class, 'process'])->name('process');
+        Route::get('/export', [SiteController::class, 'export'])->name('export');
         Route::get('/contact', [SiteController::class, 'contact'])->name('contact');
         Route::post('/contact/inquiry', [InquiryController::class, 'store'])
             ->name('contact.store')

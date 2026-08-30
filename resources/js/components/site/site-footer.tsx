@@ -1,5 +1,5 @@
 import { Link, usePage } from '@inertiajs/react';
-import { Clock, Facebook, Instagram, Linkedin, Mail, MapPin, MessageCircle } from 'lucide-react';
+import { Clock, Facebook, Instagram, Linkedin, Mail, MapPin } from 'lucide-react';
 
 import { Logo } from '@/components/site/logo';
 import { useTranslations, str } from '@/hooks/use-translations';
@@ -7,8 +7,10 @@ import { useTranslations, str } from '@/hooks/use-translations';
 type SiteSettings = {
     company_name?: string;
     email?: string;
+    email_sample?: string;
     phone?: string;
     whatsapp?: string;
+    whatsapp_url?: string;
     address?: string;
     hours?: string;
     social_instagram?: string;
@@ -26,6 +28,7 @@ export function SiteFooter() {
         { label: str(t('ui.nav.about')), href: `/${locale}/about` },
         { label: str(t('ui.nav.product')), href: `/${locale}/product` },
         { label: str(t('ui.nav.process')), href: `/${locale}/process` },
+        { label: str(t('ui.nav.export')), href: `/${locale}/export` },
         { label: str(t('ui.nav.contact')), href: `/${locale}/contact` },
         { label: str(t('ui.nav.blog')), href: `/${locale}/blog` },
     ];
@@ -48,28 +51,23 @@ export function SiteFooter() {
             <div className="pointer-events-none absolute bottom-0 left-10 size-80 rounded-full bg-forest/10 blur-3xl" />
 
             <div className="relative mx-auto max-w-[1400px] px-5 py-16 md:px-8 md:py-20">
-                {/* Upper B2B Direct Strip */}
-                <div className="mb-14 grid items-center gap-6 rounded-sm border border-cream/15 bg-cream/5 p-6 backdrop-blur-xs md:grid-cols-[1fr_auto] md:p-8">
-                    <div>
-                        <span className="badge-origin mb-2 border-terra/40 bg-terra/20 text-cream">
+                {/* Upper B2B Direct Strip — clean editorial row, no box */}
+                <div className="mb-16 flex flex-wrap items-center justify-between gap-8 border-b border-cream/10 pb-14">
+                    <div className="max-w-xl">
+                        <p className="mb-3 text-[11px] font-semibold uppercase tracking-[0.28em] text-terra">
                             {locale === 'en' ? 'Direct Export Trade' : 'Ekspor Langsung'}
-                        </span>
-                        <h3 className="font-display text-2xl tracking-tight text-cream md:text-3xl">
+                        </p>
+                        <h3 className="font-display text-3xl leading-[1.1] tracking-tight text-cream md:text-4xl">
                             {locale === 'en'
                                 ? 'Looking for Specialty Indonesian Green Beans?'
                                 : 'Mencari Kopi Specialty Asal Indonesia?'}
                         </h3>
-                        <p className="mt-1 text-sm text-cream/70">
-                            {locale === 'en'
-                                ? 'Request cupping samples, spec sheets, or contract pricing directly.'
-                                : 'Minta sampel cupping, lembar spesifikasi, atau penawaran kontrak langsung.'}
-                        </p>
                     </div>
                     <Link
                         href={`/${locale}/contact`}
-                        className="inline-flex h-11 items-center justify-center rounded-full bg-terra px-6 text-sm font-semibold text-cream shadow-sm transition-all hover:bg-terra-deep hover:shadow-glow-terra hover:-translate-y-0.5"
+                        className="inline-flex h-12 items-center justify-center rounded-full bg-terra px-8 text-sm font-semibold text-cream shadow-sm transition-all hover:bg-terra-deep hover:shadow-glow-terra hover:-translate-y-0.5"
                     >
-                        {str(t('ui.cta.sample'))} →
+                        {str(t('ui.cta.sample'))}
                     </Link>
                 </div>
 
@@ -134,17 +132,38 @@ export function SiteFooter() {
                             {settings.email && (
                                 <li className="flex gap-3">
                                     <Mail className="mt-0.5 size-4 shrink-0 text-terra" />
-                                    <a
-                                        href={`mailto:${settings.email}`}
-                                        className="transition-colors hover:text-cream hover:underline"
-                                    >
-                                        {settings.email}
-                                    </a>
+                                    <div>
+                                        <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-cream/40">
+                                            {str(t('contact.info.emailExport'))}
+                                        </p>
+                                        <a
+                                            href={`mailto:${settings.email}`}
+                                            className="transition-colors hover:text-cream hover:underline"
+                                        >
+                                            {settings.email}
+                                        </a>
+                                    </div>
+                                </li>
+                            )}
+                            {settings.email_sample && (
+                                <li className="flex gap-3">
+                                    <Mail className="mt-0.5 size-4 shrink-0 text-terra" />
+                                    <div>
+                                        <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-cream/40">
+                                            {str(t('contact.info.emailSample'))}
+                                        </p>
+                                        <a
+                                            href={`mailto:${settings.email_sample}`}
+                                            className="transition-colors hover:text-cream hover:underline"
+                                        >
+                                            {settings.email_sample}
+                                        </a>
+                                    </div>
                                 </li>
                             )}
                             {settings.whatsapp && (
                                 <li className="flex gap-3">
-                                    <MessageCircle className="mt-0.5 size-4 shrink-0 text-terra" />
+                                    <svg className="mt-0.5 size-4 shrink-0 text-terra" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.124.558 4.118 1.533 5.845L.057 23.522a.5.5 0 0 0 .606.61l5.82-1.525A11.95 11.95 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22a9.95 9.95 0 0 1-5.127-1.415l-.362-.214-3.758.985.999-3.648-.235-.374A9.953 9.953 0 0 1 2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
                                     <a
                                         href={settings.whatsapp_url ?? '#'}
                                         target="_blank"
@@ -170,9 +189,6 @@ export function SiteFooter() {
                         © {new Date().getFullYear()} {settings.company_name ?? 'Given Coffee'}.{' '}
                         {str(t('ui.footer.rights'))}
                     </p>
-                    <Link href="/admin/login" className="opacity-50 transition-opacity hover:opacity-100">
-                        {str(t('ui.nav.admin'))}
-                    </Link>
                 </div>
             </div>
         </footer>
