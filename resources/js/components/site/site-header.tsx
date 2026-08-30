@@ -53,8 +53,8 @@ export function SiteHeader() {
             className={cn(
                 'fixed inset-x-0 top-0 z-50 transition-all duration-300',
                 solid
-                    ? 'border-b border-border/80 bg-cream/92 text-ink shadow-[0_4px_24px_-4px_rgba(34,26,18,0.06)] backdrop-blur-md'
-                    : 'border-b border-white/10 bg-gradient-to-b from-ink/60 via-ink/20 to-transparent text-cream backdrop-blur-[2px]',
+                    ? 'bg-cream/92 text-ink shadow-[0_4px_24px_-4px_rgba(34,26,18,0.06)] backdrop-blur-md'
+                    : 'bg-gradient-to-b from-ink/60 via-ink/20 to-transparent text-cream backdrop-blur-[2px]',
             )}
         >
             <div className="mx-auto flex h-16 max-w-[1400px] items-center justify-between px-5 md:h-[72px] md:px-8">

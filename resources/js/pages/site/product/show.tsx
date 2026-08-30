@@ -47,7 +47,7 @@ export default function ProductShow({ product, products = [] }: ProductProps) {
     const traits = product.cupping?.traits ?? ['Traceable', 'Consistent', 'Export-ready', 'Grade 1 Specialty'];
     const cuppingNotes = product.cupping?.notes ?? str(t('product.notes.body'));
 
-    const waText = encodeURIComponent(`Halo Given Coffee, saya ingin bertanya tentang spesifikasi ekspor green bean ${product.name}.`);
+    const waText = encodeURIComponent(`Export Specialist Available`);
     const waUrl = `${settings.whatsapp_url ?? 'https://wa.me/6281234567890'}?text=${waText}`;
 
     const jsonLd = {
@@ -73,10 +73,10 @@ export default function ProductShow({ product, products = [] }: ProductProps) {
             {/* Hero — split panel: left dark text, right full-bleed image */}
             <section className="relative flex min-h-[80vh] overflow-hidden bg-ink lg:min-h-[90vh]">
                 {/* Left panel */}
-                <div className="relative z-10 flex w-full flex-col justify-end px-5 pb-16 pt-36 md:px-8 md:pb-24 lg:w-[55%] lg:pr-16">
+                <div className="relative z-10 flex w-full flex-col justify-end px-8 pb-20 pt-40 md:px-14 md:pb-28 lg:w-[55%] lg:px-16 lg:pr-20">
                     <div className="absolute inset-0 lg:hidden">
                         <img
-                            src={heroImage}
+                            src="/images/real/closeup-greenbeans.jpeg"
                             alt={product.name}
                             fetchPriority="high"
                             className="size-full object-cover opacity-40"
@@ -116,7 +116,7 @@ export default function ProductShow({ product, products = [] }: ProductProps) {
                 {/* Right panel — full-bleed image, desktop only */}
                 <div className="absolute inset-y-0 right-0 hidden w-[45%] lg:block">
                     <img
-                        src={heroImage}
+                        src="/images/real/beansonacontainer3.jpeg"
                         alt={product.name}
                         fetchPriority="high"
                         className="size-full object-cover"
@@ -247,11 +247,18 @@ export default function ProductShow({ product, products = [] }: ProductProps) {
                 <div className="mx-auto max-w-[1400px] px-5 md:px-8">
                     <Reveal>
                         <div className="card-luxury p-8 md:p-12">
-                            <SectionHeading
-                                eyebrow={str(t('product.notes.eyebrow'), 'Cupping Profile')}
-                                title={str(t('product.notes.title'), 'Taste & Flavor Profile')}
-                                body={cuppingNotes}
-                            />
+                            <div className="grid gap-8 lg:grid-cols-[1fr_auto]">
+                                <SectionHeading
+                                    eyebrow={str(t('product.notes.eyebrow'), 'Cupping Profile')}
+                                    title={str(t('product.notes.title'), 'Taste & Flavor Profile')}
+                                    body={cuppingNotes}
+                                />
+                                <div className="flex flex-col items-center justify-center rounded-sm border border-terra/30 bg-terra/5 px-10 py-6 text-center">
+                                    <p className="text-[10px] font-semibold uppercase tracking-[0.24em] text-terra">Cupping Score</p>
+                                    <p className="font-display text-5xl font-bold text-ink">85.5+</p>
+                                    <p className="mt-1 text-xs text-coffee">SCA Specialty Grade</p>
+                                </div>
+                            </div>
 
                             <div className="mt-8 flex flex-wrap gap-3">
                                 {traits.map((trait) => (
@@ -269,7 +276,7 @@ export default function ProductShow({ product, products = [] }: ProductProps) {
                 </div>
             </section>
 
-            {/* Technical Specifications — 3-col cards */}
+            {/* Technical Specifications — full data sheet */}
             <section className="relative bg-bone py-20 md:py-28">
                 <div className="mx-auto max-w-[1400px] px-5 md:px-8">
                     <SectionHeading
@@ -277,60 +284,33 @@ export default function ProductShow({ product, products = [] }: ProductProps) {
                         title={str(t('product.specs.title'), 'Export Specifications')}
                     />
 
-                    <div className="mt-10 grid gap-4 lg:grid-cols-3">
-                        {[
-                            {
-                                label: 'Origin & Terroir',
-                                specs: cleanSpecs.filter((s) =>
-                                    /name|origin|region|altitude|soil/i.test(s.label)
-                                ),
-                            },
-                            {
-                                label: 'Processing',
-                                specs: cleanSpecs.filter((s) =>
-                                    /form|state|process|grade|defect|moisture/i.test(s.label)
-                                ),
-                            },
-                            {
-                                label: 'Cup Profile',
-                                specs: cleanSpecs.filter((s) =>
-                                    /cupping|acidity|body|sweetness/i.test(s.label)
-                                ),
-                            },
-                        ].map((group) =>
-                            group.specs.length > 0 ? (
-                                <Reveal key={group.label}>
-                                    <div className="overflow-hidden border border-border/60 bg-cream">
-                                        {/* Card header */}
-                                        <div className="border-b border-border/60 bg-ink px-5 py-3.5">
-                                            <p className="text-[10px] font-semibold uppercase tracking-[0.28em] text-terra">
-                                                {group.label}
-                                            </p>
-                                        </div>
-                                        {/* Rows */}
-                                        <dl>
-                                            {group.specs.map((spec, i) => (
-                                                <div
-                                                    key={spec.label}
-                                                    className={cn(
-                                                        'px-5 py-4',
-                                                        i !== group.specs.length - 1 && 'border-b border-border/40',
-                                                    )}
-                                                >
-                                                    <dt className="text-[10px] font-semibold uppercase tracking-[0.18em] text-coffee/50">
-                                                        {spec.label}
-                                                    </dt>
-                                                    <dd className="mt-1 text-sm text-ink">
-                                                        {spec.value}
-                                                    </dd>
-                                                </div>
-                                            ))}
-                                        </dl>
+                    <Reveal>
+                        <div className="mt-10 overflow-hidden border border-border/60">
+                            <div className="grid grid-cols-[1fr_2fr] border-b border-border/60 bg-ink px-5 py-3">
+                                <p className="text-[10px] font-semibold uppercase tracking-[0.28em] text-terra">Attribute</p>
+                                <p className="text-[10px] font-semibold uppercase tracking-[0.28em] text-terra">Specification Details</p>
+                            </div>
+                            <dl>
+                                {cleanSpecs.map((spec, i) => (
+                                    <div
+                                        key={spec.label}
+                                        className={cn(
+                                            'grid grid-cols-[1fr_2fr] px-5 py-4',
+                                            i % 2 === 0 ? 'bg-cream' : 'bg-bone',
+                                            i !== cleanSpecs.length - 1 && 'border-b border-border/40',
+                                        )}
+                                    >
+                                        <dt className="text-[11px] font-semibold uppercase tracking-[0.18em] text-coffee/60">
+                                            {spec.label}
+                                        </dt>
+                                        <dd className="text-sm text-ink">
+                                            {spec.value}
+                                        </dd>
                                     </div>
-                                </Reveal>
-                            ) : null
-                        )}
-                    </div>
+                                ))}
+                            </dl>
+                        </div>
+                    </Reveal>
                     <p className="mt-4 text-sm text-coffee">{str(t('product.specs.note'))}</p>
                 </div>
             </section>
