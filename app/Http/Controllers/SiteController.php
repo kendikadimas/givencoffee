@@ -35,26 +35,24 @@ class SiteController extends Controller
 
     public function product(): Response
     {
-        $products = Product::where('active', true)->get()->map(fn ($p) => $p->localized());
+        $products = Product::where('active', true)->get();
+        $first = $products->first();
+
+        if ($products->count() === 1 && $first) {
+            return Inertia::render('site/product/show', [
+                'product' => $first->localized(),
+                'products' => $products->map(fn ($p) => $p->localized()),
+            ]);
+        }
 
         return Inertia::render('site/product', [
-            'products' => $products,
+            'products' => $products->map(fn ($p) => $p->localized()),
         ]);
     }
 
-    public function productShow(Request $request): Response
+    public function productShow(Request $request): Response|\Illuminate\Http\RedirectResponse
     {
-        $product = Product::where('active', true)
-            ->whereKey($request->route('product'))
-            ->firstOrFail()
-            ->localized();
-
-        return Inertia::render('site/product/show', [
-            'product' => $product,
-            'products' => Product::where('active', true)
-                ->get()
-                ->map(fn ($p) => $p->localized()),
-        ]);
+        return redirect()->route('product', ['locale' => app()->getLocale()]);
     }
 
     public function process(): Response

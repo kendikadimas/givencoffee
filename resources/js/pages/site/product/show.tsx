@@ -70,43 +70,58 @@ export default function ProductShow({ product, products = [] }: ProductProps) {
                 jsonLd={jsonLd}
             />
 
-            {/* Dark Premium Hero Section Header */}
-            <section className="relative overflow-hidden bg-ink pt-36 pb-20 text-cream md:pb-24">
-                <img
-                    src={heroImage}
-                    alt={product.name}
-                    className="absolute inset-0 size-full object-cover opacity-30 transition-transform duration-1000"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/80 to-ink/60" />
-                <div className="pointer-events-none absolute -bottom-10 right-10 size-96 rounded-full bg-terra/20 blur-3xl" />
-
-                <div className="relative mx-auto max-w-[1400px] px-5 md:px-8">
-                    {/* Top Bar: Back Link */}
-                    <div className="flex flex-wrap items-center justify-between gap-4 border-b border-cream/15 pb-6">
-                        <Link
-                            href={`/${locale}/product`}
-                            className="inline-flex items-center gap-2 rounded-full border border-cream/25 bg-white/10 px-4 py-2 text-xs font-semibold uppercase tracking-wider text-cream transition-colors hover:border-terra hover:bg-terra hover:text-cream"
-                        >
-                            <ArrowLeft className="size-3.5" />
-                            {str(t('product.collection.eyebrow'), 'Catalog Overview')}
-                        </Link>
-                        <span className="badge-origin border-terra/40 bg-terra/20 text-cream">
-                            Indonesian Specialty Green Bean
-                        </span>
+            {/* Hero — split panel: left dark text, right full-bleed image */}
+            <section className="relative flex min-h-[80vh] overflow-hidden bg-ink lg:min-h-[90vh]">
+                {/* Left panel */}
+                <div className="relative z-10 flex w-full flex-col justify-end px-5 pb-16 pt-36 md:px-8 md:pb-24 lg:w-[55%] lg:pr-16">
+                    <div className="absolute inset-0 lg:hidden">
+                        <img
+                            src={heroImage}
+                            alt={product.name}
+                            fetchPriority="high"
+                            className="size-full object-cover opacity-40"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/85 to-ink/60" />
                     </div>
-
-                    {/* Hero Title & Subtitle */}
-                    <div className="mt-8 max-w-4xl">
-                        <span className="badge-pill mb-3 border-terra/40 bg-terra/20 text-cream">
+                    <Reveal className="relative">
+                        <p className="mb-4 text-[11px] font-semibold uppercase tracking-[0.28em] text-terra">
                             {str(t('product.hero.eyebrow'), 'Given Coffee Specialty')}
-                        </span>
-                        <h1 className="font-display text-4xl leading-tight tracking-tight text-cream md:text-6xl lg:text-7xl">
+                        </p>
+                        <h1 className="max-w-2xl font-display text-4xl leading-[1.04] tracking-tight text-cream md:text-6xl lg:text-7xl">
                             {product.name}
                         </h1>
-                        <p className="mt-4 text-xs font-semibold uppercase tracking-[0.22em] text-terra">
+                        <p className="mt-5 max-w-lg text-base font-light leading-relaxed text-cream/75 md:text-lg">
                             {product.subtitle}
                         </p>
-                    </div>
+                        {keySpecs.length > 0 && (
+                            <div className="mt-8 flex flex-wrap gap-3">
+                                {keySpecs.slice(0, 3).map((s) => (
+                                    <span key={s.label} className="rounded-full border border-cream/20 bg-cream/10 px-4 py-1.5 text-xs font-semibold text-cream/80">
+                                        {s.label}: {s.value}
+                                    </span>
+                                ))}
+                            </div>
+                        )}
+                        <div className="mt-8 flex flex-wrap items-center gap-4">
+                            <Cta href={waUrl} variant="terra" className="px-7 py-3 text-base">
+                                {str(t('ui.cta.inquiry'))}
+                            </Cta>
+                            <Cta href={`/${locale}/contact`} variant="outline-light" className="px-7 py-3 text-base">
+                                {str(t('ui.cta.sample'))}
+                            </Cta>
+                        </div>
+                    </Reveal>
+                </div>
+
+                {/* Right panel — full-bleed image, desktop only */}
+                <div className="absolute inset-y-0 right-0 hidden w-[45%] lg:block">
+                    <img
+                        src={heroImage}
+                        alt={product.name}
+                        fetchPriority="high"
+                        className="size-full object-cover"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-r from-ink via-ink/20 to-transparent" />
                 </div>
             </section>
 
