@@ -318,7 +318,6 @@ export default function Home({ product, products = [], testimonials = [] }: Home
                         <img
                             src={img.src}
                             alt={img.alt}
-                            loading="lazy"
                             className="aspect-square w-full object-cover transition-transform duration-700 hover:scale-105"
                         />
                     </div>
