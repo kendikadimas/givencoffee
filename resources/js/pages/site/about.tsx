@@ -159,7 +159,7 @@ export default function About() {
                                 {storySlides.map((slide, idx) => (
                                     <div
                                         key={slide.src}
-                                        className={`absolute inset-0 transition-opacity duration-700 ease-in-out ${
+                                        className={`absolute inset-0 flex flex-col justify-end transition-opacity duration-700 ease-in-out ${
                                             idx === activeSlide ? 'opacity-100 z-10' : 'opacity-0 pointer-events-none z-0'
                                         }`}
                                     >
@@ -167,11 +167,11 @@ export default function About() {
                                             src={slide.src}
                                             alt={slide.alt}
                                             loading="lazy"
-                                            className="size-full object-cover object-center transition-transform duration-1000 group-hover:scale-105"
+                                            className="absolute inset-0 size-full object-cover object-center transition-transform duration-1000 group-hover:scale-105"
                                         />
-                                        <div className="absolute inset-0 bg-gradient-to-t from-ink/95 via-ink/50 to-transparent" />
+                                        <div className="absolute inset-0 bg-gradient-to-t from-ink/95 via-ink/60 to-transparent" />
 
-                                        <div className="relative flex h-full flex-col justify-end p-6 pb-16 text-cream md:p-8 md:pb-16">
+                                        <div className="relative z-10 flex flex-col p-6 pb-16 text-cream md:p-8 md:pb-16">
                                             <span className="self-start rounded-full border border-terra/40 bg-terra px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.22em] text-cream shadow-xs">
                                                 {slide.tag}
                                             </span>
