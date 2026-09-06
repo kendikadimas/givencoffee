@@ -1,4 +1,5 @@
-import { Compass, Mountain } from 'lucide-react';
+import { useEffect, useState } from 'react';
+import { ChevronLeft, ChevronRight, Compass, Mountain } from 'lucide-react';
 
 import { PageHero } from '@/components/site/page-hero';
 import { Reveal } from '@/components/site/reveal';
@@ -47,6 +48,59 @@ export default function About() {
             desc: locale === 'en' ? 'Every lot tracked from specific farm elevation down to container shipping.' : 'Setiap batch dapat dilacak asal kebun, ketinggian, hingga proses pengiriman.',
         },
     ];
+
+    const storySlides = [
+        {
+            src: '/images/add/buyer-visit.jpg',
+            alt: 'Given Coffee buyer visit at warehouse',
+            tag: locale === 'en' ? 'Direct Partnership' : 'Kemitraan Langsung',
+            title: locale === 'en'
+                ? 'Connecting global roasters directly to North Sumatra highlands.'
+                : 'Menghubungkan roastery global langsung ke dataran tinggi Sumatera Utara.',
+            desc: locale === 'en'
+                ? 'Warehouse & sourcing operations · Dolok Sanggul'
+                : 'Operasional gudang & sourcing · Dolok Sanggul',
+        },
+        {
+            src: '/images/add/truck-front.jpg',
+            alt: 'Given Coffee branded delivery truck',
+            tag: locale === 'en' ? 'Supply Chain' : 'Rantai Pasok Terpadu',
+            title: locale === 'en'
+                ? 'Dedicated logistics ensuring fresh crop preservation.'
+                : 'Logistik terdedikasi menjaga kualitas panen tetap segar hingga pengiriman.',
+            desc: locale === 'en'
+                ? 'Direct inland transport to Belawan Port'
+                : 'Transportasi langsung ke Pelabuhan Belawan',
+        },
+        {
+            src: '/images/add/warehouse-1.jpg',
+            alt: 'Warehouse storage operations',
+            tag: locale === 'en' ? 'Storage Standard' : 'Standar Penyimpanan',
+            title: locale === 'en'
+                ? 'Climate-controlled warehouse with GrainPro hermetic packing.'
+                : 'Gudang terkontrol dengan pengemasan hermetik GrainPro berkualitas.',
+            desc: locale === 'en'
+                ? 'Dolok Sanggul Central Storage Facility'
+                : 'Fasilitas Penyimpanan Pusat Dolok Sanggul',
+        },
+    ];
+
+    const [activeSlide, setActiveSlide] = useState(0);
+
+    useEffect(() => {
+        const timer = setInterval(() => {
+            setActiveSlide((prev) => (prev + 1) % storySlides.length);
+        }, 5000);
+        return () => clearInterval(timer);
+    }, [storySlides.length]);
+
+    const prevSlide = () => {
+        setActiveSlide((prev) => (prev === 0 ? storySlides.length - 1 : prev - 1));
+    };
+
+    const nextSlide = () => {
+        setActiveSlide((prev) => (prev + 1) % storySlides.length);
+    };
 
     return (
         <>
@@ -99,31 +153,71 @@ export default function About() {
                             </div>
                         </Reveal>
 
-                        {/* Right: visual feature card with background image */}
+                        {/* Right: visual interactive carousel card */}
                         <Reveal delay={100} className="flex">
-                            <div className="relative min-h-[440px] w-full overflow-hidden rounded-sm border border-border/70 shadow-xs lg:min-h-full">
-                                <img
-                                    src="/images/add/buyer-visit.jpg"
-                                    alt="Given Coffee buyer visit at warehouse"
-                                    loading="lazy"
-                                    className="absolute inset-0 size-full object-cover object-center transition-transform duration-700 hover:scale-105"
-                                />
-                                <div className="absolute inset-0 bg-gradient-to-t from-ink/90 via-ink/35 to-transparent" />
+                            <div className="group relative min-h-[460px] w-full overflow-hidden rounded-sm border border-border/70 shadow-xs lg:min-h-full">
+                                {storySlides.map((slide, idx) => (
+                                    <div
+                                        key={slide.src}
+                                        className={`absolute inset-0 transition-opacity duration-700 ease-in-out ${
+                                            idx === activeSlide ? 'opacity-100 z-10' : 'opacity-0 pointer-events-none z-0'
+                                        }`}
+                                    >
+                                        <img
+                                            src={slide.src}
+                                            alt={slide.alt}
+                                            loading="lazy"
+                                            className="size-full object-cover object-center transition-transform duration-1000 group-hover:scale-105"
+                                        />
+                                        <div className="absolute inset-0 bg-gradient-to-t from-ink/90 via-ink/40 to-transparent" />
 
-                                <div className="relative mt-auto flex h-full flex-col justify-end p-8 text-cream">
-                                    <span className="self-start rounded-full border border-terra/40 bg-terra px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.22em] text-cream shadow-xs">
-                                        {locale === 'en' ? 'Direct Partnership' : 'Kemitraan Langsung'}
-                                    </span>
-                                    <p className="mt-4 font-display text-xl font-bold leading-snug text-cream md:text-2xl">
-                                        {locale === 'en'
-                                            ? 'Connecting global roasters directly to North Sumatra highlands.'
-                                            : 'Menghubungkan roastery global langsung ke dataran tinggi Sumatera Utara.'}
-                                    </p>
-                                    <p className="mt-2 text-xs text-cream/70">
-                                        {locale === 'en'
-                                            ? 'Warehouse & sourcing operations · Dolok Sanggul'
-                                            : 'Operasional gudang & sourcing · Dolok Sanggul'}
-                                    </p>
+                                        <div className="relative flex h-full flex-col justify-end p-8 text-cream">
+                                            <span className="self-start rounded-full border border-terra/40 bg-terra px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.22em] text-cream shadow-xs">
+                                                {slide.tag}
+                                            </span>
+                                            <p className="mt-4 font-display text-xl font-bold leading-snug text-cream md:text-2xl">
+                                                {slide.title}
+                                            </p>
+                                            <p className="mt-2 text-xs text-cream/70">
+                                                {slide.desc}
+                                            </p>
+                                        </div>
+                                    </div>
+                                ))}
+
+                                {/* Carousel Controls & Indicators */}
+                                <div className="absolute bottom-4 right-6 z-20 flex items-center gap-2">
+                                    <button
+                                        type="button"
+                                        onClick={prevSlide}
+                                        aria-label="Previous slide"
+                                        className="flex size-8 items-center justify-center rounded-full border border-cream/20 bg-ink/70 text-cream backdrop-blur-xs transition hover:border-terra hover:bg-terra"
+                                    >
+                                        <ChevronLeft className="size-4" />
+                                    </button>
+                                    <div className="flex items-center gap-1 px-2">
+                                        {storySlides.map((_, dotIdx) => (
+                                            <button
+                                                key={dotIdx}
+                                                type="button"
+                                                onClick={() => setActiveSlide(dotIdx)}
+                                                aria-label={`Go to slide ${dotIdx + 1}`}
+                                                className={`h-1.5 rounded-full transition-all ${
+                                                    dotIdx === activeSlide
+                                                        ? 'w-5 bg-terra'
+                                                        : 'w-1.5 bg-cream/40 hover:bg-cream/70'
+                                                }`}
+                                            />
+                                        ))}
+                                    </div>
+                                    <button
+                                        type="button"
+                                        onClick={nextSlide}
+                                        aria-label="Next slide"
+                                        className="flex size-8 items-center justify-center rounded-full border border-cream/20 bg-ink/70 text-cream backdrop-blur-xs transition hover:border-terra hover:bg-terra"
+                                    >
+                                        <ChevronRight className="size-4" />
+                                    </button>
                                 </div>
                             </div>
                         </Reveal>
