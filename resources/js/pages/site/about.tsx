@@ -64,18 +64,29 @@ export default function About() {
                 subtitle={str(t('about.hero.subtitle'))}
             />
 
-            {/* Story — asymmetric 2-col: large pull-quote left, body text right */}
-            <section className="relative bg-bone py-24 md:py-32">
-                <div className="mx-auto max-w-[1400px] px-5 md:px-8">
+            {/* Story — full-bleed background with atmospheric dark overlay */}
+            <section className="relative overflow-hidden bg-ink py-24 md:py-32">
+                {/* Background image */}
+                <img
+                    src="/images/add/buyer-visit.jpg"
+                    alt="Given Coffee buyer visit at warehouse"
+                    loading="lazy"
+                    className="absolute inset-0 size-full object-cover object-center"
+                />
+                {/* Dark luxury overlay for readability & contrast */}
+                <div className="absolute inset-0 bg-ink/85 backdrop-blur-[2px]" />
+                <div className="absolute inset-0 bg-gradient-to-r from-ink via-ink/80 to-ink/60" />
+
+                <div className="relative mx-auto max-w-[1400px] px-5 md:px-8">
                     <div className="grid gap-12 lg:grid-cols-[5fr_7fr] lg:gap-20">
                         <Reveal>
                             <p className="mb-4 text-[11px] font-semibold uppercase tracking-[0.28em] text-terra">
                                 {str(t('about.story.eyebrow'))}
                             </p>
-                            <h2 className="font-display text-4xl leading-[1.08] tracking-tight text-ink md:text-5xl">
+                            <h2 className="font-display text-4xl leading-[1.08] tracking-tight text-cream md:text-5xl">
                                 {str(t('about.story.title'))}
                             </h2>
-                            <div className="mt-8 flex flex-wrap items-center gap-5 text-sm text-coffee">
+                            <div className="mt-8 flex flex-wrap items-center gap-5 text-sm text-cream/70">
                                 <div className="flex items-center gap-2">
                                     <Compass className="size-4 text-terra" />
                                     <span>Dolok Sanggul, North Sumatra</span>
@@ -85,33 +96,15 @@ export default function About() {
                                     <span>{locale === 'en' ? '1,500 – 1,700 MASL' : '1.500 – 1.700 MDPL'}</span>
                                 </div>
                             </div>
-                            {/* Truck photo — branded delivery, proof of operations */}
-                            <div className="mt-8 overflow-hidden">
-                                <img
-                                    src="/images/add/truck-front.jpg"
-                                    alt="Given Coffee branded delivery truck"
-                                    loading="lazy"
-                                    className="w-full object-cover"
-                                />
-                            </div>
                         </Reveal>
 
                         <Reveal delay={100}>
-                            <p className="text-xl leading-relaxed text-ink/90 md:text-2xl">
+                            <p className="text-xl leading-relaxed text-cream/95 md:text-2xl">
                                 {str(t('about.story.body'))}
                             </p>
-                            <p className="mt-6 text-base leading-relaxed text-coffee md:text-lg">
+                            <p className="mt-6 text-base leading-relaxed text-cream/70 md:text-lg">
                                 {str(t('about.story.body2'))}
                             </p>
-                            {/* Buyer visit photo */}
-                            <div className="mt-8 overflow-hidden">
-                                <img
-                                    src="/images/add/buyer-visit.jpg"
-                                    alt="Given Coffee buyer visit at warehouse"
-                                    loading="lazy"
-                                    className="w-full object-cover"
-                                />
-                            </div>
                         </Reveal>
                     </div>
                 </div>
@@ -204,7 +197,7 @@ export default function About() {
                         {[
                             { src: '/images/add/sorting.jpg', alt: 'Bean sorting' },
                             { src: '/images/add/warehouse-1.jpg', alt: 'Warehouse storage' },
-                            { src: '/images/real/closeup-greenbeans.jpeg', alt: 'Green beans close-up' },
+                            { src: '/images/add/truck-front.jpg', alt: 'Given Coffee delivery truck' },
                             { src: '/images/add/warehouse-2.jpg', alt: 'Warehouse operations' },
                             { src: '/images/add/warehouse-stacking.jpg', alt: 'Bag stacking' },
                             { src: '/images/add/sun-drying.jpg', alt: 'Sun drying process' },
