@@ -154,8 +154,8 @@ export default function About() {
                         </Reveal>
 
                         {/* Right: visual interactive carousel card */}
-                        <Reveal delay={100} className="flex">
-                            <div className="group relative min-h-[460px] w-full overflow-hidden rounded-sm border border-border/70 shadow-xs lg:min-h-full">
+                        <Reveal delay={100} className="flex flex-col">
+                            <div className="group relative min-h-[460px] w-full flex-1 overflow-hidden rounded-sm border border-border/70 shadow-xs">
                                 {storySlides.map((slide, idx) => (
                                     <div
                                         key={slide.src}
@@ -169,16 +169,16 @@ export default function About() {
                                             loading="lazy"
                                             className="size-full object-cover object-center transition-transform duration-1000 group-hover:scale-105"
                                         />
-                                        <div className="absolute inset-0 bg-gradient-to-t from-ink/90 via-ink/40 to-transparent" />
+                                        <div className="absolute inset-0 bg-gradient-to-t from-ink/95 via-ink/50 to-transparent" />
 
-                                        <div className="relative flex h-full flex-col justify-end p-8 text-cream">
+                                        <div className="relative flex h-full flex-col justify-end p-6 pb-16 text-cream md:p-8 md:pb-16">
                                             <span className="self-start rounded-full border border-terra/40 bg-terra px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.22em] text-cream shadow-xs">
                                                 {slide.tag}
                                             </span>
-                                            <p className="mt-4 font-display text-xl font-bold leading-snug text-cream md:text-2xl">
+                                            <p className="mt-3 font-display text-lg font-bold leading-snug text-cream md:text-xl">
                                                 {slide.title}
                                             </p>
-                                            <p className="mt-2 text-xs text-cream/70">
+                                            <p className="mt-1 text-xs text-cream/80">
                                                 {slide.desc}
                                             </p>
                                         </div>
@@ -186,16 +186,16 @@ export default function About() {
                                 ))}
 
                                 {/* Carousel Controls & Indicators */}
-                                <div className="absolute bottom-4 right-6 z-20 flex items-center gap-2">
+                                <div className="absolute bottom-4 right-5 z-20 flex items-center gap-2">
                                     <button
                                         type="button"
                                         onClick={prevSlide}
                                         aria-label="Previous slide"
-                                        className="flex size-8 items-center justify-center rounded-full border border-cream/20 bg-ink/70 text-cream backdrop-blur-xs transition hover:border-terra hover:bg-terra"
+                                        className="flex size-7 items-center justify-center rounded-full border border-cream/30 bg-ink/80 text-cream backdrop-blur-xs transition hover:border-terra hover:bg-terra"
                                     >
-                                        <ChevronLeft className="size-4" />
+                                        <ChevronLeft className="size-3.5" />
                                     </button>
-                                    <div className="flex items-center gap-1 px-2">
+                                    <div className="flex items-center gap-1.5 px-1">
                                         {storySlides.map((_, dotIdx) => (
                                             <button
                                                 key={dotIdx}
@@ -204,7 +204,7 @@ export default function About() {
                                                 aria-label={`Go to slide ${dotIdx + 1}`}
                                                 className={`h-1.5 rounded-full transition-all ${
                                                     dotIdx === activeSlide
-                                                        ? 'w-5 bg-terra'
+                                                        ? 'w-4 bg-terra'
                                                         : 'w-1.5 bg-cream/40 hover:bg-cream/70'
                                                 }`}
                                             />
@@ -214,9 +214,9 @@ export default function About() {
                                         type="button"
                                         onClick={nextSlide}
                                         aria-label="Next slide"
-                                        className="flex size-8 items-center justify-center rounded-full border border-cream/20 bg-ink/70 text-cream backdrop-blur-xs transition hover:border-terra hover:bg-terra"
+                                        className="flex size-7 items-center justify-center rounded-full border border-cream/30 bg-ink/80 text-cream backdrop-blur-xs transition hover:border-terra hover:bg-terra"
                                     >
-                                        <ChevronRight className="size-4" />
+                                        <ChevronRight className="size-3.5" />
                                     </button>
                                 </div>
                             </div>
