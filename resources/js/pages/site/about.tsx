@@ -64,47 +64,68 @@ export default function About() {
                 subtitle={str(t('about.hero.subtitle'))}
             />
 
-            {/* Story — full-bleed background with atmospheric dark overlay */}
-            <section className="relative overflow-hidden bg-ink py-24 md:py-32">
-                {/* Background image */}
-                <img
-                    src="/images/add/buyer-visit.jpg"
-                    alt="Given Coffee buyer visit at warehouse"
-                    loading="lazy"
-                    className="absolute inset-0 size-full object-cover object-center"
-                />
-                {/* Dark luxury overlay for readability & contrast */}
-                <div className="absolute inset-0 bg-ink/85 backdrop-blur-[2px]" />
-                <div className="absolute inset-0 bg-gradient-to-r from-ink via-ink/80 to-ink/60" />
-
-                <div className="relative mx-auto max-w-[1400px] px-5 md:px-8">
-                    <div className="grid gap-12 lg:grid-cols-[5fr_7fr] lg:gap-20">
-                        <Reveal>
-                            <p className="mb-4 text-[11px] font-semibold uppercase tracking-[0.28em] text-terra">
-                                {str(t('about.story.eyebrow'))}
-                            </p>
-                            <h2 className="font-display text-4xl leading-[1.08] tracking-tight text-cream md:text-5xl">
-                                {str(t('about.story.title'))}
-                            </h2>
-                            <div className="mt-8 flex flex-wrap items-center gap-5 text-sm text-cream/70">
-                                <div className="flex items-center gap-2">
-                                    <Compass className="size-4 text-terra" />
-                                    <span>Dolok Sanggul, North Sumatra</span>
+            {/* Story — warm bone background, editorial story left, visual card right */}
+            <section className="relative bg-bone py-24 md:py-32">
+                <div className="mx-auto max-w-[1400px] px-5 md:px-8">
+                    <div className="grid items-stretch gap-12 lg:grid-cols-[7fr_5fr] lg:gap-16">
+                        {/* Left: Editorial story text */}
+                        <Reveal className="flex flex-col justify-between">
+                            <div>
+                                <p className="mb-4 text-[11px] font-semibold uppercase tracking-[0.28em] text-terra">
+                                    {str(t('about.story.eyebrow'))}
+                                </p>
+                                <h2 className="font-display text-4xl leading-[1.08] tracking-tight text-ink md:text-5xl">
+                                    {str(t('about.story.title'))}
+                                </h2>
+                                <div className="mt-8 flex flex-wrap items-center gap-5 text-sm text-coffee">
+                                    <div className="flex items-center gap-2">
+                                        <Compass className="size-4 text-terra" />
+                                        <span>Dolok Sanggul, North Sumatra</span>
+                                    </div>
+                                    <div className="flex items-center gap-2">
+                                        <Mountain className="size-4 text-terra" />
+                                        <span>{locale === 'en' ? '1,500 – 1,700 MASL' : '1.500 – 1.700 MDPL'}</span>
+                                    </div>
                                 </div>
-                                <div className="flex items-center gap-2">
-                                    <Mountain className="size-4 text-terra" />
-                                    <span>{locale === 'en' ? '1,500 – 1,700 MASL' : '1.500 – 1.700 MDPL'}</span>
+
+                                <div className="mt-10 space-y-6">
+                                    <p className="text-xl leading-relaxed text-ink/90 md:text-2xl">
+                                        {str(t('about.story.body'))}
+                                    </p>
+                                    <p className="text-base leading-relaxed text-coffee md:text-lg">
+                                        {str(t('about.story.body2'))}
+                                    </p>
                                 </div>
                             </div>
                         </Reveal>
 
-                        <Reveal delay={100}>
-                            <p className="text-xl leading-relaxed text-cream/95 md:text-2xl">
-                                {str(t('about.story.body'))}
-                            </p>
-                            <p className="mt-6 text-base leading-relaxed text-cream/70 md:text-lg">
-                                {str(t('about.story.body2'))}
-                            </p>
+                        {/* Right: visual feature card with background image */}
+                        <Reveal delay={100} className="flex">
+                            <div className="relative min-h-[440px] w-full overflow-hidden rounded-sm border border-border/70 shadow-xs lg:min-h-full">
+                                <img
+                                    src="/images/add/buyer-visit.jpg"
+                                    alt="Given Coffee buyer visit at warehouse"
+                                    loading="lazy"
+                                    className="absolute inset-0 size-full object-cover object-center transition-transform duration-700 hover:scale-105"
+                                />
+                                <div className="absolute inset-0 bg-gradient-to-t from-ink/90 via-ink/35 to-transparent" />
+
+                                <div className="relative mt-auto flex h-full flex-col justify-end p-8 text-cream">
+                                    <span className="self-start rounded-full border border-terra/40 bg-terra px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.22em] text-cream shadow-xs">
+                                        {locale === 'en' ? 'Direct Partnership' : 'Kemitraan Langsung'}
+                                    </span>
+                                    <p className="mt-4 font-display text-xl font-bold leading-snug text-cream md:text-2xl">
+                                        {locale === 'en'
+                                            ? 'Connecting global roasters directly to North Sumatra highlands.'
+                                            : 'Menghubungkan roastery global langsung ke dataran tinggi Sumatera Utara.'}
+                                    </p>
+                                    <p className="mt-2 text-xs text-cream/70">
+                                        {locale === 'en'
+                                            ? 'Warehouse & sourcing operations · Dolok Sanggul'
+                                            : 'Operasional gudang & sourcing · Dolok Sanggul'}
+                                    </p>
+                                </div>
+                            </div>
                         </Reveal>
                     </div>
                 </div>
