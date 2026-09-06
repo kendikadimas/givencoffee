@@ -140,15 +140,15 @@ export default function Home({ product, products = [], testimonials = [] }: Home
                         </Reveal>
 
                         {/* Right: tall portrait image, no rounded corners, bleeds to edge */}
-                        <Reveal delay={100} className="hidden lg:block">
-                            <div className="relative h-full min-h-[600px] overflow-hidden">
+                        <Reveal delay={100} className="w-full">
+                            <div className="relative h-[420px] w-full overflow-hidden bg-center lg:h-full lg:min-h-[560px]">
                                 <img
-                                    src="/images/real/whitepouch2.jpeg"
+                                    src="/images/real/whitepouch.jpeg"
                                     alt="Specialty Indonesian green beans"
                                     loading="lazy"
-                                    className="absolute inset-0 size-full object-cover"
+                                    className="absolute inset-0 size-full object-cover object-center"
                                 />
-                                <div className="absolute inset-0 bg-gradient-to-r from-cream/40 to-transparent" />
+                                <div className="absolute inset-0 bg-gradient-to-t from-cream/60 via-transparent to-transparent lg:bg-gradient-to-r lg:from-cream/40" />
                             </div>
                         </Reveal>
                     </div>
