@@ -33,7 +33,7 @@ class Post extends Model
     {
         $locale ??= app()->getLocale();
 
-        $content = $this->content[$locale] ?? [];
+        $content = array_map(fn (array $block) => $block[$locale] ?? [], $this->content ?? []);
 
         return [
             'id' => $this->id,
