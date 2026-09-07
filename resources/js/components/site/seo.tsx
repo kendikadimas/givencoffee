@@ -12,14 +12,14 @@ export function useSeoSettings(): SiteSettings {
     return ((usePage().props.settings ?? {}) as SiteSettings) ?? {};
 }
 
+const SITE_URL = 'https://givencoffeeid.com';
+
 function absolute(path: string): string {
     if (/^https?:\/\//.test(path)) {
         return path;
     }
 
-    const origin = typeof window !== 'undefined' ? window.location.origin : '';
-
-    return `${origin}${path.startsWith('/') ? path : `/${path}`}`;
+    return `${SITE_URL}${path.startsWith('/') ? path : `/${path}`}`;
 }
 
 type SeoProps = {
@@ -74,13 +74,11 @@ export function Seo({
 }
 
 export function organizationJsonLd(settings: SiteSettings): Record<string, unknown> {
-    const origin = typeof window !== 'undefined' ? window.location.origin : '';
-
     return {
         '@context': 'https://schema.org',
         '@type': 'Organization',
         name: settings.company_name ?? 'Given Coffee',
-        url: origin,
+        url: SITE_URL,
         email: settings.email,
         sameAs: [settings.social_instagram, settings.social_facebook, settings.social_linkedin].filter(Boolean),
     };
