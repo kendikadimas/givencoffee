@@ -157,8 +157,8 @@
             "varietyValue": "Ateng Super, Tim Tim, Catimor",
             "process": "Proses",
             "processValue": "Semi-Washed (Giling Basah)",
-            "harvest": "Kapasitas produksi",
-            "harvestValue": "Tersedia atas permintaan"
+            "harvest": "Kapasitas tahunan",
+            "harvestValue": "300 – 400 ton / tahun"
         },
         "timeline": {
             "eyebrow": "Perjalanan",

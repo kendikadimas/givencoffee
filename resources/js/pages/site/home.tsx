@@ -128,7 +128,7 @@ export default function Home({ product, products = [], testimonials = [] }: Home
                             <div className="mt-14 grid grid-cols-3 gap-6 border-t border-border/60 pt-10">
                                 {[
                                     { n: '15+', label: locale === 'en' ? 'Years exporting' : 'Tahun ekspor' },
-                                    { n: '100 MT', label: locale === 'en' ? 'Annual capacity' : 'Kapasitas tahunan' },
+                                    { n: '300–400 MT', label: locale === 'en' ? 'Annual capacity' : 'Kapasitas tahunan' },
                                     { n: '85.5+', label: locale === 'en' ? 'SCA cupping score' : 'Skor cupping SCA' },
                                 ].map((s) => (
                                     <div key={s.n}>
