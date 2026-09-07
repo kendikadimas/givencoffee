@@ -477,7 +477,13 @@
         "empty": "Belum ada artikel. Kunjungi lagi nanti.",
         "readTime": "menit baca",
         "back": "Kembali ke jurnal",
-        "share": "Bagikan"
+        "share": "Bagikan",
+        "source": {
+            "eyebrow": "Dari sumbernya",
+            "title": "Tumbuh di perbukitan Lintong Nihuta & Doloksanggul",
+            "body": "Setiap artikel yang kami terbitkan lahir dari pekerjaan di lapangan — kebun, terpal pengeringan, dan gudang ekspor di Humbang Hasundutan, Sumatera Utara.",
+            "cta": "Baca kisah kami"
+        }
     },
     "export": {
         "hero": {

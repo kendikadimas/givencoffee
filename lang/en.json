@@ -477,7 +477,13 @@
         "empty": "No articles yet. Check back soon.",
         "readTime": "min read",
         "back": "Back to journal",
-        "share": "Share"
+        "share": "Share",
+        "source": {
+            "eyebrow": "From the source",
+            "title": "Grown in the hills of Lintong Nihuta & Doloksanggul",
+            "body": "Every article we publish comes from work on the ground — the farms, the drying patios, and the export warehouse in Humbang Hasundutan, North Sumatra.",
+            "cta": "Read our story"
+        }
     },
     "export": {
         "hero": {

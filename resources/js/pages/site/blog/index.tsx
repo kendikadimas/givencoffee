@@ -187,6 +187,43 @@ export default function BlogIndex({ posts, categories, activeCategory }: BlogInd
                     )}
                 </div>
             </section>
+
+            {/* Full-bleed source section */}
+            <section className="relative bg-cream">
+                <Reveal>
+                    <div className="relative overflow-hidden">
+                        <img
+                            src="/images/real/Geopark_Caldera_Toba.jpg"
+                            alt="Volcanic highlands of Lake Toba caldera"
+                            loading="lazy"
+                            className="aspect-[21/8] w-full object-cover"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-ink/80" />
+                        <div className="absolute bottom-0 left-0 px-5 py-8 md:px-12 md:py-10">
+                            <p className="mb-1 text-[11px] font-semibold uppercase tracking-[0.28em] text-terra">
+                                {str(t('blog.source.eyebrow'))}
+                            </p>
+                            <h2 className="font-display text-3xl font-bold text-cream md:text-5xl">
+                                {str(t('blog.source.title'))}
+                            </h2>
+                        </div>
+                    </div>
+                </Reveal>
+                <div className="mx-auto max-w-[1400px] px-5 md:px-8">
+                    <Reveal>
+                        <div className="flex max-w-2xl flex-col gap-4 py-8 md:flex-row md:items-center md:justify-between md:py-10">
+                            <p className="text-sm leading-relaxed text-coffee">{str(t('blog.source.body'))}</p>
+                            <Link
+                                href={`/${locale}/about`}
+                                className="inline-flex shrink-0 items-center gap-2 text-sm font-semibold text-terra transition-colors hover:text-ink"
+                            >
+                                {str(t('blog.source.cta'))}
+                                <ArrowRight className="size-4" />
+                            </Link>
+                        </div>
+                    </Reveal>
+                </div>
+            </section>
         </>
     );
 }
