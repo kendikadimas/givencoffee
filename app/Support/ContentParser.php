@@ -12,6 +12,45 @@ class ContentParser
     {
         $blocks = [];
 
+        // If the string contains HTML tags from Quill rich text editor, parse HTML elements
+        if ($text !== strip_tags($text)) {
+            $dom = new \DOMDocument();
+            // Suppress warnings for HTML5 elements / fragments
+            libxml_use_internal_errors(true);
+            $dom->loadHTML('<?xml encoding="utf-8" ?><div>' . $text . '</div>', LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD);
+            libxml_clear_errors();
+
+            $container = $dom->getElementsByTagName('div')->item(0);
+            if ($container) {
+                foreach ($container->childNodes as $node) {
+                    if ($node->nodeType === XML_ELEMENT_NODE) {
+                        $tag = strtolower($node->nodeName);
+                        if (in_array($tag, ['h1', 'h2', 'h3'])) {
+                            $inner = '';
+                            foreach ($node->childNodes as $child) {
+                                $inner .= $node->ownerDocument->saveHTML($child);
+                            }
+                            $blocks[] = ['type' => 'h2', 'text' => trim($inner)];
+                        } elseif ($tag === 'p') {
+                            $inner = '';
+                            foreach ($node->childNodes as $child) {
+                                $inner .= $node->ownerDocument->saveHTML($child);
+                            }
+                            $blocks[] = ['type' => 'p', 'text' => trim($inner)];
+                        } elseif (in_array($tag, ['ul', 'ol'])) {
+                            $blocks[] = ['type' => $tag, 'text' => trim($node->ownerDocument->saveHTML($node))];
+                        } else {
+                            $blocks[] = ['type' => 'html', 'text' => trim($node->ownerDocument->saveHTML($node))];
+                        }
+                    }
+                }
+            }
+
+            if (!empty($blocks)) {
+                return $blocks;
+            }
+        }
+
         foreach (preg_split('/\r?\n/', $text) as $line) {
             $line = trim($line);
 

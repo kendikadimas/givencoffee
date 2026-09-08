@@ -250,10 +250,18 @@
 
             // Populate Quill editors
             if (rawContentEn) {
-                editorEn.clipboard.dangerouslyPasteHTML(textToHtml(rawContentEn));
+                if (rawContentEn.includes('<p>') || rawContentEn.includes('<h2>') || rawContentEn.includes('<ul>')) {
+                    editorEn.clipboard.dangerouslyPasteHTML(rawContentEn);
+                } else {
+                    editorEn.clipboard.dangerouslyPasteHTML(textToHtml(rawContentEn));
+                }
             }
             if (rawContentId) {
-                editorId.clipboard.dangerouslyPasteHTML(textToHtml(rawContentId));
+                if (rawContentId.includes('<p>') || rawContentId.includes('<h2>') || rawContentId.includes('<ul>')) {
+                    editorId.clipboard.dangerouslyPasteHTML(rawContentId);
+                } else {
+                    editorId.clipboard.dangerouslyPasteHTML(textToHtml(rawContentId));
+                }
             }
 
             // Synchronize Quill HTML back into Markdown-like syntax or plain text blocks before form submit
@@ -282,8 +290,8 @@
                     return resultLines.join("\n\n");
                 }
 
-                document.getElementById('content_en_input').value = htmlToText(editorEn);
-                document.getElementById('content_id_input').value = htmlToText(editorId);
+                document.getElementById('content_en_input').value = editorEn.root.innerHTML;
+                document.getElementById('content_id_input').value = editorId.root.innerHTML;
             });
         });
     </script>

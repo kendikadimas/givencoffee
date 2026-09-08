@@ -95,20 +95,30 @@ export default function BlogShow({ post, recent }: BlogShowProps) {
                             {post.excerpt}
                         </p>
 
-                        <div className="mt-8 space-y-6 text-lg leading-relaxed text-coffee">
-                            {blocks.map((block, i) =>
-                                block.type === 'h2' ? (
+                        <div className="prose-article mt-8">
+                            {blocks.map((block, i) => {
+                                if (block.type === 'h2' || block.type === 'h3') {
+                                    return (
+                                        <Reveal key={i} delay={0}>
+                                            <h2 dangerouslySetInnerHTML={{ __html: block.text }} />
+                                        </Reveal>
+                                    );
+                                }
+
+                                if (block.type === 'ul' || block.type === 'ol' || block.type === 'html') {
+                                    return (
+                                        <Reveal key={i} delay={0}>
+                                            <div dangerouslySetInnerHTML={{ __html: block.text }} />
+                                        </Reveal>
+                                    );
+                                }
+
+                                return (
                                     <Reveal key={i} delay={0}>
-                                        <h2 className="pt-6 font-display text-2xl font-bold text-ink md:text-3xl">
-                                            {block.text}
-                                        </h2>
+                                        <p dangerouslySetInnerHTML={{ __html: block.text }} />
                                     </Reveal>
-                                ) : (
-                                    <Reveal key={i} delay={0}>
-                                        <p className="leading-relaxed">{block.text}</p>
-                                    </Reveal>
-                                ),
-                            )}
+                                );
+                            })}
                         </div>
 
                         {/* Article Footer Strip */}
