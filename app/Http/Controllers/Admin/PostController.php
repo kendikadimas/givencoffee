@@ -89,13 +89,26 @@ class PostController extends Controller
             ? '/uploads/'.$request->file('cover_image')->store('posts', 'uploads')
             : ($data['cover_image'] ?? null);
 
+        $contentEn = ContentParser::blocks($data['content_en']);
+        $contentId = ContentParser::blocks($data['content_id']);
+
+        $maxBlocks = max(count($contentEn), count($contentId));
+        $mergedContent = [];
+
+        for ($i = 0; $i < $maxBlocks; $i++) {
+            $blockEn = $contentEn[$i] ?? ['type' => 'p', 'text' => ''];
+            $blockId = $contentId[$i] ?? ['type' => 'p', 'text' => ''];
+
+            $mergedContent[] = [
+                'en' => $blockEn,
+                'id' => $blockId,
+            ];
+        }
+
         return [
             'title' => ['en' => $data['title_en'], 'id' => $data['title_id']],
             'excerpt' => ['en' => $data['excerpt_en'], 'id' => $data['excerpt_id']],
-            'content' => [
-                'en' => ContentParser::blocks($data['content_en']),
-                'id' => ContentParser::blocks($data['content_id']),
-            ],
+            'content' => $mergedContent,
             'category_id' => $data['category_id'] ?? null,
             'cover_image' => $cover,
             'featured' => $request->boolean('featured'),

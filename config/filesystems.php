@@ -52,7 +52,7 @@ return [
         // without a symlink — docroot is a sibling of the app on this hosting.
         'uploads' => [
             'driver' => 'local',
-            'root' => env('UPLOADS_DISK_ROOT', public_path('uploads')),
+            'root' => env('UPLOADS_DISK_ROOT', is_dir(base_path('../public_html/uploads')) ? base_path('../public_html/uploads') : public_path('uploads')),
             'url' => rtrim((string) env('APP_URL', 'http://localhost'), '/').'/uploads',
             'visibility' => 'public',
             'throw' => false,
