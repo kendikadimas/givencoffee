@@ -5,6 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>@yield('title', 'Admin') — Given Coffee</title>
         @vite(['resources/css/app.css'])
+        @stack('styles')
     </head>
     <body class="bg-bone text-ink antialiased">
         <div class="flex min-h-[100dvh]">
@@ -66,5 +67,6 @@
                 </main>
             </div>
         </div>
+        @stack('scripts')
     </body>
 </html>
