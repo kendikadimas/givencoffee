@@ -4,7 +4,9 @@ namespace App\Http\Middleware;
 
 use App\Support\SiteSettings;
 use Illuminate\Http\Request;
+use Inertia\Inertia;
 use Inertia\Middleware;
+use Symfony\Component\HttpFoundation\Response;
 
 class HandleInertiaRequests extends Middleware
 {
@@ -16,6 +18,21 @@ class HandleInertiaRequests extends Middleware
      * @var string
      */
     protected $rootView = 'app';
+
+    public function handle(Request $request, \Closure $next): Response
+    {
+        $response = parent::handle($request, $next);
+
+        if ($request->header('X-Inertia') && $response->isRedirect()) {
+            $path = parse_url($response->headers->get('Location') ?? '', PHP_URL_PATH) ?? '';
+
+            if (str_starts_with($path, '/admin')) {
+                return Inertia::location($response->headers->get('Location'));
+            }
+        }
+
+        return $response;
+    }
 
     /**
      * Determines the current asset version.
