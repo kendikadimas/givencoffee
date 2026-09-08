@@ -63,10 +63,13 @@ class FaqSeeder extends Seeder
         ];
 
         foreach ($faqs as $i => $faq) {
-            Faq::updateOrCreate(
-                ['question' => $faq['question']],
-                $faq + ['sort_order' => $i, 'active' => true],
-            );
+            $existing = Faq::where('question->en', $faq['question']['en'])->first();
+
+            if ($existing) {
+                $existing->update($faq + ['sort_order' => $i, 'active' => true]);
+            } else {
+                Faq::create($faq + ['sort_order' => $i, 'active' => true]);
+            }
         }
     }
 }

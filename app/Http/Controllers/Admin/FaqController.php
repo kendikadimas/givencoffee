@@ -27,10 +27,16 @@ class FaqController extends Controller
             'active' => ['sometimes', 'boolean'],
         ]);
 
+        $existing = Faq::where('question->en', $data['question_en'])->first();
+
+        if ($existing) {
+            return redirect()->route('admin.faqs.index')->with('error', 'FAQ dengan pertanyaan tersebut sudah ada.');
+        }
+
         Faq::create([
             'question' => ['en' => $data['question_en'], 'id' => $data['question_id']],
             'answer' => ['en' => $data['answer_en'], 'id' => $data['answer_id']],
-            'sort_order' => Faq::max('sort_order') + 1,
+            'sort_order' => (int) Faq::max('sort_order') + 1,
             'active' => $request->boolean('active'),
         ]);
 

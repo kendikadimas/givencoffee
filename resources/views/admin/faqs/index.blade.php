@@ -3,7 +3,7 @@
 @section('title', 'FAQs')
 
 @section('content')
-    <form method="POST" action="{{ route('admin.faqs.store') }}" class="mb-10 max-w-2xl rounded-md border border-border bg-cream p-6">
+    <form method="POST" action="{{ route('admin.faqs.store') }}" class="mb-10 max-w-2xl rounded-md border border-border bg-cream p-6" onsubmit="this.querySelector('button[type=submit]').disabled = true">
         @csrf
         <h2 class="mb-4 text-sm font-semibold uppercase tracking-[0.18em] text-coffee">Add FAQ</h2>
         <div class="grid gap-4 sm:grid-cols-2">
@@ -36,7 +36,7 @@
         <table class="w-full text-left text-sm">
             <thead class="border-b border-border text-xs uppercase tracking-[0.14em] text-coffee">
                 <tr>
-                    <th class="w-16 px-5 py-3 font-semibold">Order</th>
+                    <th class="w-24 px-5 py-3 font-semibold">Order</th>
                     <th class="px-5 py-3 font-semibold">Question (EN / ID)</th>
                     <th class="px-5 py-3 font-semibold">Active</th>
                     <th class="px-5 py-3 text-right font-semibold">Actions</th>
@@ -46,20 +46,21 @@
                 @forelse ($faqs as $faq)
                     <tr class="hover:bg-bone">
                         <td class="px-5 py-4">
-                            <form method="POST" action="{{ route('admin.faqs.update', $faq) }}">
+                            <form method="POST" action="{{ route('admin.faqs.update', $faq) }}" class="flex items-center gap-1">
                                 @csrf
                                 @method('PUT')
                                 <input type="hidden" name="question_en" value="{{ $faq->question['en'] }}">
                                 <input type="hidden" name="question_id" value="{{ $faq->question['id'] }}">
                                 <input type="hidden" name="answer_en" value="{{ $faq->answer['en'] }}">
                                 <input type="hidden" name="answer_id" value="{{ $faq->answer['id'] }}">
-                                <input type="number" name="sort_order" value="{{ $faq->sort_order }}" class="w-16 rounded-md border border-input bg-bone px-2 py-1.5 text-sm outline-none focus:border-terra">
-                                <button type="submit" class="ml-1 text-xs text-terra hover:text-terra-deep">Save</button>
+                                <input type="hidden" name="active" value="{{ $faq->active ? 1 : 0 }}">
+                                <input type="number" name="sort_order" value="{{ $faq->sort_order }}" class="w-14 rounded-md border border-input bg-bone px-2 py-1 text-sm outline-none focus:border-terra">
+                                <button type="submit" class="text-xs text-terra hover:text-terra-deep font-semibold">Save</button>
                             </form>
                         </td>
                         <td class="px-5 py-4 text-coffee">
                             <p class="font-medium text-ink">{{ $faq->question['en'] }}</p>
-                            <p class="text-xs">{{ $faq->question['id'] }}</p>
+                            <p class="text-xs text-coffee/80 mt-0.5">{{ $faq->question['id'] }}</p>
                         </td>
                         <td class="px-5 py-4">
                             <form method="POST" action="{{ route('admin.faqs.update', $faq) }}">
@@ -71,26 +72,52 @@
                                 <input type="hidden" name="answer_id" value="{{ $faq->answer['id'] }}">
                                 <input type="hidden" name="sort_order" value="{{ $faq->sort_order }}">
                                 <input type="hidden" name="active" value="0">
-                                <label class="flex items-center gap-2 text-sm">
+                                <label class="flex items-center gap-2 text-sm cursor-pointer">
                                     <input type="checkbox" name="active" value="1" @checked($faq->active) class="size-4 accent-terra" onchange="this.form.submit()"> Active
                                 </label>
                             </form>
                         </td>
                         <td class="px-5 py-4 text-right">
-                            <details class="group">
-                                <summary class="cursor-pointer text-sm text-terra hover:text-terra-deep [&::-webkit-details-marker]:hidden">Edit</summary>
-                                <form method="POST" action="{{ route('admin.faqs.update', $faq) }}" class="mt-3 space-y-3 rounded-md border border-border bg-bone p-4">
+                            <div class="flex items-center justify-end gap-3">
+                                <details class="group relative inline-block text-left">
+                                    <summary class="cursor-pointer text-sm font-semibold text-terra hover:text-terra-deep [&::-webkit-details-marker]:hidden">Edit</summary>
+                                    <div class="fixed inset-0 z-40 bg-ink/20" onclick="this.parentElement.removeAttribute('open')"></div>
+                                    <form method="POST" action="{{ route('admin.faqs.update', $faq) }}" class="absolute right-0 z-50 mt-2 w-96 space-y-3 rounded-md border border-border bg-cream p-5 shadow-earth-lg">
+                                        @csrf
+                                        @method('PUT')
+                                        <p class="font-display font-bold text-ink">Edit FAQ</p>
+                                        <div>
+                                            <label class="mb-1 block text-xs font-semibold text-coffee">Question (EN)</label>
+                                            <input name="question_en" value="{{ $faq->question['en'] }}" required class="w-full rounded-md border border-input bg-bone px-3 py-1.5 text-sm outline-none focus:border-terra">
+                                        </div>
+                                        <div>
+                                            <label class="mb-1 block text-xs font-semibold text-coffee">Pertanyaan (ID)</label>
+                                            <input name="question_id" value="{{ $faq->question['id'] }}" required class="w-full rounded-md border border-input bg-bone px-3 py-1.5 text-sm outline-none focus:border-terra">
+                                        </div>
+                                        <div>
+                                            <label class="mb-1 block text-xs font-semibold text-coffee">Answer (EN)</label>
+                                            <textarea name="answer_en" rows="3" required class="w-full rounded-md border border-input bg-bone px-3 py-1.5 text-sm outline-none focus:border-terra">{{ $faq->answer['en'] }}</textarea>
+                                        </div>
+                                        <div>
+                                            <label class="mb-1 block text-xs font-semibold text-coffee">Jawaban (ID)</label>
+                                            <textarea name="answer_id" rows="3" required class="w-full rounded-md border border-input bg-bone px-3 py-1.5 text-sm outline-none focus:border-terra">{{ $faq->answer['id'] }}</textarea>
+                                        </div>
+                                        <div class="flex items-center justify-between pt-2">
+                                            <input type="hidden" name="sort_order" value="{{ $faq->sort_order }}">
+                                            <label class="flex items-center gap-2 text-xs">
+                                                <input type="checkbox" name="active" value="1" @checked($faq->active) class="size-4 accent-terra"> Active
+                                            </label>
+                                            <button type="submit" class="rounded-full bg-terra px-4 py-1.5 text-xs font-semibold text-cream hover:bg-terra-deep">Save changes</button>
+                                        </div>
+                                    </form>
+                                </details>
+
+                                <form method="POST" action="{{ route('admin.faqs.destroy', $faq) }}" onsubmit="return confirm('Hapus FAQ ini?')">
                                     @csrf
-                                    @method('PUT')
-                                    <input name="question_en" value="{{ $faq->question['en'] }}" class="w-full rounded-md border border-input bg-cream px-3 py-2 text-sm outline-none focus:border-terra">
-                                    <input name="question_id" value="{{ $faq->question['id'] }}" class="w-full rounded-md border border-input bg-cream px-3 py-2 text-sm outline-none focus:border-terra">
-                                    <textarea name="answer_en" rows="3" class="w-full rounded-md border border-input bg-cream px-3 py-2 text-sm outline-none focus:border-terra">{{ $faq->answer['en'] }}</textarea>
-                                    <textarea name="answer_id" rows="3" class="w-full rounded-md border border-input bg-cream px-3 py-2 text-sm outline-none focus:border-terra">{{ $faq->answer['id'] }}</textarea>
-                                    <input type="hidden" name="sort_order" value="{{ $faq->sort_order }}">
-                                    <input type="hidden" name="active" value="{{ $faq->active ? 1 : 0 }}">
-                                    <button type="submit" class="rounded-full bg-terra px-4 py-1.5 text-xs font-semibold text-cream hover:bg-terra-deep">Save changes</button>
+                                    @method('DELETE')
+                                    <button type="submit" class="text-sm text-coffee/60 hover:text-terra-deep">Delete</button>
                                 </form>
-                            </details>
+                            </div>
                         </td>
                     </tr>
                 @empty
