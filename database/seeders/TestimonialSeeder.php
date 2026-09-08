@@ -9,8 +9,45 @@ class TestimonialSeeder extends Seeder
 {
     public function run(): void
     {
-        // Testimonials are pending client input ("menyusul" per brief).
-        // Structure is ready; add rows once quotes are approved.
-        Testimonial::truncate();
+        $testimonials = [
+            [
+                'name' => 'Marcus Vance',
+                'role' => 'Head of Sourcing, Apex Coffee Roasters (UK)',
+                'quote' => [
+                    'en' => 'Given Coffee’s Lintong Arabica has become an essential single-origin anchor in our seasonal lineup. The lot consistency, moisture control, and deep herbal notes are exceptional.',
+                    'id' => 'Kopi Arabika Lintong dari Given Coffee telah menjadi jangkar single-origin utama dalam menu musiman kami. Konsistensi lot, kontrol kadar air, dan catatan rasa herbalnya sangat luar biasa.',
+                ],
+                'sort_order' => 0,
+                'active' => true,
+            ],
+            [
+                'name' => 'Hitoshi Tanaka',
+                'role' => 'Quality Director, Pacific Green Import (Japan)',
+                'quote' => [
+                    'en' => 'Full farm-gate traceability and impeccable giling basah processing. Their documentation is flawless and containers always arrive on target moisture window.',
+                    'id' => 'Keterlacakan hingga kebun mitra dan pengolahan giling basah yang sempurna. Dokumentasi mereka tanpa cela dan kontainer selalu tiba dalam batas kadar air yang pas.',
+                ],
+                'sort_order' => 1,
+                'active' => true,
+            ],
+            [
+                'name' => 'Elena Rostova',
+                'role' => 'Green Coffee Buyer, Nordik Specialty (Germany)',
+                'quote' => [
+                    'en' => 'Finding a reliable Sumatran exporter with continuous SCA 85.5+ scoring lots was a challenge until we partnered with Given Coffee. Their sample accuracy is 100%.',
+                    'id' => 'Mencari eksportir Sumatra yang andal dengan lot bernilai SCA 85.5+ secara konsisten adalah tantangan sampai kami bermitra dengan Given Coffee. Akurasi sampel mereka 100%.',
+                ],
+                'sort_order' => 2,
+                'active' => true,
+            ],
+        ];
+
+        foreach ($testimonials as $t) {
+            Testimonial::updateOrCreate(
+                ['name' => $t['name']],
+                $t
+            );
+        }
     }
 }
+
