@@ -28,7 +28,7 @@ Route::prefix('{locale}')
     });
 
 Route::middleware(['auth', 'verified'])->group(function () {
-    Route::inertia('dashboard', 'dashboard')->name('dashboard');
+    Route::get('/dashboard', fn (): \Illuminate\Http\RedirectResponse => redirect(request()->user()?->is_admin ? '/admin' : '/en'))->name('dashboard');
 });
 
 Route::middleware(['auth', 'verified', 'admin'])->prefix('admin')->name('admin.')->group(function () {
