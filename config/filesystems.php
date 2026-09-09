@@ -55,6 +55,14 @@ return [
             'root' => env('UPLOADS_DISK_ROOT', is_dir(base_path('../public_html/uploads')) ? base_path('../public_html/uploads') : public_path('uploads')),
             'url' => rtrim((string) env('APP_URL', 'http://localhost'), '/').'/uploads',
             'visibility' => 'public',
+            'permissions' => [
+                'file' => [
+                    'public' => 0644,
+                ],
+                'dir' => [
+                    'public' => 0755,
+                ],
+            ],
             'throw' => false,
             'report' => false,
         ],

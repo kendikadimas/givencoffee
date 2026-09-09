@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 import { usePage } from '@inertiajs/react';
 
 import { Reveal } from '@/components/site/reveal';
@@ -12,23 +12,60 @@ type InstagramSettings = {
 export function InstagramFeed() {
     const { t } = useTranslations();
     const settings = ((usePage().props.settings ?? {}) as InstagramSettings) ?? {};
+    const containerRef = useRef<HTMLDivElement>(null);
 
     const embedCode = settings.instagram_embed;
 
     useEffect(() => {
-        if (!embedCode) return;
+        if (!embedCode || !containerRef.current) return;
 
-        // Extract script src if present in embedCode
-        const match = embedCode.match(/<script[^>]+src=["']([^"']+)["']/i);
-        if (match && match[1]) {
-            const scriptUrl = match[1];
-            if (!document.querySelector(`script[src="${scriptUrl}"]`)) {
-                const script = document.createElement('script');
-                script.src = scriptUrl;
-                script.async = true;
-                document.body.appendChild(script);
-            }
+        // Parse embed code into HTML content and script tags
+        const tempDiv = document.createElement('div');
+        tempDiv.innerHTML = embedCode;
+
+        const scripts = Array.from(tempDiv.querySelectorAll('script'));
+
+        // Remove script tags from HTML to render clean markup inside container
+        scripts.forEach((s) => s.remove());
+
+        if (containerRef.current) {
+            containerRef.current.innerHTML = tempDiv.innerHTML;
         }
+
+        // Execute extracted scripts dynamically
+        const addedScripts: HTMLScriptElement[] = [];
+
+        scripts.forEach((oldScript) => {
+            const newScript = document.createElement('script');
+            Array.from(oldScript.attributes).forEach((attr) => {
+                newScript.setAttribute(attr.name, attr.value);
+            });
+            if (oldScript.innerHTML) {
+                newScript.innerHTML = oldScript.innerHTML;
+            }
+            document.body.appendChild(newScript);
+            addedScripts.push(newScript);
+        });
+
+        // Trigger widget initialization for Elfsight / LightWidget / SnapWidget if present
+        const timer = setTimeout(() => {
+            const w = window as any;
+            if (w.eapps && typeof w.eapps.init === 'function') {
+                try {
+                    w.eapps.init();
+                } catch (e) {}
+            }
+            if (w.ElfsightApp && typeof w.ElfsightApp.init === 'function') {
+                try {
+                    w.ElfsightApp.init();
+                } catch (e) {}
+            }
+        }, 300);
+
+        return () => {
+            clearTimeout(timer);
+            addedScripts.forEach((s) => s.remove());
+        };
     }, [embedCode]);
 
     if (!embedCode) {
@@ -62,8 +99,8 @@ export function InstagramFeed() {
             </Reveal>
             <Reveal delay={120}>
                 <div
-                    className="mt-8 overflow-hidden rounded-sm border border-border bg-white p-2 min-h-[300px]"
-                    dangerouslySetInnerHTML={{ __html: embedCode }}
+                    ref={containerRef}
+                    className="mt-8 overflow-hidden rounded-sm border border-border bg-white p-2 min-h-[300px] [&>iframe]:h-[420px] [&>iframe]:w-full [&>iframe]:border-0"
                 />
             </Reveal>
         </section>

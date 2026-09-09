@@ -10,6 +10,21 @@ Route::redirect('/', '/en');
 Route::get('/sitemap.xml', [SitemapController::class, 'index']);
 Route::get('/robots.txt', fn () => response("User-agent: *\nAllow: /\nSitemap: ".url('/sitemap.xml'))->header('Content-Type', 'text/plain'));
 
+Route::get('/uploads/{path}', function (string $path) {
+    $candidates = [
+        public_path('uploads/'.$path),
+        base_path('../public_html/uploads/'.$path),
+    ];
+
+    foreach ($candidates as $file) {
+        if (file_exists($file) && is_file($file)) {
+            return response()->file($file);
+        }
+    }
+
+    abort(404);
+})->where('path', '.*');
+
 Route::prefix('{locale}')
     ->whereIn('locale', ['en', 'id'])
     ->group(function () {
