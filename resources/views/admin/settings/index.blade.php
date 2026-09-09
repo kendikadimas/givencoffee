@@ -53,7 +53,7 @@
         <div>
             <h2 class="mb-3 text-sm font-semibold uppercase tracking-[0.18em] text-coffee">Social media</h2>
             <div class="grid gap-4 sm:grid-cols-2">
-                @foreach (['instagram', 'facebook', 'linkedin', 'youtube'] as $social)
+                @foreach (['instagram', 'facebook', 'tiktok', 'youtube'] as $social)
                     <div>
                         <label class="mb-2 block text-sm font-medium text-ink capitalize">{{ $social }}</label>
                         <input name="social_{{ $social }}" value="{{ old('social_'.$social, $settings['social_'.$social]) }}" placeholder="https://..." class="w-full rounded-md border border-input bg-bone px-4 py-2.5 text-sm outline-none focus:border-terra focus:ring-2 focus:ring-terra/30">

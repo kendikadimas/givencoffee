@@ -23,7 +23,7 @@ class SettingController extends Controller
         $fields = [
             'company_name', 'email', 'phone', 'whatsapp', 'whatsapp_url',
             'address', 'hours',
-            'social_instagram', 'social_facebook', 'social_linkedin', 'social_youtube',
+            'social_instagram', 'social_facebook', 'social_tiktok', 'social_youtube',
             'instagram_embed', 'map_embed', 'ga_id', 'catalog_url',
         ];
 
@@ -37,7 +37,7 @@ class SettingController extends Controller
             'hours' => ['nullable', 'string', 'max:255'],
             'social_instagram' => ['nullable', 'url', 'max:255'],
             'social_facebook' => ['nullable', 'url', 'max:255'],
-            'social_linkedin' => ['nullable', 'url', 'max:255'],
+            'social_tiktok' => ['nullable', 'url', 'max:255'],
             'social_youtube' => ['nullable', 'url', 'max:255'],
             'instagram_embed' => ['nullable', 'string'],
             'map_embed' => ['nullable', 'string'],

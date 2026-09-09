@@ -5,7 +5,7 @@ type SiteSettings = {
     email?: string;
     social_instagram?: string;
     social_facebook?: string;
-    social_linkedin?: string;
+    social_tiktok?: string;
 };
 
 export function useSeoSettings(): SiteSettings {
@@ -87,7 +87,7 @@ export function organizationJsonLd(
         sameAs: [
             settings.social_instagram,
             settings.social_facebook,
-            settings.social_linkedin,
+            settings.social_tiktok,
         ].filter(Boolean),
     };
 }
