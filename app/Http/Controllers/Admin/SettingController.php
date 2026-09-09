@@ -28,21 +28,21 @@ class SettingController extends Controller
         ];
 
         $validated = $request->validate([
-            'company_name'     => ['required', 'string', 'max:255'],
-            'email'            => ['nullable', 'email', 'max:255'],
-            'phone'            => ['nullable', 'string', 'max:255'],
-            'whatsapp'         => ['nullable', 'string', 'max:255'],
-            'whatsapp_url'     => ['nullable', 'url', 'max:255'],
-            'address'          => ['nullable', 'string'],
-            'hours'            => ['nullable', 'string', 'max:255'],
+            'company_name' => ['required', 'string', 'max:255'],
+            'email' => ['nullable', 'email', 'max:255'],
+            'phone' => ['nullable', 'string', 'max:255'],
+            'whatsapp' => ['nullable', 'string', 'max:255'],
+            'whatsapp_url' => ['nullable', 'url', 'max:255'],
+            'address' => ['nullable', 'string'],
+            'hours' => ['nullable', 'string', 'max:255'],
             'social_instagram' => ['nullable', 'url', 'max:255'],
-            'social_facebook'  => ['nullable', 'url', 'max:255'],
-            'social_tiktok'    => ['nullable', 'url', 'max:255'],
-            'social_youtube'   => ['nullable', 'url', 'max:255'],
-            'instagram_embed'  => ['nullable', 'string'],
-            'map_embed'        => ['nullable', 'string'],
-            'ga_id'            => ['nullable', 'string', 'max:255'],
-            'catalog_pdf'      => ['nullable', 'file', 'mimes:pdf', 'max:20480'],
+            'social_facebook' => ['nullable', 'url', 'max:255'],
+            'social_tiktok' => ['nullable', 'url', 'max:255'],
+            'social_youtube' => ['nullable', 'url', 'max:255'],
+            'instagram_embed' => ['nullable', 'string'],
+            'map_embed' => ['nullable', 'string'],
+            'ga_id' => ['nullable', 'string', 'max:255'],
+            'catalog_pdf' => ['nullable', 'file', 'mimes:pdf', 'max:20480'],
         ]);
 
         foreach ($fields as $field) {
@@ -51,7 +51,7 @@ class SettingController extends Controller
 
         // Handle catalog PDF upload — overwrites previous file path in settings
         if ($request->hasFile('catalog_pdf')) {
-            $path = '/uploads/' . $request->file('catalog_pdf')->store('catalog', 'uploads');
+            $path = '/uploads/'.$request->file('catalog_pdf')->store('catalog', 'uploads');
             Setting::updateOrCreate(['key' => 'catalog_url'], ['value' => $path]);
         }
 
