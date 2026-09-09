@@ -360,12 +360,8 @@ export default function About() {
             {/* Photo grid — operations proof */}
             <section className="bg-bone py-16 md:py-20">
                 <div className="mx-auto max-w-[1400px] px-5 md:px-8">
-                    <div className="grid grid-cols-2 gap-3 md:grid-cols-3">
+                    <div className="grid gap-4 md:grid-cols-2 md:gap-6">
                         {[
-                            {
-                                src: '/images/add/sorting.jpg',
-                                alt: 'Bean sorting',
-                            },
                             {
                                 src: '/images/add/warehouse-1.jpg',
                                 alt: 'Warehouse storage',
@@ -373,10 +369,6 @@ export default function About() {
                             {
                                 src: '/images/add/truck-front.jpg',
                                 alt: 'Given Coffee delivery truck',
-                            },
-                            {
-                                src: '/images/add/warehouse-2.jpg',
-                                alt: 'Warehouse operations',
                             },
                             {
                                 src: '/images/add/warehouse-stacking.jpg',
@@ -393,7 +385,7 @@ export default function About() {
                                         src={img.src}
                                         alt={img.alt}
                                         loading="lazy"
-                                        className="aspect-square w-full object-cover transition-transform duration-700 hover:scale-105"
+                                        className="aspect-[4/3] w-full object-cover transition-transform duration-700 hover:scale-105"
                                     />
                                 </div>
                             </Reveal>
