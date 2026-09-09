@@ -4,17 +4,17 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>@yield('title', 'Admin') — Given Coffee</title>
+        <link rel="icon" type="image/png" href="/images/real/logofavicon.png">
         @vite(['resources/css/app.css'])
         @stack('styles')
     </head>
     <body class="bg-bone text-ink antialiased">
-        <div class="flex min-h-[100dvh]">
-            <aside class="hidden w-60 shrink-0 flex-col border-r border-border bg-ink text-cream md:flex">
+        <div class="flex h-[100dvh] overflow-hidden">
+            <aside class="sticky top-0 hidden h-[100dvh] w-60 shrink-0 flex-col overflow-y-auto border-r border-border bg-ink text-cream md:flex">
                 <div class="px-6 py-6">
-                    <p class="font-display text-lg font-semibold">Given <span class="italic">Coffee</span></p>
-                    <p class="mt-0.5 text-xs uppercase tracking-[0.2em] text-cream/40">Admin</p>
+                    <img src="/images/real/logo-white.png" alt="Given Coffee" class="h-14 w-auto object-contain">
                 </div>
-                <nav class="flex-1 space-y-1 px-3">
+                <nav class="flex-1 space-y-1 px-3 pb-4">
                     @php
                         $newInquiries = \App\Models\Inquiry::where('status', 'new')->count();
                         $nav = [
@@ -47,8 +47,8 @@
                 </div>
             </aside>
 
-            <div class="flex min-w-0 flex-1 flex-col">
-                <header class="flex items-center justify-between border-b border-border bg-cream px-6 py-4">
+            <div class="flex min-w-0 flex-1 flex-col overflow-y-auto">
+                <header class="sticky top-0 z-30 flex items-center justify-between border-b border-border bg-cream/95 px-6 py-4 backdrop-blur-sm">
                     <div>
                         <p class="text-sm font-semibold">@yield('title', 'Admin')</p>
                     </div>
