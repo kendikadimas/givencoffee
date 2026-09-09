@@ -78,6 +78,7 @@ export default function About() {
                 locale === 'en'
                     ? 'Warehouse & sourcing operations · Dolok Sanggul'
                     : 'Operasional gudang & sourcing · Dolok Sanggul',
+            focus: 'center 35%',
         },
         {
             src: '/images/add/truck-front.jpg',
@@ -200,7 +201,12 @@ export default function About() {
                                             src={slide.src}
                                             alt={slide.alt}
                                             loading="lazy"
-                                            className="absolute inset-0 size-full object-cover object-center transition-transform duration-1000 group-hover:scale-105"
+                                            style={{
+                                                objectPosition: slide.focus
+                                                    ? slide.focus
+                                                    : 'center',
+                                            }}
+                                            className="absolute inset-0 size-full scale-[1.35] object-cover object-center transition-transform duration-1000 group-hover:scale-150"
                                         />
                                         <div className="absolute inset-0 bg-gradient-to-t from-ink/95 via-ink/60 to-transparent" />
 
