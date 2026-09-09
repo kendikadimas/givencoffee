@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { usePage } from '@inertiajs/react';
 
 import { Reveal } from '@/components/site/reveal';
@@ -12,7 +13,25 @@ export function InstagramFeed() {
     const { t } = useTranslations();
     const settings = ((usePage().props.settings ?? {}) as InstagramSettings) ?? {};
 
-    if (!settings.instagram_embed) {
+    const embedCode = settings.instagram_embed;
+
+    useEffect(() => {
+        if (!embedCode) return;
+
+        // Extract script src if present in embedCode
+        const match = embedCode.match(/<script[^>]+src=["']([^"']+)["']/i);
+        if (match && match[1]) {
+            const scriptUrl = match[1];
+            if (!document.querySelector(`script[src="${scriptUrl}"]`)) {
+                const script = document.createElement('script');
+                script.src = scriptUrl;
+                script.async = true;
+                document.body.appendChild(script);
+            }
+        }
+    }, [embedCode]);
+
+    if (!embedCode) {
         return null;
     }
 
@@ -43,8 +62,8 @@ export function InstagramFeed() {
             </Reveal>
             <Reveal delay={120}>
                 <div
-                    className="overflow-hidden rounded-sm border border-border bg-white [&>iframe]:h-[420px] [&>iframe]:w-full [&>iframe]:border-0"
-                    dangerouslySetInnerHTML={{ __html: settings.instagram_embed }}
+                    className="mt-8 overflow-hidden rounded-sm border border-border bg-white p-2 min-h-[300px]"
+                    dangerouslySetInnerHTML={{ __html: embedCode }}
                 />
             </Reveal>
         </section>
