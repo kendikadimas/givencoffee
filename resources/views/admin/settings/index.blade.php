@@ -3,7 +3,7 @@
 @section('title', 'Settings')
 
 @section('content')
-    <form method="POST" action="{{ route('admin.settings.update') }}" class="max-w-3xl space-y-8">
+    <form method="POST" action="{{ route('admin.settings.update') }}" enctype="multipart/form-data" class="max-w-3xl space-y-8">
         @csrf
 
         <div>
@@ -76,8 +76,16 @@
                     <p class="mt-1 text-xs text-coffee">Use Google Maps → Share → Embed a map, then paste the iframe code here.</p>
                 </div>
                 <div>
-                    <label class="mb-2 block text-sm font-medium text-ink">Catalog PDF path</label>
-                    <input name="catalog_url" value="{{ old('catalog_url', $settings['catalog_url']) }}" placeholder="/catalog/given-coffee-catalog.pdf" class="w-full rounded-md border border-input bg-bone px-4 py-2.5 text-sm outline-none focus:border-terra focus:ring-2 focus:ring-terra/30">
+                    <label class="mb-2 block text-sm font-medium text-ink">Catalog PDF</label>
+                    @if(!empty($settings['catalog_url']))
+                        <div class="mb-2 flex items-center gap-3 rounded-md border border-input bg-bone px-4 py-2.5 text-sm">
+                            <svg class="size-4 shrink-0 text-terra" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+                            <a href="{{ $settings['catalog_url'] }}" target="_blank" class="truncate text-terra underline underline-offset-2 hover:text-terra-deep">{{ basename($settings['catalog_url']) }}</a>
+                            <span class="ml-auto shrink-0 text-xs text-coffee">Current file</span>
+                        </div>
+                    @endif
+                    <input type="file" name="catalog_pdf" accept=".pdf" class="w-full rounded-md border border-input bg-bone px-4 py-2.5 text-sm outline-none focus:border-terra focus:ring-2 focus:ring-terra/30 file:mr-3 file:rounded file:border-0 file:bg-terra file:px-3 file:py-1 file:text-xs file:font-semibold file:text-cream hover:file:bg-terra-deep">
+                    <p class="mt-1 text-xs text-coffee">Upload a PDF (max 20 MB). Uploading a new file will replace the current one.</p>
                 </div>
             </div>
         </div>

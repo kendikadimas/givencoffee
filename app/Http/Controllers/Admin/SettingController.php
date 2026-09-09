@@ -24,29 +24,35 @@ class SettingController extends Controller
             'company_name', 'email', 'phone', 'whatsapp', 'whatsapp_url',
             'address', 'hours',
             'social_instagram', 'social_facebook', 'social_tiktok', 'social_youtube',
-            'instagram_embed', 'map_embed', 'ga_id', 'catalog_url',
+            'instagram_embed', 'map_embed', 'ga_id',
         ];
 
         $validated = $request->validate([
-            'company_name' => ['required', 'string', 'max:255'],
-            'email' => ['nullable', 'email', 'max:255'],
-            'phone' => ['nullable', 'string', 'max:255'],
-            'whatsapp' => ['nullable', 'string', 'max:255'],
-            'whatsapp_url' => ['nullable', 'url', 'max:255'],
-            'address' => ['nullable', 'string'],
-            'hours' => ['nullable', 'string', 'max:255'],
+            'company_name'     => ['required', 'string', 'max:255'],
+            'email'            => ['nullable', 'email', 'max:255'],
+            'phone'            => ['nullable', 'string', 'max:255'],
+            'whatsapp'         => ['nullable', 'string', 'max:255'],
+            'whatsapp_url'     => ['nullable', 'url', 'max:255'],
+            'address'          => ['nullable', 'string'],
+            'hours'            => ['nullable', 'string', 'max:255'],
             'social_instagram' => ['nullable', 'url', 'max:255'],
-            'social_facebook' => ['nullable', 'url', 'max:255'],
-            'social_tiktok' => ['nullable', 'url', 'max:255'],
-            'social_youtube' => ['nullable', 'url', 'max:255'],
-            'instagram_embed' => ['nullable', 'string'],
-            'map_embed' => ['nullable', 'string'],
-            'ga_id' => ['nullable', 'string', 'max:255'],
-            'catalog_url' => ['nullable', 'string', 'max:255'],
+            'social_facebook'  => ['nullable', 'url', 'max:255'],
+            'social_tiktok'    => ['nullable', 'url', 'max:255'],
+            'social_youtube'   => ['nullable', 'url', 'max:255'],
+            'instagram_embed'  => ['nullable', 'string'],
+            'map_embed'        => ['nullable', 'string'],
+            'ga_id'            => ['nullable', 'string', 'max:255'],
+            'catalog_pdf'      => ['nullable', 'file', 'mimes:pdf', 'max:20480'],
         ]);
 
         foreach ($fields as $field) {
             Setting::updateOrCreate(['key' => $field], ['value' => $validated[$field] ?? '']);
+        }
+
+        // Handle catalog PDF upload — overwrites previous file path in settings
+        if ($request->hasFile('catalog_pdf')) {
+            $path = '/uploads/' . $request->file('catalog_pdf')->store('catalog', 'uploads');
+            Setting::updateOrCreate(['key' => 'catalog_url'], ['value' => $path]);
         }
 
         SiteSettings::forget();
