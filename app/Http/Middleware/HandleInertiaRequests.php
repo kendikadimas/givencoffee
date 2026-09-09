@@ -24,10 +24,12 @@ class HandleInertiaRequests extends Middleware
         $response = parent::handle($request, $next);
 
         if ($request->header('X-Inertia') && $response->isRedirect()) {
-            $path = parse_url($response->headers->get('Location') ?? '', PHP_URL_PATH) ?? '';
+            $location = $response->headers->get('Location') ?? '';
+            $parsedPath = parse_url($location, PHP_URL_PATH);
+            $path = is_string($parsedPath) ? $parsedPath : '';
 
             if (str_starts_with($path, '/admin')) {
-                return Inertia::location($response->headers->get('Location'));
+                return Inertia::location($location);
             }
         }
 

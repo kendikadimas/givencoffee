@@ -61,8 +61,8 @@ class AdminPanelTest extends TestCase
         $post = Post::where('slug', 'hello-en')->first();
 
         $this->assertNotNull($post);
-        $this->assertCount(3, $post->content['en']);
-        $this->assertSame('h2', $post->content['en'][1]['type']);
+        $this->assertCount(3, $post->content);
+        $this->assertSame('h2', $post->content[1]['en']['type']);
         $this->assertNotNull($post->published_at);
     }
 

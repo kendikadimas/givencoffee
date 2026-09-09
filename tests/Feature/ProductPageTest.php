@@ -18,27 +18,24 @@ class ProductPageTest extends TestCase
 
         $response->assertOk();
         $response->assertInertia(fn ($page) => $page
-            ->component('site/product')
-            ->has('products', 1));
+            ->component('site/product/show')
+            ->has('product'));
     }
 
-    public function test_product_show_renders_selected_product(): void
+    public function test_product_show_redirects_to_product_index(): void
     {
         $this->seed();
         $product = Product::where('active', true)->first();
 
         $response = $this->get("/en/product/{$product->id}");
 
-        $response->assertOk();
-        $response->assertInertia(fn ($page) => $page
-            ->component('site/product/show')
-            ->where('product.id', $product->id));
+        $response->assertRedirect('/en/product');
     }
 
-    public function test_product_show_404_for_inactive_or_missing_product(): void
+    public function test_product_show_redirects_for_missing_product(): void
     {
         $this->seed();
 
-        $this->get('/en/product/99999')->assertNotFound();
+        $this->get('/en/product/99999')->assertRedirect('/en/product');
     }
 }

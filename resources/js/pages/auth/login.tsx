@@ -61,7 +61,7 @@ export default function Login({ status, canResetPassword }: Props) {
                                     </label>
                                     {canResetPassword && (
                                         <a
-                                            href={request()}
+                                            href={request().url}
                                             tabIndex={5}
                                             className="text-sm text-terra transition-colors hover:text-terra-deep"
                                         >
@@ -111,7 +111,7 @@ export default function Login({ status, canResetPassword }: Props) {
 
                         <div className="text-center text-sm text-coffee">
                             Back to{' '}
-                            <a href={home('en')} className="font-semibold text-terra hover:text-terra-deep">
+                            <a href={home('en').url} className="font-semibold text-terra hover:text-terra-deep">
                                 givencoffeeid.com
                             </a>
                         </div>
