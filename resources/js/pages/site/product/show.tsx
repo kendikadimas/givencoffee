@@ -72,7 +72,7 @@ export default function ProductShow({ product, products = [] }: ProductProps) {
     ];
     const cuppingNotes = product.cupping?.notes ?? str(t('product.notes.body'));
 
-    const waText = encodeURIComponent(`Export Specialist Available`);
+    const waText = encodeURIComponent(`Talk to Our Export Team`);
     const waUrl = `${settings.whatsapp_url ?? 'https://wa.me/6281234567890'}?text=${waText}`;
 
     const jsonLd = {

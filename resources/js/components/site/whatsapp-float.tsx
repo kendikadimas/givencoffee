@@ -22,8 +22,8 @@ export function WhatsAppFloat() {
         >
             <span className="shadow-earth hidden rounded-full border border-border/80 bg-cream/90 px-3.5 py-1.5 text-xs font-semibold text-ink backdrop-blur-md transition-all duration-300 md:inline-block">
                 {locale === 'en'
-                    ? 'Export Specialist Available'
-                    : 'Konsultasi Ekspor'}
+                    ? 'Talk to Our Export Team'
+                    : 'Hubungi Tim Ekspor Kami'}
             </span>
             <a
                 href={settings.whatsapp_url}
