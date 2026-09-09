@@ -42,7 +42,9 @@ export function Seo({
     const settings = useSeoSettings();
     const name = settings.company_name ?? 'Given Coffee';
     const url = absolute(path);
-    const ogImage = image ? absolute(image) : absolute('/images/real/beansonacontainer.jpeg');
+    const ogImage = image
+        ? absolute(image)
+        : absolute('/images/real/beansonacontainer.jpeg');
 
     return (
         <Head>
@@ -73,13 +75,19 @@ export function Seo({
     );
 }
 
-export function organizationJsonLd(settings: SiteSettings): Record<string, unknown> {
+export function organizationJsonLd(
+    settings: SiteSettings,
+): Record<string, unknown> {
     return {
         '@context': 'https://schema.org',
         '@type': 'Organization',
         name: settings.company_name ?? 'Given Coffee',
         url: SITE_URL,
         email: settings.email,
-        sameAs: [settings.social_instagram, settings.social_facebook, settings.social_linkedin].filter(Boolean),
+        sameAs: [
+            settings.social_instagram,
+            settings.social_facebook,
+            settings.social_linkedin,
+        ].filter(Boolean),
     };
 }

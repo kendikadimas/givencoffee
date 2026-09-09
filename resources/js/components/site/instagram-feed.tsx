@@ -1,5 +1,5 @@
-import { useEffect, useRef } from 'react';
 import { usePage } from '@inertiajs/react';
+import { useEffect, useRef } from 'react';
 
 import { Reveal } from '@/components/site/reveal';
 import { str, useTranslations } from '@/hooks/use-translations';
@@ -11,13 +11,16 @@ type InstagramSettings = {
 
 export function InstagramFeed() {
     const { t } = useTranslations();
-    const settings = ((usePage().props.settings ?? {}) as InstagramSettings) ?? {};
+    const settings =
+        ((usePage().props.settings ?? {}) as InstagramSettings) ?? {};
     const containerRef = useRef<HTMLDivElement>(null);
 
     const embedCode = settings.instagram_embed;
 
     useEffect(() => {
-        if (!embedCode || !containerRef.current) return;
+        if (!embedCode || !containerRef.current) {
+            return;
+        }
 
         // Parse embed code into HTML content and script tags
         const tempDiv = document.createElement('div');
@@ -40,9 +43,11 @@ export function InstagramFeed() {
             Array.from(oldScript.attributes).forEach((attr) => {
                 newScript.setAttribute(attr.name, attr.value);
             });
+
             if (oldScript.innerHTML) {
                 newScript.innerHTML = oldScript.innerHTML;
             }
+
             document.body.appendChild(newScript);
             addedScripts.push(newScript);
         });
@@ -50,15 +55,21 @@ export function InstagramFeed() {
         // Trigger widget initialization for Elfsight / LightWidget / SnapWidget if present
         const timer = setTimeout(() => {
             const w = window as any;
+
             if (w.eapps && typeof w.eapps.init === 'function') {
                 try {
                     w.eapps.init();
-                } catch (e) {}
+                } catch {
+                    // ignore
+                }
             }
+
             if (w.ElfsightApp && typeof w.ElfsightApp.init === 'function') {
                 try {
                     w.ElfsightApp.init();
-                } catch (e) {}
+                } catch {
+                    // ignore
+                }
             }
         }, 300);
 
@@ -73,14 +84,19 @@ export function InstagramFeed() {
     }
 
     const handle =
-        settings.social_instagram?.replace(/^https?:\/\/(www\.)?instagram\.com\/?/, '') || '@givencoffee';
+        settings.social_instagram?.replace(
+            /^https?:\/\/(www\.)?instagram\.com\/?/,
+            '',
+        ) || '@givencoffee';
 
     return (
         <section className="mx-auto max-w-[1400px] px-5 py-24 md:px-8 md:py-32">
             <Reveal>
                 <div className="flex flex-wrap items-end justify-between gap-4">
                     <div>
-                        <p className="eyebrow">{str(t('home.instagram.eyebrow'))}</p>
+                        <p className="eyebrow">
+                            {str(t('home.instagram.eyebrow'))}
+                        </p>
                         <h2 className="mt-3 font-display text-4xl leading-[1.05] tracking-tight md:text-5xl">
                             {handle}
                         </h2>
@@ -101,7 +117,7 @@ export function InstagramFeed() {
                 <div className="mx-auto mt-8 max-w-xl md:max-w-2xl">
                     <div
                         ref={containerRef}
-                        className="overflow-hidden rounded-sm border border-border bg-white p-2 shadow-earth min-h-[300px] [&>iframe]:h-[450px] [&>iframe]:w-full [&>iframe]:border-0 [&_img]:max-h-[550px] [&_img]:w-auto [&_img]:mx-auto [&_img]:object-contain"
+                        className="shadow-earth min-h-[300px] overflow-hidden rounded-sm border border-border bg-white p-2 [&_img]:mx-auto [&_img]:max-h-[550px] [&_img]:w-auto [&_img]:object-contain [&>iframe]:h-[450px] [&>iframe]:w-full [&>iframe]:border-0"
                     />
                 </div>
             </Reveal>

@@ -9,7 +9,13 @@ type PageHeroProps = {
     align?: 'left' | 'center';
 };
 
-export function PageHero({ image, eyebrow, title, subtitle, align = 'center' }: PageHeroProps) {
+export function PageHero({
+    image,
+    eyebrow,
+    title,
+    subtitle,
+    align = 'center',
+}: PageHeroProps) {
     return (
         <section className="relative flex min-h-[58vh] items-end overflow-hidden bg-ink pt-32 pb-16 md:min-h-[64vh] md:pb-24">
             <img
@@ -20,7 +26,7 @@ export function PageHero({ image, eyebrow, title, subtitle, align = 'center' }: 
             />
             {/* Rich multi-layer atmospheric gradient */}
             <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/75 to-ink/40" />
-            <div className="pointer-events-none absolute -bottom-10 right-10 size-80 rounded-full bg-terra/15 blur-3xl" />
+            <div className="pointer-events-none absolute right-10 -bottom-10 size-80 rounded-full bg-terra/15 blur-3xl" />
 
             <div
                 className={cn(
@@ -30,17 +36,34 @@ export function PageHero({ image, eyebrow, title, subtitle, align = 'center' }: 
             >
                 <Reveal>
                     {eyebrow && (
-                        <div className={cn('mb-4 flex', align === 'center' ? 'justify-center' : 'justify-start')}>
+                        <div
+                            className={cn(
+                                'mb-4 flex',
+                                align === 'center'
+                                    ? 'justify-center'
+                                    : 'justify-start',
+                            )}
+                        >
                             <span className="badge-pill border-terra/40 bg-terra/20 text-cream">
                                 {eyebrow}
                             </span>
                         </div>
                     )}
-                    <h1 className={cn('max-w-4xl font-display text-4xl leading-[1.08] tracking-tight text-cream md:text-6xl lg:text-7xl', align === 'center' && 'mx-auto')}>
+                    <h1
+                        className={cn(
+                            'max-w-4xl font-display text-4xl leading-[1.08] tracking-tight text-cream md:text-6xl lg:text-7xl',
+                            align === 'center' && 'mx-auto',
+                        )}
+                    >
                         {title}
                     </h1>
                     {subtitle && (
-                        <p className={cn('mt-5 max-w-2xl text-base leading-relaxed text-cream/75 md:text-lg', align === 'center' && 'mx-auto')}>
+                        <p
+                            className={cn(
+                                'mt-5 max-w-2xl text-base leading-relaxed text-cream/75 md:text-lg',
+                                align === 'center' && 'mx-auto',
+                            )}
+                        >
                             {subtitle}
                         </p>
                     )}

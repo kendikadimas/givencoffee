@@ -8,7 +8,12 @@ type Props = Omit<ComponentProps<'input'>, 'type'> & {
     underline?: boolean;
 };
 
-export default function PasswordInput({ className, underline = false, ref, ...props }: Props) {
+export default function PasswordInput({
+    className,
+    underline = false,
+    ref,
+    ...props
+}: Props) {
     const [showPassword, setShowPassword] = useState(false);
 
     return (
@@ -17,8 +22,8 @@ export default function PasswordInput({ className, underline = false, ref, ...pr
                 type={showPassword ? 'text' : 'password'}
                 className={cn(
                     underline
-                        ? 'w-full border-0 border-b border-border/80 bg-transparent px-0 py-2.5 pr-10 text-sm text-ink outline-none transition-all placeholder:text-coffee/40 focus:border-terra focus:ring-0'
-                        : 'border-input flex h-9 w-full min-w-0 rounded-md border bg-transparent px-3 py-1 pr-10 text-base shadow-xs transition-[color,box-shadow] outline-none placeholder:text-muted-foreground focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50 md:text-sm',
+                        ? 'w-full border-0 border-b border-border/80 bg-transparent px-0 py-2.5 pr-10 text-sm text-ink transition-all outline-none placeholder:text-coffee/40 focus:border-terra focus:ring-0'
+                        : 'flex h-9 w-full min-w-0 rounded-md border border-input bg-transparent px-3 py-1 pr-10 text-base shadow-xs transition-[color,box-shadow] outline-none placeholder:text-muted-foreground focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50 disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50 md:text-sm',
                     className,
                 )}
                 ref={ref}

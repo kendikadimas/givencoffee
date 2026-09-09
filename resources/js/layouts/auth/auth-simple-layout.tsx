@@ -24,9 +24,11 @@ export default function AuthSimpleLayout({
                 <span className="sr-only">{title}</span>
             </Link>
 
-            <div className="relative mt-8 w-full max-w-sm rounded-sm border border-border bg-cream p-8 shadow-earth">
+            <div className="shadow-earth relative mt-8 w-full max-w-sm rounded-sm border border-border bg-cream p-8">
                 <div className="space-y-2">
-                    <p className="font-display text-2xl font-bold text-ink">{title}</p>
+                    <p className="font-display text-2xl font-bold text-ink">
+                        {title}
+                    </p>
                     <p className="text-sm text-coffee">{description}</p>
                 </div>
                 <div className="mt-6">{children}</div>
@@ -34,4 +36,3 @@ export default function AuthSimpleLayout({
         </div>
     );
 }
-

@@ -1,10 +1,10 @@
 import { Form, Head } from '@inertiajs/react';
 import InputError from '@/components/input-error';
 import PasswordInput from '@/components/password-input';
+import { cn } from '@/lib/utils';
 import { home } from '@/routes';
 import { store } from '@/routes/login';
 import { request } from '@/routes/password';
-import { cn } from '@/lib/utils';
 
 type Props = {
     status?: string;
@@ -33,7 +33,7 @@ export default function Login({ status, canResetPassword }: Props) {
                             <div className="grid gap-1.5">
                                 <label
                                     htmlFor="email"
-                                    className="text-xs font-semibold uppercase tracking-[0.18em] text-coffee"
+                                    className="text-xs font-semibold tracking-[0.18em] text-coffee uppercase"
                                 >
                                     Email address
                                 </label>
@@ -46,7 +46,7 @@ export default function Login({ status, canResetPassword }: Props) {
                                     tabIndex={1}
                                     autoComplete="email"
                                     placeholder="email@example.com"
-                                    className="w-full border-0 border-b border-border/80 bg-transparent px-0 py-2.5 text-sm text-ink outline-none transition-all placeholder:text-coffee/40 focus:border-terra focus:ring-0"
+                                    className="w-full border-0 border-b border-border/80 bg-transparent px-0 py-2.5 text-sm text-ink transition-all outline-none placeholder:text-coffee/40 focus:border-terra focus:ring-0"
                                 />
                                 <InputError message={errors.email} />
                             </div>
@@ -55,7 +55,7 @@ export default function Login({ status, canResetPassword }: Props) {
                                 <div className="flex items-center justify-between">
                                     <label
                                         htmlFor="password"
-                                        className="text-xs font-semibold uppercase tracking-[0.18em] text-coffee"
+                                        className="text-xs font-semibold tracking-[0.18em] text-coffee uppercase"
                                     >
                                         Password
                                     </label>
@@ -89,7 +89,9 @@ export default function Login({ status, canResetPassword }: Props) {
                                     tabIndex={3}
                                     className="size-4 rounded-sm border-border accent-terra"
                                 />
-                                <span className="text-sm text-coffee">Remember me</span>
+                                <span className="text-sm text-coffee">
+                                    Remember me
+                                </span>
                             </label>
 
                             <button
@@ -99,7 +101,7 @@ export default function Login({ status, canResetPassword }: Props) {
                                 data-test="login-button"
                                 className={cn(
                                     'inline-flex h-11 w-full items-center justify-center gap-2 rounded-full bg-ink px-6 text-sm font-semibold tracking-wide text-cream transition-all duration-200',
-                                    'hover:bg-espresso hover:shadow-earth hover:-translate-y-0.5 disabled:opacity-50 active:translate-y-0',
+                                    'hover:shadow-earth hover:-translate-y-0.5 hover:bg-espresso active:translate-y-0 disabled:opacity-50',
                                 )}
                             >
                                 {processing && (
@@ -111,7 +113,10 @@ export default function Login({ status, canResetPassword }: Props) {
 
                         <div className="text-center text-sm text-coffee">
                             Back to{' '}
-                            <a href={home('en').url} className="font-semibold text-terra hover:text-terra-deep">
+                            <a
+                                href={home('en').url}
+                                className="font-semibold text-terra hover:text-terra-deep"
+                            >
                                 givencoffeeid.com
                             </a>
                         </div>

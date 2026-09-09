@@ -1,5 +1,14 @@
 import { router, usePage } from '@inertiajs/react';
-import { Clock, Mail, MapPin, MessageCircle, Send, ShieldCheck, Globe2, ChevronDown } from 'lucide-react';
+import {
+    Clock,
+    Mail,
+    MapPin,
+    MessageCircle,
+    Send,
+    ShieldCheck,
+    Globe2,
+    ChevronDown,
+} from 'lucide-react';
 import { useState } from 'react';
 import type { FormEvent, ReactNode } from 'react';
 
@@ -20,10 +29,14 @@ type SiteSettings = {
 };
 
 type ExportInfo = {
-    served: string; servedValue: string;
-    terms: string; termsValue: string;
-    min: string; minValue: string;
-    ports: string; portsValue: string;
+    served: string;
+    servedValue: string;
+    terms: string;
+    termsValue: string;
+    min: string;
+    minValue: string;
+    ports: string;
+    portsValue: string;
 };
 
 type ContactProps = {
@@ -31,21 +44,35 @@ type ContactProps = {
     faqs?: Array<{ id?: number; question: string; answer: string }>;
 };
 
-function Field({ label, error, required, children }: {
-    label: string; error?: string; required?: boolean; children: ReactNode;
+function Field({
+    label,
+    error,
+    required,
+    children,
+}: {
+    label: string;
+    error?: string;
+    required?: boolean;
+    children: ReactNode;
 }) {
     return (
         <label className="block">
-            <span className="mb-1.5 block text-[10px] font-semibold uppercase tracking-[0.2em] text-coffee">
-                {label}{required && <span className="text-terra"> *</span>}
+            <span className="mb-1.5 block text-[10px] font-semibold tracking-[0.2em] text-coffee uppercase">
+                {label}
+                {required && <span className="text-terra"> *</span>}
             </span>
             {children}
-            {error && <span className="mt-1.5 block text-xs text-destructive">{error}</span>}
+            {error && (
+                <span className="mt-1.5 block text-xs text-destructive">
+                    {error}
+                </span>
+            )}
         </label>
     );
 }
 
-const inputClass = 'w-full border-0 border-b border-border/80 bg-transparent px-0 py-2.5 text-sm text-ink outline-none transition-all placeholder:text-coffee/40 focus:border-terra focus:ring-0';
+const inputClass =
+    'w-full border-0 border-b border-border/80 bg-transparent px-0 py-2.5 text-sm text-ink outline-none transition-all placeholder:text-coffee/40 focus:border-terra focus:ring-0';
 
 function FaqItem({ question, answer }: { question: string; answer: string }) {
     const [open, setOpen] = useState(false);
@@ -57,11 +84,20 @@ function FaqItem({ question, answer }: { question: string; answer: string }) {
                 onClick={() => setOpen((v) => !v)}
                 className="flex w-full items-center justify-between gap-4 py-5 text-left"
             >
-                <span className="text-sm font-semibold text-ink">{question}</span>
-                <ChevronDown className={cn('size-4 shrink-0 text-coffee transition-transform duration-200', open && 'rotate-180')} />
+                <span className="text-sm font-semibold text-ink">
+                    {question}
+                </span>
+                <ChevronDown
+                    className={cn(
+                        'size-4 shrink-0 text-coffee transition-transform duration-200',
+                        open && 'rotate-180',
+                    )}
+                />
             </button>
             {open && (
-                <p className="pb-5 text-sm leading-relaxed text-coffee">{answer}</p>
+                <p className="pb-5 text-sm leading-relaxed text-coffee">
+                    {answer}
+                </p>
             )}
         </div>
     );
@@ -75,12 +111,18 @@ export default function Contact({ settings, faqs = [] }: ContactProps) {
     const [submitted, setSubmitted] = useState(false);
 
     const [form, setForm] = useState({
-        name: '', company: '', email: '', phone: '',
-        country: '', annual_demand: '', shipping_address: '',
+        name: '',
+        company: '',
+        email: '',
+        phone: '',
+        country: '',
+        annual_demand: '',
+        shipping_address: '',
     });
 
-    const update = (key: keyof typeof form) => (e: { target: { value: string } }) =>
-        setForm((f) => ({ ...f, [key]: e.target.value }));
+    const update =
+        (key: keyof typeof form) => (e: { target: { value: string } }) =>
+            setForm((f) => ({ ...f, [key]: e.target.value }));
 
     const submit = (e: FormEvent): void => {
         e.preventDefault();
@@ -88,8 +130,9 @@ export default function Contact({ settings, faqs = [] }: ContactProps) {
         router.post(`/${locale}/contact/inquiry`, form, {
             preserveScroll: true,
             onSuccess: () => {
- setProcessing(false); setSubmitted(true); 
-},
+                setProcessing(false);
+                setSubmitted(true);
+            },
             onError: () => setProcessing(false),
         });
     };
@@ -102,11 +145,15 @@ export default function Contact({ settings, faqs = [] }: ContactProps) {
         { label: exportInfo.ports, value: exportInfo.portsValue },
     ];
 
-    const faqItems = faqs.length > 0
-        ? faqs
-        : (t('contact.faq.items') as unknown as Array<{ q: string; a: string }>).map(
-              (item) => ({ question: item.q, answer: item.a }),
-          );
+    const faqItems =
+        faqs.length > 0
+            ? faqs
+            : (
+                  t('contact.faq.items') as unknown as Array<{
+                      q: string;
+                      a: string;
+                  }>
+              ).map((item) => ({ question: item.q, answer: item.a }));
 
     return (
         <>
@@ -119,11 +166,10 @@ export default function Contact({ settings, faqs = [] }: ContactProps) {
 
             {/* Split-screen: form (cream left) + info panel (ink right) — no hero, start immediately */}
             <div className="min-h-screen lg:grid lg:grid-cols-[1fr_420px] xl:grid-cols-[1fr_480px]">
-
                 {/* Left — form on cream */}
                 <section className="flex flex-col justify-center bg-cream px-5 py-28 md:px-12 lg:px-16 lg:py-36">
                     <Reveal>
-                        <p className="mb-3 text-[11px] font-semibold uppercase tracking-[0.28em] text-terra">
+                        <p className="mb-3 text-[11px] font-semibold tracking-[0.28em] text-terra uppercase">
                             {str(t('contact.hero.eyebrow'))}
                         </p>
                         <h1 className="font-display text-4xl leading-[1.06] tracking-tight text-ink md:text-5xl">
@@ -139,41 +185,149 @@ export default function Contact({ settings, faqs = [] }: ContactProps) {
                             <Reveal>
                                 <div className="flex flex-col items-start gap-4 rounded-sm border border-forest/30 bg-olive/60 p-8">
                                     <ShieldCheck className="size-10 text-forest" />
-                                    <p className="font-display text-xl text-ink">{str(t('contact.form.success'))}</p>
+                                    <p className="font-display text-xl text-ink">
+                                        {str(t('contact.form.success'))}
+                                    </p>
                                 </div>
                             </Reveal>
                         ) : (
                             <Reveal delay={80}>
-                                <form onSubmit={submit} className="space-y-6" noValidate>
+                                <form
+                                    onSubmit={submit}
+                                    className="space-y-6"
+                                    noValidate
+                                >
                                     <div className="grid gap-6 sm:grid-cols-2">
-                                        <Field label={str(t('contact.form.name'))} required error={errors.name}>
-                                            <input className={inputClass} placeholder={str(t('contact.form.namePh'))} value={form.name} onChange={update('name')} required />
+                                        <Field
+                                            label={str(t('contact.form.name'))}
+                                            required
+                                            error={errors.name}
+                                        >
+                                            <input
+                                                className={inputClass}
+                                                placeholder={str(
+                                                    t('contact.form.namePh'),
+                                                )}
+                                                value={form.name}
+                                                onChange={update('name')}
+                                                required
+                                            />
                                         </Field>
-                                        <Field label={str(t('contact.form.company'))} required error={errors.company}>
-                                            <input className={inputClass} placeholder={str(t('contact.form.companyPh'))} value={form.company} onChange={update('company')} required />
+                                        <Field
+                                            label={str(
+                                                t('contact.form.company'),
+                                            )}
+                                            required
+                                            error={errors.company}
+                                        >
+                                            <input
+                                                className={inputClass}
+                                                placeholder={str(
+                                                    t('contact.form.companyPh'),
+                                                )}
+                                                value={form.company}
+                                                onChange={update('company')}
+                                                required
+                                            />
                                         </Field>
                                     </div>
 
                                     <div className="grid gap-6 sm:grid-cols-2">
-                                        <Field label={str(t('contact.form.email'))} required error={errors.email}>
-                                            <input type="email" className={inputClass} placeholder={str(t('contact.form.emailPh'))} value={form.email} onChange={update('email')} required />
+                                        <Field
+                                            label={str(t('contact.form.email'))}
+                                            required
+                                            error={errors.email}
+                                        >
+                                            <input
+                                                type="email"
+                                                className={inputClass}
+                                                placeholder={str(
+                                                    t('contact.form.emailPh'),
+                                                )}
+                                                value={form.email}
+                                                onChange={update('email')}
+                                                required
+                                            />
                                         </Field>
-                                        <Field label={str(t('contact.form.phone'))} required error={errors.phone}>
-                                            <input type="tel" className={inputClass} placeholder={str(t('contact.form.phonePh'))} value={form.phone} onChange={update('phone')} required />
+                                        <Field
+                                            label={str(t('contact.form.phone'))}
+                                            required
+                                            error={errors.phone}
+                                        >
+                                            <input
+                                                type="tel"
+                                                className={inputClass}
+                                                placeholder={str(
+                                                    t('contact.form.phonePh'),
+                                                )}
+                                                value={form.phone}
+                                                onChange={update('phone')}
+                                                required
+                                            />
                                         </Field>
                                     </div>
 
                                     <div className="grid gap-6 sm:grid-cols-2">
-                                        <Field label={str(t('contact.form.country'))} required error={errors.country}>
-                                            <input className={inputClass} placeholder={str(t('contact.form.countryPh'))} value={form.country} onChange={update('country')} required />
+                                        <Field
+                                            label={str(
+                                                t('contact.form.country'),
+                                            )}
+                                            required
+                                            error={errors.country}
+                                        >
+                                            <input
+                                                className={inputClass}
+                                                placeholder={str(
+                                                    t('contact.form.countryPh'),
+                                                )}
+                                                value={form.country}
+                                                onChange={update('country')}
+                                                required
+                                            />
                                         </Field>
-                                        <Field label={str(t('contact.form.annualDemand'))} required error={errors.annual_demand}>
-                                            <input className={inputClass} placeholder={str(t('contact.form.annualDemandPh'))} value={form.annual_demand} onChange={update('annual_demand')} required />
+                                        <Field
+                                            label={str(
+                                                t('contact.form.annualDemand'),
+                                            )}
+                                            required
+                                            error={errors.annual_demand}
+                                        >
+                                            <input
+                                                className={inputClass}
+                                                placeholder={str(
+                                                    t(
+                                                        'contact.form.annualDemandPh',
+                                                    ),
+                                                )}
+                                                value={form.annual_demand}
+                                                onChange={update(
+                                                    'annual_demand',
+                                                )}
+                                                required
+                                            />
                                         </Field>
                                     </div>
 
-                                    <Field label={str(t('contact.form.shippingAddress'))} required error={errors.shipping_address}>
-                                        <input className={inputClass} placeholder={str(t('contact.form.shippingAddressPh'))} value={form.shipping_address} onChange={update('shipping_address')} required />
+                                    <Field
+                                        label={str(
+                                            t('contact.form.shippingAddress'),
+                                        )}
+                                        required
+                                        error={errors.shipping_address}
+                                    >
+                                        <input
+                                            className={inputClass}
+                                            placeholder={str(
+                                                t(
+                                                    'contact.form.shippingAddressPh',
+                                                ),
+                                            )}
+                                            value={form.shipping_address}
+                                            onChange={update(
+                                                'shipping_address',
+                                            )}
+                                            required
+                                        />
                                     </Field>
 
                                     <div className="pt-2">
@@ -202,14 +356,18 @@ export default function Contact({ settings, faqs = [] }: ContactProps) {
 
                     <Reveal className="relative">
                         {/* Export info table */}
-                        <p className="mb-6 text-[10px] font-semibold uppercase tracking-[0.24em] text-terra">
+                        <p className="mb-6 text-[10px] font-semibold tracking-[0.24em] text-terra uppercase">
                             {str(t('contact.export.title'))}
                         </p>
                         <dl className="divide-y divide-cream/10">
                             {exportRows.map((row) => (
                                 <div key={row.label} className="py-4">
-                                    <dt className="mb-1 text-[10px] font-semibold uppercase tracking-[0.18em] text-cream/40">{row.label}</dt>
-                                    <dd className="text-sm font-semibold text-cream">{row.value}</dd>
+                                    <dt className="mb-1 text-[10px] font-semibold tracking-[0.18em] text-cream/40 uppercase">
+                                        {row.label}
+                                    </dt>
+                                    <dd className="text-sm font-semibold text-cream">
+                                        {row.value}
+                                    </dd>
                                 </div>
                             ))}
                         </dl>
@@ -218,8 +376,13 @@ export default function Contact({ settings, faqs = [] }: ContactProps) {
                         <div className="mt-10 space-y-4 border-t border-cream/10 pt-10">
                             {settings.email && (
                                 <div>
-                                    <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-cream/40">{str(t('contact.info.emailExport'))}</p>
-                                    <a href={`mailto:${settings.email}`} className="mt-1 flex items-center gap-3 text-sm text-cream/70 transition-colors hover:text-cream">
+                                    <p className="text-[10px] font-semibold tracking-[0.18em] text-cream/40 uppercase">
+                                        {str(t('contact.info.emailExport'))}
+                                    </p>
+                                    <a
+                                        href={`mailto:${settings.email}`}
+                                        className="mt-1 flex items-center gap-3 text-sm text-cream/70 transition-colors hover:text-cream"
+                                    >
                                         <Mail className="size-4 shrink-0 text-terra" />
                                         {settings.email}
                                     </a>
@@ -227,22 +390,34 @@ export default function Contact({ settings, faqs = [] }: ContactProps) {
                             )}
                             {settings.email_sample && (
                                 <div>
-                                    <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-cream/40">{str(t('contact.info.emailSample'))}</p>
-                                    <a href={`mailto:${settings.email_sample}`} className="mt-1 flex items-center gap-3 text-sm text-cream/70 transition-colors hover:text-cream">
+                                    <p className="text-[10px] font-semibold tracking-[0.18em] text-cream/40 uppercase">
+                                        {str(t('contact.info.emailSample'))}
+                                    </p>
+                                    <a
+                                        href={`mailto:${settings.email_sample}`}
+                                        className="mt-1 flex items-center gap-3 text-sm text-cream/70 transition-colors hover:text-cream"
+                                    >
                                         <Mail className="size-4 shrink-0 text-terra" />
                                         {settings.email_sample}
                                     </a>
                                 </div>
                             )}
                             {settings.whatsapp_url && (
-                                <a href={settings.whatsapp_url} target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 text-sm text-cream/70 transition-colors hover:text-cream">
+                                <a
+                                    href={settings.whatsapp_url}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="flex items-center gap-3 text-sm text-cream/70 transition-colors hover:text-cream"
+                                >
                                     <MessageCircle className="size-4 shrink-0 text-terra" />
                                     {settings.whatsapp}
                                 </a>
                             )}
                             {settings.address && (
                                 <div>
-                                    <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-cream/40">{str(t('contact.info.office'))}</p>
+                                    <p className="text-[10px] font-semibold tracking-[0.18em] text-cream/40 uppercase">
+                                        {str(t('contact.info.office'))}
+                                    </p>
                                     <div className="mt-1 flex items-start gap-3 text-sm text-cream/70">
                                         <MapPin className="mt-0.5 size-4 shrink-0 text-terra" />
                                         {settings.address}
@@ -258,11 +433,14 @@ export default function Contact({ settings, faqs = [] }: ContactProps) {
                         </div>
 
                         {/* Certifications strip */}
-                        <div className="mt-10 flex flex-wrap items-center gap-2 border-t border-cream/10 pt-10 text-[10px] font-semibold uppercase tracking-wider text-cream/40">
+                        <div className="mt-10 flex flex-wrap items-center gap-2 border-t border-cream/10 pt-10 text-[10px] font-semibold tracking-wider text-cream/40 uppercase">
                             <Globe2 className="size-3.5 text-terra" />
-                            <span>NIB</span><span>·</span>
-                            <span>Halal</span><span>·</span>
-                            <span>Phytosanitary</span><span>·</span>
+                            <span>NIB</span>
+                            <span>·</span>
+                            <span>Halal</span>
+                            <span>·</span>
+                            <span>Phytosanitary</span>
+                            <span>·</span>
                             <span>CoO</span>
                         </div>
                     </Reveal>
@@ -273,7 +451,7 @@ export default function Contact({ settings, faqs = [] }: ContactProps) {
             <section className="bg-bone py-24 md:py-32">
                 <div className="mx-auto max-w-[860px] px-5 md:px-8">
                     <Reveal>
-                        <p className="mb-3 text-[11px] font-semibold uppercase tracking-[0.28em] text-terra">
+                        <p className="mb-3 text-[11px] font-semibold tracking-[0.28em] text-terra uppercase">
                             {str(t('contact.faq.eyebrow'))}
                         </p>
                         <h2 className="mb-12 font-display text-3xl font-bold text-ink md:text-4xl">
@@ -282,7 +460,11 @@ export default function Contact({ settings, faqs = [] }: ContactProps) {
                     </Reveal>
                     <div>
                         {faqItems.map((item) => (
-                            <FaqItem key={item.question} question={item.question} answer={item.answer} />
+                            <FaqItem
+                                key={item.question}
+                                question={item.question}
+                                answer={item.answer}
+                            />
                         ))}
                     </div>
                 </div>
@@ -293,8 +475,10 @@ export default function Contact({ settings, faqs = [] }: ContactProps) {
                 <section className="bg-bone pb-24 md:pb-32">
                     <div className="mx-auto max-w-[1400px] px-5 md:px-8">
                         <div
-                            className="overflow-hidden rounded-sm border border-border/80 shadow-earth [&>iframe]:block [&>iframe]:h-[420px] [&>iframe]:w-full [&>iframe]:border-0"
-                            dangerouslySetInnerHTML={{ __html: settings.map_embed }}
+                            className="shadow-earth overflow-hidden rounded-sm border border-border/80 [&>iframe]:block [&>iframe]:h-[420px] [&>iframe]:w-full [&>iframe]:border-0"
+                            dangerouslySetInnerHTML={{
+                                __html: settings.map_embed,
+                            }}
                         />
                     </div>
                 </section>

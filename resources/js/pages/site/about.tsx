@@ -1,5 +1,5 @@
-import { useEffect, useState } from 'react';
 import { ChevronLeft, ChevronRight, Compass, Mountain } from 'lucide-react';
+import { useEffect, useState } from 'react';
 
 import { PageHero } from '@/components/site/page-hero';
 import { Reveal } from '@/components/site/reveal';
@@ -36,16 +36,32 @@ export default function About() {
 
     const sustainabilityPillars = [
         {
-            title: locale === 'en' ? 'Direct Farmer Partnership' : 'Kemitraan Petani Langsung',
-            desc: locale === 'en' ? 'Purchasing directly at premium prices above standard fair trade rates.' : 'Membeli langsung dari petani dengan harga premium di atas pasar komoditas.',
+            title:
+                locale === 'en'
+                    ? 'Direct Farmer Partnership'
+                    : 'Kemitraan Petani Langsung',
+            desc:
+                locale === 'en'
+                    ? 'Purchasing directly at premium prices above standard fair trade rates.'
+                    : 'Membeli langsung dari petani dengan harga premium di atas pasar komoditas.',
         },
         {
-            title: locale === 'en' ? 'Eco-Conscious Processing' : 'Pengolahan Ramah Lingkungan',
-            desc: locale === 'en' ? 'Recirculated water systems and organic pulp composting.' : 'Sistem sirkulasi air efisien dan daur ulang limbah kulit kopi menjadi pupuk organik.',
+            title:
+                locale === 'en'
+                    ? 'Eco-Conscious Processing'
+                    : 'Pengolahan Ramah Lingkungan',
+            desc:
+                locale === 'en'
+                    ? 'Recirculated water systems and organic pulp composting.'
+                    : 'Sistem sirkulasi air efisien dan daur ulang limbah kulit kopi menjadi pupuk organik.',
         },
         {
-            title: locale === 'en' ? '100% Traceability' : 'Ketertelusuran Penuh',
-            desc: locale === 'en' ? 'Every lot tracked from specific farm elevation down to container shipping.' : 'Setiap batch dapat dilacak asal kebun, ketinggian, hingga proses pengiriman.',
+            title:
+                locale === 'en' ? '100% Traceability' : 'Ketertelusuran Penuh',
+            desc:
+                locale === 'en'
+                    ? 'Every lot tracked from specific farm elevation down to container shipping.'
+                    : 'Setiap batch dapat dilacak asal kebun, ketinggian, hingga proses pengiriman.',
         },
     ];
 
@@ -54,34 +70,40 @@ export default function About() {
             src: '/images/add/buyer-visit.jpg',
             alt: 'Given Coffee buyer visit at warehouse',
             tag: locale === 'en' ? 'Direct Partnership' : 'Kemitraan Langsung',
-            title: locale === 'en'
-                ? 'Connecting global roasters directly to North Sumatra highlands.'
-                : 'Menghubungkan roastery global langsung ke dataran tinggi Sumatera Utara.',
-            desc: locale === 'en'
-                ? 'Warehouse & sourcing operations · Dolok Sanggul'
-                : 'Operasional gudang & sourcing · Dolok Sanggul',
+            title:
+                locale === 'en'
+                    ? 'Connecting global roasters directly to North Sumatra highlands.'
+                    : 'Menghubungkan roastery global langsung ke dataran tinggi Sumatera Utara.',
+            desc:
+                locale === 'en'
+                    ? 'Warehouse & sourcing operations · Dolok Sanggul'
+                    : 'Operasional gudang & sourcing · Dolok Sanggul',
         },
         {
             src: '/images/add/truck-front.jpg',
             alt: 'Given Coffee branded delivery truck',
             tag: locale === 'en' ? 'Supply Chain' : 'Rantai Pasok Terpadu',
-            title: locale === 'en'
-                ? 'Dedicated logistics ensuring fresh crop preservation.'
-                : 'Logistik terdedikasi menjaga kualitas panen tetap segar hingga pengiriman.',
-            desc: locale === 'en'
-                ? 'Direct inland transport to Belawan Port'
-                : 'Transportasi langsung ke Pelabuhan Belawan',
+            title:
+                locale === 'en'
+                    ? 'Dedicated logistics ensuring fresh crop preservation.'
+                    : 'Logistik terdedikasi menjaga kualitas panen tetap segar hingga pengiriman.',
+            desc:
+                locale === 'en'
+                    ? 'Direct inland transport to Belawan Port'
+                    : 'Transportasi langsung ke Pelabuhan Belawan',
         },
         {
             src: '/images/add/warehouse-1.jpg',
             alt: 'Warehouse storage operations',
             tag: locale === 'en' ? 'Storage Standard' : 'Standar Penyimpanan',
-            title: locale === 'en'
-                ? 'Climate-controlled warehouse with GrainPro hermetic packing.'
-                : 'Gudang terkontrol dengan pengemasan hermetik GrainPro berkualitas.',
-            desc: locale === 'en'
-                ? 'Dolok Sanggul Central Storage Facility'
-                : 'Fasilitas Penyimpanan Pusat Dolok Sanggul',
+            title:
+                locale === 'en'
+                    ? 'Climate-controlled warehouse with GrainPro hermetic packing.'
+                    : 'Gudang terkontrol dengan pengemasan hermetik GrainPro berkualitas.',
+            desc:
+                locale === 'en'
+                    ? 'Dolok Sanggul Central Storage Facility'
+                    : 'Fasilitas Penyimpanan Pusat Dolok Sanggul',
         },
     ];
 
@@ -91,11 +113,14 @@ export default function About() {
         const timer = setInterval(() => {
             setActiveSlide((prev) => (prev + 1) % storySlides.length);
         }, 5000);
+
         return () => clearInterval(timer);
     }, [storySlides.length]);
 
     const prevSlide = () => {
-        setActiveSlide((prev) => (prev === 0 ? storySlides.length - 1 : prev - 1));
+        setActiveSlide((prev) =>
+            prev === 0 ? storySlides.length - 1 : prev - 1,
+        );
     };
 
     const nextSlide = () => {
@@ -125,7 +150,7 @@ export default function About() {
                         {/* Left: Editorial story text */}
                         <Reveal className="flex flex-col justify-between">
                             <div>
-                                <p className="mb-4 text-[11px] font-semibold uppercase tracking-[0.28em] text-terra">
+                                <p className="mb-4 text-[11px] font-semibold tracking-[0.28em] text-terra uppercase">
                                     {str(t('about.story.eyebrow'))}
                                 </p>
                                 <h2 className="font-display text-4xl leading-[1.08] tracking-tight text-ink md:text-5xl">
@@ -134,11 +159,17 @@ export default function About() {
                                 <div className="mt-8 flex flex-wrap items-center gap-5 text-sm text-coffee">
                                     <div className="flex items-center gap-2">
                                         <Compass className="size-4 text-terra" />
-                                        <span>Dolok Sanggul, North Sumatra</span>
+                                        <span>
+                                            Dolok Sanggul, North Sumatra
+                                        </span>
                                     </div>
                                     <div className="flex items-center gap-2">
                                         <Mountain className="size-4 text-terra" />
-                                        <span>{locale === 'en' ? '1,500 – 1,700 MASL' : '1.500 – 1.700 MDPL'}</span>
+                                        <span>
+                                            {locale === 'en'
+                                                ? '1,500 – 1,700 MASL'
+                                                : '1.500 – 1.700 MDPL'}
+                                        </span>
                                     </div>
                                 </div>
 
@@ -160,7 +191,9 @@ export default function About() {
                                     <div
                                         key={slide.src}
                                         className={`absolute inset-0 flex flex-col justify-end transition-opacity duration-700 ease-in-out ${
-                                            idx === activeSlide ? 'opacity-100 z-10' : 'opacity-0 pointer-events-none z-0'
+                                            idx === activeSlide
+                                                ? 'z-10 opacity-100'
+                                                : 'pointer-events-none z-0 opacity-0'
                                         }`}
                                     >
                                         <img
@@ -172,10 +205,10 @@ export default function About() {
                                         <div className="absolute inset-0 bg-gradient-to-t from-ink/95 via-ink/60 to-transparent" />
 
                                         <div className="relative z-10 flex flex-col p-6 pb-16 text-cream md:p-8 md:pb-16">
-                                            <span className="self-start rounded-full border border-terra/40 bg-terra px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.22em] text-cream shadow-xs">
+                                            <span className="self-start rounded-full border border-terra/40 bg-terra px-3 py-1 text-[10px] font-semibold tracking-[0.22em] text-cream uppercase shadow-xs">
                                                 {slide.tag}
                                             </span>
-                                            <p className="mt-3 font-display text-lg font-bold leading-snug text-cream md:text-xl">
+                                            <p className="mt-3 font-display text-lg leading-snug font-bold text-cream md:text-xl">
                                                 {slide.title}
                                             </p>
                                             <p className="mt-1 text-xs text-cream/80">
@@ -186,7 +219,7 @@ export default function About() {
                                 ))}
 
                                 {/* Carousel Controls & Indicators */}
-                                <div className="absolute bottom-4 right-5 z-20 flex items-center gap-2">
+                                <div className="absolute right-5 bottom-4 z-20 flex items-center gap-2">
                                     <button
                                         type="button"
                                         onClick={prevSlide}
@@ -200,7 +233,9 @@ export default function About() {
                                             <button
                                                 key={dotIdx}
                                                 type="button"
-                                                onClick={() => setActiveSlide(dotIdx)}
+                                                onClick={() =>
+                                                    setActiveSlide(dotIdx)
+                                                }
                                                 aria-label={`Go to slide ${dotIdx + 1}`}
                                                 className={`h-1.5 rounded-full transition-all ${
                                                     dotIdx === activeSlide
@@ -237,7 +272,7 @@ export default function About() {
                         />
                         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-ink/80" />
                         <div className="absolute bottom-0 left-0 px-5 py-8 md:px-12 md:py-10">
-                            <p className="mb-1 text-[11px] font-semibold uppercase tracking-[0.28em] text-terra">
+                            <p className="mb-1 text-[11px] font-semibold tracking-[0.28em] text-terra uppercase">
                                 {str(t('about.origin.eyebrow'))}
                             </p>
                             <h2 className="font-display text-3xl font-bold text-cream md:text-5xl">
@@ -251,18 +286,25 @@ export default function About() {
                 <div className="mx-auto max-w-[1400px] px-5 md:px-8">
                     <div className="grid grid-cols-2 gap-4 lg:grid-cols-4">
                         {[
-                            { label: facts.altitude, value: facts.altitudeValue },
+                            {
+                                label: facts.altitude,
+                                value: facts.altitudeValue,
+                            },
                             { label: facts.variety, value: facts.varietyValue },
                             { label: facts.process, value: facts.processValue },
                             { label: facts.harvest, value: facts.harvestValue },
                         ].map((f, i) => (
                             <Reveal key={f.label} delay={i * 60}>
                                 <div className="relative overflow-hidden border border-border/60 bg-cream/50 px-5 py-6">
-                                    <span className="absolute -right-2 -top-3 font-display text-[72px] font-bold leading-none text-ink/[0.04] select-none">
+                                    <span className="absolute -top-3 -right-2 font-display text-[72px] leading-none font-bold text-ink/[0.04] select-none">
                                         {String(i + 1).padStart(2, '0')}
                                     </span>
-                                    <p className="text-[10px] font-semibold uppercase tracking-[0.22em] text-terra">{f.label}</p>
-                                    <p className="mt-2 text-sm text-ink">{f.value}</p>
+                                    <p className="text-[10px] font-semibold tracking-[0.22em] text-terra uppercase">
+                                        {f.label}
+                                    </p>
+                                    <p className="mt-2 text-sm text-ink">
+                                        {f.value}
+                                    </p>
                                 </div>
                             </Reveal>
                         ))}
@@ -279,7 +321,7 @@ export default function About() {
             <section className="relative bg-ink py-24 md:py-32">
                 <div className="mx-auto max-w-[1400px] px-5 md:px-8">
                     <Reveal>
-                        <p className="mb-3 text-[11px] font-semibold uppercase tracking-[0.28em] text-terra">
+                        <p className="mb-3 text-[11px] font-semibold tracking-[0.28em] text-terra uppercase">
                             {str(t('about.timeline.eyebrow'))}
                         </p>
                         <h2 className="mb-16 font-display text-3xl font-bold text-cream md:text-4xl">
@@ -291,12 +333,16 @@ export default function About() {
                         {steps.map((step, i) => (
                             <Reveal key={step.title} delay={i * 60}>
                                 <div className="grid grid-cols-[80px_1fr] items-baseline gap-8 py-8 md:grid-cols-[140px_1fr] md:gap-16">
-                                    <span className="font-display text-5xl font-light leading-none text-terra/25 md:text-7xl">
+                                    <span className="font-display text-5xl leading-none font-light text-terra/25 md:text-7xl">
                                         {String(i + 1).padStart(2, '0')}
                                     </span>
                                     <div className="grid gap-2 md:grid-cols-[220px_1fr] md:gap-12">
-                                        <h3 className="text-base font-semibold text-cream">{step.title}</h3>
-                                        <p className="text-[13px] leading-relaxed text-cream/50">{step.text}</p>
+                                        <h3 className="text-base font-semibold text-cream">
+                                            {step.title}
+                                        </h3>
+                                        <p className="text-[13px] leading-relaxed text-cream/50">
+                                            {step.text}
+                                        </p>
                                     </div>
                                 </div>
                             </Reveal>
@@ -310,12 +356,30 @@ export default function About() {
                 <div className="mx-auto max-w-[1400px] px-5 md:px-8">
                     <div className="grid grid-cols-2 gap-3 md:grid-cols-3">
                         {[
-                            { src: '/images/add/sorting.jpg', alt: 'Bean sorting' },
-                            { src: '/images/add/warehouse-1.jpg', alt: 'Warehouse storage' },
-                            { src: '/images/add/truck-front.jpg', alt: 'Given Coffee delivery truck' },
-                            { src: '/images/add/warehouse-2.jpg', alt: 'Warehouse operations' },
-                            { src: '/images/add/warehouse-stacking.jpg', alt: 'Bag stacking' },
-                            { src: '/images/add/sun-drying.jpg', alt: 'Sun drying process' },
+                            {
+                                src: '/images/add/sorting.jpg',
+                                alt: 'Bean sorting',
+                            },
+                            {
+                                src: '/images/add/warehouse-1.jpg',
+                                alt: 'Warehouse storage',
+                            },
+                            {
+                                src: '/images/add/truck-front.jpg',
+                                alt: 'Given Coffee delivery truck',
+                            },
+                            {
+                                src: '/images/add/warehouse-2.jpg',
+                                alt: 'Warehouse operations',
+                            },
+                            {
+                                src: '/images/add/warehouse-stacking.jpg',
+                                alt: 'Bag stacking',
+                            },
+                            {
+                                src: '/images/add/sun-drying.jpg',
+                                alt: 'Sun drying process',
+                            },
                         ].map((img) => (
                             <Reveal key={img.src}>
                                 <div className="overflow-hidden rounded-sm border border-border/60">
@@ -338,7 +402,7 @@ export default function About() {
 
                 <div className="relative mx-auto max-w-[1400px] px-5 md:px-8">
                     <Reveal>
-                        <p className="mb-3 text-[11px] font-semibold uppercase tracking-[0.28em] text-terra">
+                        <p className="mb-3 text-[11px] font-semibold tracking-[0.28em] text-terra uppercase">
                             {str(t('about.sustainability.eyebrow'))}
                         </p>
                         <div className="grid gap-6 md:grid-cols-[1fr_auto]">
@@ -355,7 +419,7 @@ export default function About() {
                     <div className="mt-16 grid gap-0 border-t border-cream/15 md:grid-cols-3">
                         {sustainabilityPillars.map((p, i) => (
                             <Reveal key={p.title} delay={i * 80}>
-                                <div className="border-b border-cream/15 px-0 py-8 md:border-b-0 md:border-r md:px-14 md:py-12 md:first:pl-0 md:last:border-r-0 md:last:pr-0">
+                                <div className="border-b border-cream/15 px-0 py-8 md:border-r md:border-b-0 md:px-14 md:py-12 md:first:pl-0 md:last:border-r-0 md:last:pr-0">
                                     <span className="font-display text-4xl font-light text-terra/30">
                                         {String(i + 1).padStart(2, '0')}
                                     </span>
@@ -376,8 +440,9 @@ export default function About() {
                             <p className="font-display text-xl leading-relaxed text-cream/80 md:text-2xl">
                                 &ldquo;{str(t('about.quote.text'))}&rdquo;
                             </p>
-                            <footer className="mt-4 text-xs font-semibold uppercase tracking-[0.2em] text-terra">
-                                {str(t('about.quote.name'))} — {str(t('about.quote.role'))}
+                            <footer className="mt-4 text-xs font-semibold tracking-[0.2em] text-terra uppercase">
+                                {str(t('about.quote.name'))} —{' '}
+                                {str(t('about.quote.role'))}
                             </footer>
                         </blockquote>
                     </Reveal>

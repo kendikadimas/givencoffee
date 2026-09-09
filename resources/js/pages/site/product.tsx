@@ -37,24 +37,24 @@ export default function Product({ products = [] }: ProductProps) {
             {/* Hero — split panel: left dark text, right full-bleed image */}
             <section className="relative flex min-h-[80vh] overflow-hidden bg-ink lg:min-h-[90vh]">
                 {/* Left panel */}
-                <div className="relative z-10 flex w-full flex-col justify-end px-5 pb-16 pt-36 md:px-8 md:pb-24 lg:w-[55%] lg:pr-16">
+                <div className="relative z-10 flex w-full flex-col justify-end px-5 pt-36 pb-16 md:px-8 md:pb-24 lg:w-[55%] lg:pr-16">
                     <div className="absolute inset-0 lg:hidden">
-                    <img
-                        src="/images/real/beansonacontainer3.jpeg"
-                        alt="Indonesian highland specialty green coffee beans"
-                        fetchPriority="high"
-                        className="size-full object-cover opacity-40"
-                    />
+                        <img
+                            src="/images/real/beansonacontainer3.jpeg"
+                            alt="Indonesian highland specialty green coffee beans"
+                            fetchPriority="high"
+                            className="size-full object-cover opacity-40"
+                        />
                         <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/85 to-ink/60" />
                     </div>
                     <Reveal className="relative">
-                        <p className="mb-4 text-[11px] font-semibold uppercase tracking-[0.28em] text-terra">
+                        <p className="mb-4 text-[11px] font-semibold tracking-[0.28em] text-terra uppercase">
                             {str(t('product.hero.eyebrow'))}
                         </p>
                         <h1 className="max-w-2xl font-display text-4xl leading-[1.04] tracking-tight text-cream md:text-6xl lg:text-7xl">
                             {str(t('product.hero.title'))}
                         </h1>
-                        <p className="mt-5 max-w-lg text-base font-light leading-relaxed text-cream/75 md:text-lg">
+                        <p className="mt-5 max-w-lg text-base leading-relaxed font-light text-cream/75 md:text-lg">
                             {str(t('product.hero.body'))}
                         </p>
                         <div className="mt-8 flex flex-wrap items-center gap-4">
@@ -88,17 +88,22 @@ export default function Product({ products = [] }: ProductProps) {
             </section>
 
             {/* Collection Showcase */}
-            <section id="collection" className="relative bg-bone py-20 md:py-28">
+            <section
+                id="collection"
+                className="relative bg-bone py-20 md:py-28"
+            >
                 <div className="mx-auto max-w-[1400px] px-5 md:px-8">
-
                     {showcase && (
                         <Reveal>
                             {/* Showcase: image top 60vh full-width, specs below as horizontal table */}
-                            <div className="overflow-hidden rounded-sm border border-border/80 bg-card shadow-earth-lg">
+                            <div className="shadow-earth-lg overflow-hidden rounded-sm border border-border/80 bg-card">
                                 {/* Full-width image with overlay */}
                                 <div className="group relative overflow-hidden">
                                     <img
-                                        src={showcase.images?.hero ?? '/images/real/product.jpeg'}
+                                        src={
+                                            showcase.images?.hero ??
+                                            '/images/real/product.jpeg'
+                                        }
                                         alt={showcase.name}
                                         loading="lazy"
                                         className="aspect-[21/9] w-full object-cover transition-transform duration-700 group-hover:scale-103"
@@ -111,7 +116,7 @@ export default function Product({ products = [] }: ProductProps) {
                                         <h2 className="mt-3 font-display text-4xl font-bold text-cream md:text-6xl">
                                             {showcase.name}
                                         </h2>
-                                        <p className="mt-2 text-sm font-semibold uppercase tracking-[0.18em] text-terra">
+                                        <p className="mt-2 text-sm font-semibold tracking-[0.18em] text-terra uppercase">
                                             {showcase.subtitle}
                                         </p>
                                     </div>
@@ -123,7 +128,7 @@ export default function Product({ products = [] }: ProductProps) {
                                         <dl className="grid grid-cols-2 gap-x-8 gap-y-5 border-t border-border/60 pt-8 sm:grid-cols-3 lg:grid-cols-4">
                                             {showcase.specs.map((s) => (
                                                 <div key={s.label}>
-                                                    <dt className="text-[10px] font-semibold uppercase tracking-[0.18em] text-coffee/70">
+                                                    <dt className="text-[10px] font-semibold tracking-[0.18em] text-coffee/70 uppercase">
                                                         {s.label}
                                                     </dt>
                                                     <dd className="mt-1 font-display text-sm font-bold text-ink">
@@ -134,29 +139,37 @@ export default function Product({ products = [] }: ProductProps) {
                                         </dl>
                                     )}
 
-                                    {showcase.cupping?.traits && showcase.cupping.traits.length > 0 && (
-                                        <div className="mt-6 flex flex-wrap items-center gap-2 border-t border-border/40 pt-6">
-                                            <span className="text-[10px] font-semibold uppercase tracking-[0.18em] text-coffee/70 mr-2">
-                                                {showcase.cupping.notes ?? 'Cupping notes'}
-                                            </span>
-                                            {showcase.cupping.traits.map((trait) => (
-                                                <span
-                                                    key={trait}
-                                                    className="inline-flex items-center gap-1.5 rounded-full border border-terra/30 bg-terra/10 px-3 py-1 text-xs font-semibold text-terra"
-                                                >
-                                                    <Check className="size-3" />
-                                                    {trait}
+                                    {showcase.cupping?.traits &&
+                                        showcase.cupping.traits.length > 0 && (
+                                            <div className="mt-6 flex flex-wrap items-center gap-2 border-t border-border/40 pt-6">
+                                                <span className="mr-2 text-[10px] font-semibold tracking-[0.18em] text-coffee/70 uppercase">
+                                                    {showcase.cupping.notes ??
+                                                        'Cupping notes'}
                                                 </span>
-                                            ))}
-                                        </div>
-                                    )}
+                                                {showcase.cupping.traits.map(
+                                                    (trait) => (
+                                                        <span
+                                                            key={trait}
+                                                            className="inline-flex items-center gap-1.5 rounded-full border border-terra/30 bg-terra/10 px-3 py-1 text-xs font-semibold text-terra"
+                                                        >
+                                                            <Check className="size-3" />
+                                                            {trait}
+                                                        </span>
+                                                    ),
+                                                )}
+                                            </div>
+                                        )}
 
                                     <div className="mt-8 flex flex-wrap items-center gap-4 border-t border-border/40 pt-8">
                                         <Link
                                             href={`/${locale}/product/${showcase.id}`}
                                             className="inline-flex items-center gap-2 rounded-full bg-ink px-6 py-2.5 text-sm font-semibold text-cream transition-all hover:bg-espresso"
                                         >
-                                            {str(t('product.collection.viewDetails'))}
+                                            {str(
+                                                t(
+                                                    'product.collection.viewDetails',
+                                                ),
+                                            )}
                                             <ArrowRight className="size-4" />
                                         </Link>
                                         <Link
@@ -176,32 +189,49 @@ export default function Product({ products = [] }: ProductProps) {
                         <div className="mt-8 space-y-6">
                             {rest.map((p) => (
                                 <Reveal key={p.id ?? p.name}>
-                                    <div className="overflow-hidden rounded-sm border border-border/80 bg-card shadow-earth sm:flex">
+                                    <div className="shadow-earth overflow-hidden rounded-sm border border-border/80 bg-card sm:flex">
                                         <div className="group relative shrink-0 overflow-hidden sm:w-[40%]">
                                             <img
-                                                src={p.images?.hero ?? '/images/real/product.jpeg'}
+                                                src={
+                                                    p.images?.hero ??
+                                                    '/images/real/product.jpeg'
+                                                }
                                                 alt={p.name}
                                                 loading="lazy"
                                                 className="aspect-[4/3] w-full object-cover transition-transform duration-700 group-hover:scale-105"
                                             />
                                         </div>
                                         <div className="flex flex-col justify-center px-6 py-8 sm:w-[60%] sm:px-8">
-                                            <h2 className="font-display text-2xl leading-tight text-ink md:text-3xl">{p.name}</h2>
-                                            <p className="mt-1 text-xs font-semibold uppercase tracking-[0.18em] text-terra">{p.subtitle}</p>
+                                            <h2 className="font-display text-2xl leading-tight text-ink md:text-3xl">
+                                                {p.name}
+                                            </h2>
+                                            <p className="mt-1 text-xs font-semibold tracking-[0.18em] text-terra uppercase">
+                                                {p.subtitle}
+                                            </p>
                                             <dl className="mt-5 grid grid-cols-2 gap-x-4 gap-y-3 border-t border-border/60 pt-5 sm:grid-cols-3">
-                                                {p.specs.slice(0, 6).map((s) => (
-                                                    <div key={s.label}>
-                                                        <dt className="text-[10px] font-semibold uppercase tracking-[0.18em] text-coffee/70">{s.label}</dt>
-                                                        <dd className="mt-0.5 font-display text-sm font-bold text-ink">{s.value}</dd>
-                                                    </div>
-                                                ))}
+                                                {p.specs
+                                                    .slice(0, 6)
+                                                    .map((s) => (
+                                                        <div key={s.label}>
+                                                            <dt className="text-[10px] font-semibold tracking-[0.18em] text-coffee/70 uppercase">
+                                                                {s.label}
+                                                            </dt>
+                                                            <dd className="mt-0.5 font-display text-sm font-bold text-ink">
+                                                                {s.value}
+                                                            </dd>
+                                                        </div>
+                                                    ))}
                                             </dl>
                                             <div className="mt-6 flex flex-wrap items-center gap-3">
                                                 <Link
                                                     href={`/${locale}/product/${p.id}`}
                                                     className="inline-flex items-center gap-2 rounded-full bg-terra px-5 py-2 text-sm font-semibold text-cream transition-all hover:bg-terra-deep"
                                                 >
-                                                    {str(t('product.collection.viewDetails'))}
+                                                    {str(
+                                                        t(
+                                                            'product.collection.viewDetails',
+                                                        ),
+                                                    )}
                                                     <ArrowRight className="size-4" />
                                                 </Link>
                                                 <Link

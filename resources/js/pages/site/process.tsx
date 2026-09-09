@@ -1,4 +1,10 @@
-import { CheckCircle2, FlaskConical, Gauge, Globe2, ShieldCheck } from 'lucide-react';
+import {
+    CheckCircle2,
+    FlaskConical,
+    Gauge,
+    Globe2,
+    ShieldCheck,
+} from 'lucide-react';
 
 import { PageHero } from '@/components/site/page-hero';
 import { Reveal } from '@/components/site/reveal';
@@ -57,7 +63,7 @@ export default function Process() {
             <section className="relative bg-bone py-24 md:py-32">
                 <div className="mx-auto max-w-[1400px] px-5 md:px-8">
                     <Reveal>
-                        <p className="mb-3 text-[11px] font-semibold uppercase tracking-[0.28em] text-terra">
+                        <p className="mb-3 text-[11px] font-semibold tracking-[0.28em] text-terra uppercase">
                             {str(t('process.journey.eyebrow'))}
                         </p>
                         <h2 className="mb-20 font-display text-3xl font-bold text-ink md:text-4xl">
@@ -69,20 +75,31 @@ export default function Process() {
                         {steps.map((step, i) => {
                             const imgEntry = journeyImages[i];
                             const img = imgEntry?.src;
-                            const imgPosition = imgEntry?.position ?? 'object-center';
                             const flipped = i % 2 === 1;
+
                             return (
                                 <Reveal key={step.title} delay={i * 60}>
-                                    <div className={`grid items-center gap-8 py-12 md:py-16 ${img ? 'md:grid-cols-[1fr_1fr]' : 'md:grid-cols-[64px_1fr_1fr]'}`}>
+                                    <div
+                                        className={`grid items-center gap-8 py-12 md:py-16 ${img ? 'md:grid-cols-[1fr_1fr]' : 'md:grid-cols-[64px_1fr_1fr]'}`}
+                                    >
                                         {!img && (
                                             <span className="font-display text-5xl font-light text-terra/30 md:text-6xl">
                                                 {String(i + 1).padStart(2, '0')}
                                             </span>
                                         )}
-                                        <div className={img && flipped ? 'md:order-2' : ''}>
+                                        <div
+                                            className={
+                                                img && flipped
+                                                    ? 'md:order-2'
+                                                    : ''
+                                            }
+                                        >
                                             {img && (
                                                 <span className="mb-5 block font-display text-5xl font-light text-terra/30 md:text-6xl">
-                                                    {String(i + 1).padStart(2, '0')}
+                                                    {String(i + 1).padStart(
+                                                        2,
+                                                        '0',
+                                                    )}
                                                 </span>
                                             )}
                                             <h3 className="font-display text-3xl font-bold text-ink md:text-4xl">
@@ -93,7 +110,9 @@ export default function Process() {
                                             </p>
                                         </div>
                                         {img && (
-                                            <div className={`rounded-sm border border-border/80 shadow-earth ${flipped ? 'md:order-1' : ''}`}>
+                                            <div
+                                                className={`shadow-earth rounded-sm border border-border/80 ${flipped ? 'md:order-1' : ''}`}
+                                            >
                                                 <img
                                                     src={img}
                                                     alt={step.title}
@@ -114,7 +133,7 @@ export default function Process() {
             <section className="relative bg-cream py-24 md:py-32">
                 <div className="mx-auto max-w-[1400px] px-5 md:px-8">
                     <Reveal>
-                        <p className="mb-3 text-[11px] font-semibold uppercase tracking-[0.28em] text-terra">
+                        <p className="mb-3 text-[11px] font-semibold tracking-[0.28em] text-terra uppercase">
                             {str(t('process.qc.eyebrow'))}
                         </p>
                         <div className="mb-16 grid gap-6 md:grid-cols-[1fr_1fr]">
@@ -130,6 +149,7 @@ export default function Process() {
                     <div className="grid gap-0 border-t-2 border-ink md:grid-cols-3">
                         {qc.map((point, i) => {
                             const Icon = qcIcons[i % qcIcons.length];
+
                             return (
                                 <Reveal key={point.title} delay={i * 80}>
                                     <div className="border-r border-border/60 px-0 py-10 pr-8 last:border-r-0 last:pr-0 md:px-12 md:first:pl-0 md:last:pr-0">
@@ -163,7 +183,7 @@ export default function Process() {
             <section className="bg-ink py-24 md:py-32">
                 <div className="mx-auto max-w-[1400px] px-5 md:px-8">
                     <Reveal>
-                        <p className="mb-3 text-[11px] font-semibold uppercase tracking-[0.28em] text-terra">
+                        <p className="mb-3 text-[11px] font-semibold tracking-[0.28em] text-terra uppercase">
                             {str(t('process.export.eyebrow'))}
                         </p>
                         <div className="mb-16 grid gap-6 md:grid-cols-[1fr_1fr]">
@@ -181,7 +201,7 @@ export default function Process() {
                         {exportRows.map((row, i) => (
                             <Reveal key={row.label} delay={i * 70}>
                                 <div className="grid items-baseline gap-4 py-6 md:grid-cols-[240px_1fr] md:py-8">
-                                    <dt className="text-xs font-semibold uppercase tracking-[0.2em] text-cream/40">
+                                    <dt className="text-xs font-semibold tracking-[0.2em] text-cream/40 uppercase">
                                         {row.label}
                                     </dt>
                                     <dd className="font-display text-xl font-bold text-cream md:text-2xl">
@@ -195,7 +215,9 @@ export default function Process() {
                     <Reveal delay={100}>
                         <div className="mt-12 flex items-center gap-2 border-t border-cream/10 pt-10 text-xs text-cream/40">
                             <Globe2 className="size-4 text-terra" />
-                            <span className="uppercase tracking-wider">International Export · Licensed PT Exporter</span>
+                            <span className="tracking-wider uppercase">
+                                International Export · Licensed PT Exporter
+                            </span>
                         </div>
                     </Reveal>
                 </div>

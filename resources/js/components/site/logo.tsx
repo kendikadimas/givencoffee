@@ -10,9 +10,19 @@ type LogoProps = {
 
 export function Logo({ href, className, variant = 'color' }: LogoProps) {
     return (
-        <Link href={href} className={cn('flex items-center transition-opacity hover:opacity-90', className)}>
+        <Link
+            href={href}
+            className={cn(
+                'flex items-center transition-opacity hover:opacity-90',
+                className,
+            )}
+        >
             <img
-                src={variant === 'white' ? '/images/real/logo-white.png' : '/images/real/logo.png'}
+                src={
+                    variant === 'white'
+                        ? '/images/real/logo-white.png'
+                        : '/images/real/logo.png'
+                }
                 alt="Given Coffee"
                 className="h-[84px] w-auto object-contain md:h-[120px]"
             />

@@ -6,12 +6,15 @@ type AnalyticsProps = {
 
 export function Analytics({ gaId }: AnalyticsProps) {
     if (!gaId) {
-return null;
-}
+        return null;
+    }
 
     return (
         <Head>
-            <script async src={`https://www.googletagmanager.com/gtag/js?id=${gaId}`} />
+            <script
+                async
+                src={`https://www.googletagmanager.com/gtag/js?id=${gaId}`}
+            />
             <script
                 dangerouslySetInnerHTML={{
                     __html: `

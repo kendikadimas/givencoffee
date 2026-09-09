@@ -13,9 +13,7 @@ class NewInquiry extends Mailable
 {
     use Queueable, SerializesModels;
 
-    public function __construct(public Inquiry $inquiry)
-    {
-    }
+    public function __construct(public Inquiry $inquiry) {}
 
     public function envelope(): Envelope
     {

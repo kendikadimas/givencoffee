@@ -26,7 +26,12 @@ export function SectionHeading({
             )}
         >
             {eyebrow && (
-                <div className={cn('mb-3.5 flex', align === 'center' ? 'justify-center' : 'justify-start')}>
+                <div
+                    className={cn(
+                        'mb-3.5 flex',
+                        align === 'center' ? 'justify-center' : 'justify-start',
+                    )}
+                >
                     <span
                         className={cn(
                             'badge-pill',

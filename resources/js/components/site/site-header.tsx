@@ -45,6 +45,7 @@ export function SiteHeader() {
         if (href === `/${locale}`) {
             return pathname === `/${locale}` || pathname === `/${locale}/`;
         }
+
         return pathname.startsWith(href);
     };
 
@@ -149,13 +150,17 @@ export function SiteHeader() {
                         )}
                         onClick={() => setOpen((v) => !v)}
                     >
-                        {open ? <X className="size-5" /> : <Menu className="size-5" />}
+                        {open ? (
+                            <X className="size-5" />
+                        ) : (
+                            <Menu className="size-5" />
+                        )}
                     </button>
                 </div>
             </div>
 
             {open && (
-                <nav className="border-t border-border/80 bg-cream/95 px-6 pb-8 pt-4 backdrop-blur-lg lg:hidden">
+                <nav className="border-t border-border/80 bg-cream/95 px-6 pt-4 pb-8 backdrop-blur-lg lg:hidden">
                     <ul className="flex flex-col">
                         {items.map((item) => (
                             <li key={item.href}>
@@ -173,7 +178,11 @@ export function SiteHeader() {
                         ))}
                     </ul>
                     <div className="mt-6">
-                        <Cta href={`/${locale}/contact`} variant="terra" className="w-full">
+                        <Cta
+                            href={`/${locale}/contact`}
+                            variant="terra"
+                            className="w-full"
+                        >
                             {str(t('ui.cta.sample'))}
                         </Cta>
                     </div>

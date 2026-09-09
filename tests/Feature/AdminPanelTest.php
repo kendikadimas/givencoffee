@@ -2,7 +2,6 @@
 
 namespace Tests\Feature;
 
-use App\Models\Category;
 use App\Models\Inquiry;
 use App\Models\Post;
 use App\Models\Product;

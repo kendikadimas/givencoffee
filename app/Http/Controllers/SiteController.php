@@ -8,6 +8,7 @@ use App\Models\Post;
 use App\Models\Product;
 use App\Models\Testimonial;
 use App\Support\SiteSettings;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 use Inertia\Response;
@@ -50,7 +51,7 @@ class SiteController extends Controller
         ]);
     }
 
-    public function productShow(Request $request): Response|\Illuminate\Http\RedirectResponse
+    public function productShow(Request $request): Response|RedirectResponse
     {
         return redirect()->route('product', ['locale' => app()->getLocale()]);
     }

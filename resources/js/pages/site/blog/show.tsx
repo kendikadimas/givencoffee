@@ -1,5 +1,5 @@
 import { Link } from '@inertiajs/react';
-import { ArrowLeft, ArrowUpRight, Calendar, Share2, Sparkles, Tag, User } from 'lucide-react';
+import { ArrowLeft, ArrowUpRight, Calendar } from 'lucide-react';
 
 import { Reveal } from '@/components/site/reveal';
 import { Seo, useSeoSettings } from '@/components/site/seo';
@@ -33,9 +33,15 @@ export default function BlogShow({ post, recent }: BlogShowProps) {
         '@type': 'Article',
         headline: post.title,
         description: post.excerpt,
-        image: typeof window !== 'undefined' ? `${window.location.origin}${cover}` : undefined,
+        image:
+            typeof window !== 'undefined'
+                ? `${window.location.origin}${cover}`
+                : undefined,
         datePublished: post.published_at,
-        author: { '@type': 'Organization', name: seoSettings.company_name ?? 'Given Coffee' },
+        author: {
+            '@type': 'Organization',
+            name: seoSettings.company_name ?? 'Given Coffee',
+        },
     };
 
     return (
@@ -58,17 +64,17 @@ export default function BlogShow({ post, recent }: BlogShowProps) {
                     className="absolute inset-0 size-full object-cover opacity-60 transition-transform duration-1000 ease-out"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/80 to-ink/40" />
-                <div className="pointer-events-none absolute -bottom-10 right-10 size-96 rounded-full bg-terra/20 blur-3xl" />
+                <div className="pointer-events-none absolute right-10 -bottom-10 size-96 rounded-full bg-terra/20 blur-3xl" />
 
                 <div className="relative mx-auto w-full max-w-[1000px] px-5 md:px-8">
                     <Link
                         href={`/${locale}/blog`}
-                        className="mb-6 inline-flex items-center gap-2 rounded-full border border-cream/25 bg-white/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-wider text-cream backdrop-blur-xs transition-colors hover:border-terra hover:bg-terra"
+                        className="mb-6 inline-flex items-center gap-2 rounded-full border border-cream/25 bg-white/10 px-4 py-1.5 text-xs font-semibold tracking-wider text-cream uppercase backdrop-blur-xs transition-colors hover:border-terra hover:bg-terra"
                     >
                         <ArrowLeft className="size-3.5" />
                         {str(t('blog.back'))}
                     </Link>
-                    
+
                     <div className="flex flex-wrap items-center gap-3 text-xs">
                         {post.category && (
                             <span className="badge-pill border-terra/40 bg-terra/20 text-cream">
@@ -91,31 +97,50 @@ export default function BlogShow({ post, recent }: BlogShowProps) {
             <article className="relative bg-bone py-16 md:py-24">
                 <div className="mx-auto max-w-[840px] px-5 md:px-8">
                     <div className="card-luxury p-8 md:p-14">
-                        <p className="border-b border-border/80 pb-8 text-xl font-medium leading-relaxed text-ink">
+                        <p className="border-b border-border/80 pb-8 text-xl leading-relaxed font-medium text-ink">
                             {post.excerpt}
                         </p>
 
                         <div className="prose-article mt-8">
                             {blocks.map((block, i) => {
-                                if (block.type === 'h2' || block.type === 'h3') {
+                                if (
+                                    block.type === 'h2' ||
+                                    block.type === 'h3'
+                                ) {
                                     return (
                                         <Reveal key={i} delay={0}>
-                                            <h2 dangerouslySetInnerHTML={{ __html: block.text }} />
+                                            <h2
+                                                dangerouslySetInnerHTML={{
+                                                    __html: block.text,
+                                                }}
+                                            />
                                         </Reveal>
                                     );
                                 }
 
-                                if (block.type === 'ul' || block.type === 'ol' || block.type === 'html') {
+                                if (
+                                    block.type === 'ul' ||
+                                    block.type === 'ol' ||
+                                    block.type === 'html'
+                                ) {
                                     return (
                                         <Reveal key={i} delay={0}>
-                                            <div dangerouslySetInnerHTML={{ __html: block.text }} />
+                                            <div
+                                                dangerouslySetInnerHTML={{
+                                                    __html: block.text,
+                                                }}
+                                            />
                                         </Reveal>
                                     );
                                 }
 
                                 return (
                                     <Reveal key={i} delay={0}>
-                                        <p dangerouslySetInnerHTML={{ __html: block.text }} />
+                                        <p
+                                            dangerouslySetInnerHTML={{
+                                                __html: block.text,
+                                            }}
+                                        />
                                     </Reveal>
                                 );
                             })}
@@ -123,8 +148,10 @@ export default function BlogShow({ post, recent }: BlogShowProps) {
 
                         {/* Article Footer Strip */}
                         <div className="mt-12 flex flex-wrap items-center justify-between gap-4 border-t border-border/80 pt-6">
-                            <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-coffee">
-                                <span className="badge-origin">Given Coffee Editorial</span>
+                            <div className="flex items-center gap-2 text-xs font-semibold tracking-wider text-coffee uppercase">
+                                <span className="badge-origin">
+                                    Given Coffee Editorial
+                                </span>
                             </div>
                             <Link
                                 href={`/${locale}/blog`}
@@ -163,19 +190,24 @@ export default function BlogShow({ post, recent }: BlogShowProps) {
                                 >
                                     <div className="overflow-hidden bg-ink">
                                         <img
-                                            src={item.cover_image ?? '/images/blog-2.jpg'}
+                                            src={
+                                                item.cover_image ??
+                                                '/images/blog-2.jpg'
+                                            }
                                             alt={item.title}
                                             loading="lazy"
                                             className="aspect-[16/10] w-full object-cover transition-transform duration-500 group-hover:scale-105"
                                         />
                                     </div>
                                     <div className="flex flex-1 flex-col p-6">
-                                        <p className="text-xs text-coffee">{item.published_at}</p>
-                                        <h3 className="mt-2 font-display text-xl font-bold leading-snug text-ink transition-colors group-hover:text-terra">
+                                        <p className="text-xs text-coffee">
+                                            {item.published_at}
+                                        </p>
+                                        <h3 className="mt-2 font-display text-xl leading-snug font-bold text-ink transition-colors group-hover:text-terra">
                                             {item.title}
                                         </h3>
-                                        <div className="mt-auto flex items-center justify-between border-t border-border/80 pt-4 mt-6">
-                                            <span className="text-xs font-semibold uppercase tracking-wider text-coffee">
+                                        <div className="mt-6 mt-auto flex items-center justify-between border-t border-border/80 pt-4">
+                                            <span className="text-xs font-semibold tracking-wider text-coffee uppercase">
                                                 Read Article
                                             </span>
                                             <span className="inline-flex items-center gap-1 text-sm font-semibold text-terra">

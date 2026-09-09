@@ -19,18 +19,30 @@ type Product = {
 type HomeProps = {
     product?: Product | null;
     products?: Product[];
-    testimonials?: Array<{ id?: number; name: string; role: string; quote: string; image?: string | null }>;
+    testimonials?: Array<{
+        id?: number;
+        name: string;
+        role: string;
+        quote: string;
+        image?: string | null;
+    }>;
 };
 
 type WhyItem = { title: string; text: string };
 
-export default function Home({ product, products = [], testimonials = [] }: HomeProps) {
+export default function Home({
+    product,
+    products = [],
+    testimonials = [],
+}: HomeProps) {
     const { t, locale } = useTranslations();
     const seoSettings = useSeoSettings();
     const featuredProduct = product ?? products[0] ?? null;
     const whyItems = arr<WhyItem>(t('home.why.items'));
     const whyIcons = [Droplets, Sparkles, Leaf, Mountain];
-    const processSteps = arr<{ title: string; text: string }>(t('home.process.steps'));
+    const processSteps = arr<{ title: string; text: string }>(
+        t('home.process.steps'),
+    );
 
     return (
         <>
@@ -56,7 +68,7 @@ export default function Home({ product, products = [], testimonials = [] }: Home
                 <div className="relative mx-auto w-full max-w-[1400px] px-5 md:px-8">
                     <div className="grid items-end gap-10 lg:grid-cols-[1fr_320px]">
                         <Reveal>
-                            <p className="mb-5 text-[11px] font-semibold uppercase tracking-[0.28em] text-terra">
+                            <p className="mb-5 text-[11px] font-semibold tracking-[0.28em] text-terra uppercase">
                                 {str(t('home.hero.eyebrow'))}
                             </p>
                             <h1 className="max-w-4xl font-display text-[2.4rem] leading-[1.08] tracking-tight text-cream md:text-5xl lg:text-[3.25rem]">
@@ -66,33 +78,51 @@ export default function Home({ product, products = [], testimonials = [] }: Home
                                 {str(t('home.hero.subtitle'))}
                             </p>
                             <div className="mt-8 flex flex-wrap items-center gap-4">
-                                <Cta href={`/${locale}/product`} variant="terra" className="px-7 py-3 text-base">
+                                <Cta
+                                    href={`/${locale}/product`}
+                                    variant="terra"
+                                    className="px-7 py-3 text-base"
+                                >
                                     {str(t('home.hero.ctaPrimary'))}
                                 </Cta>
-                                <Cta href={`/${locale}/contact`} variant="outline-light" className="px-7 py-3 text-base">
+                                <Cta
+                                    href={`/${locale}/contact`}
+                                    variant="outline-light"
+                                    className="px-7 py-3 text-base"
+                                >
                                     {str(t('home.hero.ctaSecondary'))}
                                 </Cta>
                             </div>
                         </Reveal>
 
                         {/* Floating spec strip — right column, desktop only */}
-                        {featuredProduct?.specs && featuredProduct.specs.length > 0 && (
-                            <Reveal delay={150} className="hidden lg:block">
-                                <div className="rounded-sm border border-cream/15 bg-ink/60 p-6 backdrop-blur-md">
-                                    <p className="mb-4 text-[10px] font-semibold uppercase tracking-[0.22em] text-terra">
-                                        {featuredProduct.name}
-                                    </p>
-                                    <dl className="space-y-3">
-                                        {featuredProduct.specs.slice(0, 5).map((s) => (
-                                            <div key={s.label} className="flex items-baseline justify-between gap-4 border-b border-cream/10 pb-3 last:border-0 last:pb-0">
-                                                <dt className="text-[10px] font-semibold uppercase tracking-wider text-cream/40">{s.label}</dt>
-                                                <dd className="text-right text-xs font-semibold text-cream/90">{s.value}</dd>
-                                            </div>
-                                        ))}
-                                    </dl>
-                                </div>
-                            </Reveal>
-                        )}
+                        {featuredProduct?.specs &&
+                            featuredProduct.specs.length > 0 && (
+                                <Reveal delay={150} className="hidden lg:block">
+                                    <div className="rounded-sm border border-cream/15 bg-ink/60 p-6 backdrop-blur-md">
+                                        <p className="mb-4 text-[10px] font-semibold tracking-[0.22em] text-terra uppercase">
+                                            {featuredProduct.name}
+                                        </p>
+                                        <dl className="space-y-3">
+                                            {featuredProduct.specs
+                                                .slice(0, 5)
+                                                .map((s) => (
+                                                    <div
+                                                        key={s.label}
+                                                        className="flex items-baseline justify-between gap-4 border-b border-cream/10 pb-3 last:border-0 last:pb-0"
+                                                    >
+                                                        <dt className="text-[10px] font-semibold tracking-wider text-cream/40 uppercase">
+                                                            {s.label}
+                                                        </dt>
+                                                        <dd className="text-right text-xs font-semibold text-cream/90">
+                                                            {s.value}
+                                                        </dd>
+                                                    </div>
+                                                ))}
+                                        </dl>
+                                    </div>
+                                </Reveal>
+                            )}
                     </div>
                 </div>
             </section>
@@ -104,7 +134,7 @@ export default function Home({ product, products = [], testimonials = [] }: Home
                         {/* Left: text block with generous padding */}
                         <Reveal className="flex flex-col justify-center px-5 py-24 md:px-12 md:py-32 lg:px-16">
                             <div className="max-w-[560px]">
-                                <p className="mb-4 text-[11px] font-semibold uppercase tracking-[0.28em] text-terra">
+                                <p className="mb-4 text-[11px] font-semibold tracking-[0.28em] text-terra uppercase">
                                     {str(t('home.about.eyebrow'))}
                                 </p>
                                 <h2 className="font-display text-4xl leading-[1.08] tracking-tight text-ink md:text-5xl">
@@ -127,13 +157,35 @@ export default function Home({ product, products = [], testimonials = [] }: Home
                             {/* Inline stat row */}
                             <div className="mt-14 grid grid-cols-3 gap-6 border-t border-border/60 pt-10">
                                 {[
-                                    { n: '15+', label: locale === 'en' ? 'Years exporting' : 'Tahun ekspor' },
-                                    { n: '300–400 MT', label: locale === 'en' ? 'Annual capacity' : 'Kapasitas tahunan' },
-                                    { n: '85.5+', label: locale === 'en' ? 'SCA cupping score' : 'Skor cupping SCA' },
+                                    {
+                                        n: '15+',
+                                        label:
+                                            locale === 'en'
+                                                ? 'Years exporting'
+                                                : 'Tahun ekspor',
+                                    },
+                                    {
+                                        n: '300–400 MT',
+                                        label:
+                                            locale === 'en'
+                                                ? 'Annual capacity'
+                                                : 'Kapasitas tahunan',
+                                    },
+                                    {
+                                        n: '85.5+',
+                                        label:
+                                            locale === 'en'
+                                                ? 'SCA cupping score'
+                                                : 'Skor cupping SCA',
+                                    },
                                 ].map((s) => (
                                     <div key={s.n}>
-                                        <p className="font-display text-3xl font-bold text-ink md:text-4xl">{s.n}</p>
-                                        <p className="mt-1 text-xs text-coffee">{s.label}</p>
+                                        <p className="font-display text-3xl font-bold text-ink md:text-4xl">
+                                            {s.n}
+                                        </p>
+                                        <p className="mt-1 text-xs text-coffee">
+                                            {s.label}
+                                        </p>
                                     </div>
                                 ))}
                             </div>
@@ -160,7 +212,7 @@ export default function Home({ product, products = [], testimonials = [] }: Home
                 <div className="mx-auto max-w-[1400px] px-5 md:px-8">
                     <div className="mb-16 flex items-end justify-between gap-8">
                         <Reveal>
-                            <p className="mb-3 text-[11px] font-semibold uppercase tracking-[0.28em] text-terra">
+                            <p className="mb-3 text-[11px] font-semibold tracking-[0.28em] text-terra uppercase">
                                 {str(t('home.why.eyebrow'))}
                             </p>
                             <h2 className="font-display text-4xl leading-[1.08] tracking-tight text-cream md:text-5xl">
@@ -172,6 +224,7 @@ export default function Home({ product, products = [], testimonials = [] }: Home
                     <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
                         {whyItems.map((item, i) => {
                             const Icon = whyIcons[i % whyIcons.length];
+
                             return (
                                 <Reveal key={item.title} delay={i * 60}>
                                     <div className="flex flex-col gap-5 rounded-sm border border-cream/10 bg-cream/5 p-8 backdrop-blur-sm">
@@ -197,32 +250,41 @@ export default function Home({ product, products = [], testimonials = [] }: Home
                 <section className="relative overflow-hidden bg-bone py-24 md:py-32">
                     <div className="mx-auto max-w-[1400px] px-5 md:px-8">
                         <div className="grid items-stretch gap-12 lg:grid-cols-[1fr_440px] lg:gap-20">
-
                             {/* Left — content */}
                             <Reveal className="flex flex-col justify-center">
-                                <p className="mb-4 text-[11px] font-semibold uppercase tracking-[0.28em] text-terra">
+                                <p className="mb-4 text-[11px] font-semibold tracking-[0.28em] text-terra uppercase">
                                     {str(t('home.product.eyebrow'))}
                                 </p>
                                 <h2 className="font-display text-4xl leading-[1.06] tracking-tight text-ink md:text-5xl">
                                     {str(t('home.product.title'))}
                                 </h2>
-                                <p className="mt-2 text-sm font-semibold uppercase tracking-[0.2em] text-coffee/50">
+                                <p className="mt-2 text-sm font-semibold tracking-[0.2em] text-coffee/50 uppercase">
                                     {str(t('home.product.subtitle'))}
                                 </p>
                                 <p className="mt-6 max-w-lg text-base leading-relaxed text-coffee md:text-lg">
                                     {str(t('home.product.body'))}
                                 </p>
 
-                                {featuredProduct.specs && featuredProduct.specs.length > 0 && (
-                                    <dl className="mt-10 grid grid-cols-2 gap-3 border-t border-border/60 pt-8 sm:grid-cols-3">
-                                        {featuredProduct.specs.slice(0, 6).map((s) => (
-                                            <div key={s.label} className="border border-border/60 bg-cream/60 px-4 py-3">
-                                                <dt className="text-[10px] font-semibold uppercase tracking-[0.18em] text-coffee/40">{s.label}</dt>
-                                                <dd className="mt-1.5 text-sm text-ink">{s.value}</dd>
-                                            </div>
-                                        ))}
-                                    </dl>
-                                )}
+                                {featuredProduct.specs &&
+                                    featuredProduct.specs.length > 0 && (
+                                        <dl className="mt-10 grid grid-cols-2 gap-3 border-t border-border/60 pt-8 sm:grid-cols-3">
+                                            {featuredProduct.specs
+                                                .slice(0, 6)
+                                                .map((s) => (
+                                                    <div
+                                                        key={s.label}
+                                                        className="border border-border/60 bg-cream/60 px-4 py-3"
+                                                    >
+                                                        <dt className="text-[10px] font-semibold tracking-[0.18em] text-coffee/40 uppercase">
+                                                            {s.label}
+                                                        </dt>
+                                                        <dd className="mt-1.5 text-sm text-ink">
+                                                            {s.value}
+                                                        </dd>
+                                                    </div>
+                                                ))}
+                                        </dl>
+                                    )}
 
                                 <div className="mt-10 flex flex-wrap items-center gap-4">
                                     <Link
@@ -245,14 +307,19 @@ export default function Home({ product, products = [], testimonials = [] }: Home
                             <Reveal delay={100}>
                                 <div className="relative aspect-[4/3] overflow-hidden lg:aspect-auto lg:h-full lg:min-h-[560px]">
                                     <img
-                                        src={featuredProduct.images?.hero ?? '/images/real/product.jpeg'}
+                                        src={
+                                            featuredProduct.images?.hero ??
+                                            '/images/real/product.jpeg'
+                                        }
                                         alt={featuredProduct.name}
                                         loading="lazy"
                                         className="absolute inset-0 size-full object-cover"
                                     />
                                     <div className="absolute bottom-6 left-6">
-                                        <span className="inline-block border border-terra/40 bg-ink/60 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.22em] text-cream backdrop-blur-sm">
-                                            {locale === 'en' ? 'Specialty Grade · SCA 85.5+' : 'Specialty Grade · SCA 85.5+'}
+                                        <span className="inline-block border border-terra/40 bg-ink/60 px-3 py-1 text-[10px] font-semibold tracking-[0.22em] text-cream uppercase backdrop-blur-sm">
+                                            {locale === 'en'
+                                                ? 'Specialty Grade · SCA 85.5+'
+                                                : 'Specialty Grade · SCA 85.5+'}
                                         </span>
                                     </div>
                                 </div>
@@ -268,7 +335,7 @@ export default function Home({ product, products = [], testimonials = [] }: Home
                     <Reveal>
                         <div className="mb-16 flex flex-wrap items-end justify-between gap-6">
                             <div>
-                                <p className="mb-3 text-[11px] font-semibold uppercase tracking-[0.28em] text-terra">
+                                <p className="mb-3 text-[11px] font-semibold tracking-[0.28em] text-terra uppercase">
                                     {str(t('home.process.eyebrow'))}
                                 </p>
                                 <h2 className="font-display text-4xl leading-[1.08] tracking-tight text-ink md:text-5xl">
@@ -289,15 +356,19 @@ export default function Home({ product, products = [], testimonials = [] }: Home
                             <Reveal key={step.title} delay={i * 70}>
                                 <div className="relative overflow-hidden border border-border/60 bg-cream/50 p-7">
                                     {/* Watermark number */}
-                                    <span className="absolute -right-3 -top-4 font-display text-[96px] font-bold leading-none text-ink/[0.04] select-none">
+                                    <span className="absolute -top-4 -right-3 font-display text-[96px] leading-none font-bold text-ink/[0.04] select-none">
                                         {String(i + 1).padStart(2, '0')}
                                     </span>
                                     <div className="relative flex flex-col gap-4">
-                                        <span className="text-[11px] font-semibold uppercase tracking-[0.24em] text-terra">
+                                        <span className="text-[11px] font-semibold tracking-[0.24em] text-terra uppercase">
                                             {String(i + 1).padStart(2, '0')}
                                         </span>
-                                        <h3 className="text-base font-semibold text-ink">{step.title}</h3>
-                                        <p className="text-[13px] leading-relaxed text-coffee/70">{step.text}</p>
+                                        <h3 className="text-base font-semibold text-ink">
+                                            {step.title}
+                                        </h3>
+                                        <p className="text-[13px] leading-relaxed text-coffee/70">
+                                            {step.text}
+                                        </p>
                                     </div>
                                 </div>
                             </Reveal>
@@ -309,10 +380,22 @@ export default function Home({ product, products = [], testimonials = [] }: Home
             {/* Image strip */}
             <div className="grid grid-cols-2 md:grid-cols-4">
                 {[
-                    { src: '/images/real/beansonacontainer.jpeg', alt: 'Green beans in container' },
-                    { src: '/images/add/warehouse-1.jpg', alt: 'Warehouse operations' },
-                    { src: '/images/add/sun-drying.jpg', alt: 'Sun drying process' },
-                    { src: '/images/add/truck-front.jpg', alt: 'Export delivery truck' },
+                    {
+                        src: '/images/real/beansonacontainer.jpeg',
+                        alt: 'Green beans in container',
+                    },
+                    {
+                        src: '/images/add/warehouse-1.jpg',
+                        alt: 'Warehouse operations',
+                    },
+                    {
+                        src: '/images/add/sun-drying.jpg',
+                        alt: 'Sun drying process',
+                    },
+                    {
+                        src: '/images/add/truck-front.jpg',
+                        alt: 'Export delivery truck',
+                    },
                 ].map((img) => (
                     <div key={img.src} className="overflow-hidden">
                         <img
@@ -328,23 +411,26 @@ export default function Home({ product, products = [], testimonials = [] }: Home
             <section className="relative bg-ink py-24 md:py-32">
                 <div className="mx-auto max-w-[1400px] px-5 md:px-8">
                     <div className="grid gap-16 lg:grid-cols-[1fr_480px] lg:gap-24">
-
                         {/* Left — headline + port anchor */}
                         <Reveal>
-                            <p className="mb-4 text-[11px] font-semibold uppercase tracking-[0.28em] text-terra">
+                            <p className="mb-4 text-[11px] font-semibold tracking-[0.28em] text-terra uppercase">
                                 {str(t('home.exportSnap.eyebrow'))}
                             </p>
                             <h2 className="font-display text-4xl leading-[1.08] tracking-tight text-cream md:text-5xl">
                                 {str(t('home.exportSnap.title'))}
                             </h2>
                             <div className="mt-12 border-t border-cream/10 pt-10">
-                                <p className="text-[10px] font-semibold uppercase tracking-[0.22em] text-terra/70">
-                                    {locale === 'en' ? 'Departure port' : 'Pelabuhan keberangkatan'}
+                                <p className="text-[10px] font-semibold tracking-[0.22em] text-terra/70 uppercase">
+                                    {locale === 'en'
+                                        ? 'Departure port'
+                                        : 'Pelabuhan keberangkatan'}
                                 </p>
                                 <p className="mt-2 font-display text-2xl font-light text-cream/60 md:text-3xl">
                                     Belawan Port, Medan
                                 </p>
-                                <p className="mt-1 text-xs text-cream/30">North Sumatra, Indonesia</p>
+                                <p className="mt-1 text-xs text-cream/30">
+                                    North Sumatra, Indonesia
+                                </p>
                             </div>
                             <Link
                                 href={`/${locale}/export`}
@@ -365,24 +451,41 @@ export default function Home({ product, products = [], testimonials = [] }: Home
                                         sub: str(t('home.exportSnap.moqFcl')),
                                     },
                                     {
-                                        label: str(t('home.exportSnap.incoterms')),
-                                        value: str(t('home.exportSnap.incotermsList')),
+                                        label: str(
+                                            t('home.exportSnap.incoterms'),
+                                        ),
+                                        value: str(
+                                            t('home.exportSnap.incotermsList'),
+                                        ),
                                         sub: null,
                                     },
                                     {
-                                        label: str(t('home.exportSnap.packaging')),
-                                        value: str(t('home.exportSnap.packagingValue')),
-                                        sub: str(t('home.exportSnap.certsList')),
+                                        label: str(
+                                            t('home.exportSnap.packaging'),
+                                        ),
+                                        value: str(
+                                            t('home.exportSnap.packagingValue'),
+                                        ),
+                                        sub: str(
+                                            t('home.exportSnap.certsList'),
+                                        ),
                                     },
                                 ].map((row) => (
-                                    <div key={row.label} className="grid grid-cols-[120px_1fr] gap-4 py-7">
-                                        <p className="pt-0.5 text-[10px] font-semibold uppercase tracking-[0.22em] text-terra/70 leading-tight">
+                                    <div
+                                        key={row.label}
+                                        className="grid grid-cols-[120px_1fr] gap-4 py-7"
+                                    >
+                                        <p className="pt-0.5 text-[10px] leading-tight font-semibold tracking-[0.22em] text-terra/70 uppercase">
                                             {row.label}
                                         </p>
                                         <div>
-                                            <p className="text-sm font-semibold text-cream">{row.value}</p>
+                                            <p className="text-sm font-semibold text-cream">
+                                                {row.value}
+                                            </p>
                                             {row.sub && (
-                                                <p className="mt-1 text-[13px] leading-relaxed text-cream/40">{row.sub}</p>
+                                                <p className="mt-1 text-[13px] leading-relaxed text-cream/40">
+                                                    {row.sub}
+                                                </p>
                                             )}
                                         </div>
                                     </div>
@@ -398,13 +501,16 @@ export default function Home({ product, products = [], testimonials = [] }: Home
                 <section className="relative overflow-hidden bg-espresso py-24 md:py-32">
                     <div className="mx-auto max-w-[1400px] px-5 md:px-8">
                         <Reveal>
-                            <p className="mb-12 text-[11px] font-semibold uppercase tracking-[0.28em] text-terra">
+                            <p className="mb-12 text-[11px] font-semibold tracking-[0.28em] text-terra uppercase">
                                 {str(t('home.testimonials.eyebrow'))}
                             </p>
                         </Reveal>
                         <div className="space-y-12">
                             {testimonials.slice(0, 3).map((item, i) => (
-                                <Reveal key={item.id ?? item.name} delay={i * 80}>
+                                <Reveal
+                                    key={item.id ?? item.name}
+                                    delay={i * 80}
+                                >
                                     <figure className="grid gap-6 border-t border-cream/10 pt-10 first:border-0 first:pt-0 lg:grid-cols-[1fr_260px] lg:gap-16">
                                         <blockquote className="font-display text-2xl leading-relaxed text-cream md:text-3xl">
                                             &ldquo;{item.quote}&rdquo;
@@ -423,8 +529,14 @@ export default function Home({ product, products = [], testimonials = [] }: Home
                                                 </span>
                                             )}
                                             <div>
-                                                <p className="font-semibold text-cream">{item.name}</p>
-                                                {item.role && <p className="mt-0.5 text-xs text-cream/50">{item.role}</p>}
+                                                <p className="font-semibold text-cream">
+                                                    {item.name}
+                                                </p>
+                                                {item.role && (
+                                                    <p className="mt-0.5 text-xs text-cream/50">
+                                                        {item.role}
+                                                    </p>
+                                                )}
                                             </div>
                                         </figcaption>
                                     </figure>
@@ -447,7 +559,7 @@ export default function Home({ product, products = [], testimonials = [] }: Home
                 <div className="relative mx-auto max-w-[1400px] px-5 md:px-8">
                     <Reveal>
                         <div className="mx-auto max-w-4xl rounded-sm border border-cream/15 bg-ink/60 px-8 py-12 text-center backdrop-blur-md md:px-14 md:py-16">
-                            <p className="mb-4 text-[11px] font-semibold uppercase tracking-[0.28em] text-terra">
+                            <p className="mb-4 text-[11px] font-semibold tracking-[0.28em] text-terra uppercase">
                                 {str(t('home.sample.eyebrow'))}
                             </p>
                             <h2 className="font-display text-3xl leading-[1.06] text-cream md:text-4xl">
@@ -457,10 +569,18 @@ export default function Home({ product, products = [], testimonials = [] }: Home
                                 {str(t('home.sample.body'))}
                             </p>
                             <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
-                                <Cta href={`/${locale}/contact`} variant="terra" className="px-8 py-3 text-base">
+                                <Cta
+                                    href={`/${locale}/contact`}
+                                    variant="terra"
+                                    className="px-8 py-3 text-base"
+                                >
                                     {str(t('home.sample.cta'))}
                                 </Cta>
-                                <Cta href={`/${locale}/export`} variant="outline-light" className="px-8 py-3 text-base">
+                                <Cta
+                                    href={`/${locale}/export`}
+                                    variant="outline-light"
+                                    className="px-8 py-3 text-base"
+                                >
                                     {str(t('home.sample.ctaSecondary'))}
                                 </Cta>
                             </div>

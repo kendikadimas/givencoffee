@@ -14,10 +14,10 @@ class ContentParser
 
         // If the string contains HTML tags from Quill rich text editor, parse HTML elements
         if ($text !== strip_tags($text)) {
-            $dom = new \DOMDocument();
+            $dom = new \DOMDocument;
             // Suppress warnings for HTML5 elements / fragments
             libxml_use_internal_errors(true);
-            $dom->loadHTML('<?xml encoding="utf-8" ?><div>' . $text . '</div>', LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD);
+            $dom->loadHTML('<?xml encoding="utf-8" ?><div>'.$text.'</div>', LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD);
             libxml_clear_errors();
 
             $container = $dom->getElementsByTagName('div')->item(0);
@@ -46,7 +46,7 @@ class ContentParser
                 }
             }
 
-            if (!empty($blocks)) {
+            if (! empty($blocks)) {
                 return $blocks;
             }
         }
