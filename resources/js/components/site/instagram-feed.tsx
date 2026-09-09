@@ -98,10 +98,12 @@ export function InstagramFeed() {
                 </div>
             </Reveal>
             <Reveal delay={120}>
-                <div
-                    ref={containerRef}
-                    className="mt-8 overflow-hidden rounded-sm border border-border bg-white p-2 min-h-[300px] [&>iframe]:h-[420px] [&>iframe]:w-full [&>iframe]:border-0"
-                />
+                <div className="mx-auto mt-8 max-w-xl md:max-w-2xl">
+                    <div
+                        ref={containerRef}
+                        className="overflow-hidden rounded-sm border border-border bg-white p-2 shadow-earth min-h-[300px] [&>iframe]:h-[450px] [&>iframe]:w-full [&>iframe]:border-0 [&_img]:max-h-[550px] [&_img]:w-auto [&_img]:mx-auto [&_img]:object-contain"
+                    />
+                </div>
             </Reveal>
         </section>
     );
