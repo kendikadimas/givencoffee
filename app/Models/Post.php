@@ -19,6 +19,9 @@ class Post extends Model
         'published_at' => 'datetime',
     ];
 
+    /**
+     * @return BelongsTo<Category, $this>
+     */
     public function category(): BelongsTo
     {
         return $this->belongsTo(Category::class);
@@ -32,29 +35,32 @@ class Post extends Model
     public function getLocalizedContent(?string $locale = null): array
     {
         $locale ??= app()->getLocale();
-        $raw = $this->content ?? [];
+        $raw = $this->getAttribute('content');
+
+        if (! is_array($raw)) {
+            return [];
+        }
 
         if (isset($raw[$locale]) && is_array($raw[$locale])) {
             return $raw[$locale];
         }
 
-        if (is_array($raw)) {
-            $blocks = [];
-            foreach ($raw as $block) {
-                if (is_array($block) && isset($block[$locale]) && is_array($block[$locale])) {
-                    $blocks[] = $block[$locale];
-                }
+        $blocks = [];
+        foreach ($raw as $block) {
+            if (is_array($block) && isset($block[$locale]) && is_array($block[$locale])) {
+                $blocks[] = $block[$locale];
             }
-
-            return $blocks;
         }
 
-        return [];
+        return $blocks;
     }
 
     public function localized(?string $locale = null): array
     {
         $locale ??= app()->getLocale();
+
+        /** @var Category|null $category */
+        $category = $this->category;
 
         return [
             'id' => $this->id,
@@ -65,7 +71,7 @@ class Post extends Model
             'cover_image' => $this->cover_image,
             'featured' => $this->featured,
             'published_at' => optional($this->published_at)->format('d M Y'),
-            'category' => $this->category?->localized($locale),
+            'category' => $category?->localized($locale),
         ];
     }
 }
