@@ -17,7 +17,7 @@ export default function AuthSimpleLayout({
                 className="relative flex flex-col items-center gap-3"
             >
                 <img
-                    src="/images/real/logo.png"
+                    src="/images/real/logo-cropped.png"
                     alt="Given Coffee"
                     className="h-48 w-auto object-contain"
                 />

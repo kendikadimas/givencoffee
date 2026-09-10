@@ -1,4 +1,4 @@
-import { Link } from '@inertiajs/react';
+﻿import { Link } from '@inertiajs/react';
 
 import { cn } from '@/lib/utils';
 
@@ -20,11 +20,11 @@ export function Logo({ href, className, variant = 'color' }: LogoProps) {
             <img
                 src={
                     variant === 'white'
-                        ? '/images/real/logo-white.png'
-                        : '/images/real/logo.png'
+                        ? '/images/real/logo-white-cropped.png'
+                        : '/images/real/logo-cropped.png'
                 }
                 alt="Given Coffee"
-                className="h-20 w-auto object-contain md:h-24"
+                className="h-28 w-auto object-contain md:h-36"
             />
         </Link>
     );
