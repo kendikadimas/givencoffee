@@ -24,7 +24,7 @@ export function Logo({ href, className, variant = 'color' }: LogoProps) {
                         : '/images/real/logo.png'
                 }
                 alt="Given Coffee"
-                className="h-[84px] w-auto object-contain md:h-[120px]"
+                className="h-[168px] w-auto object-contain md:h-[240px]"
             />
         </Link>
     );

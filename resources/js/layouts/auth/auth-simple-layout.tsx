@@ -19,7 +19,7 @@ export default function AuthSimpleLayout({
                 <img
                     src="/images/real/logo.png"
                     alt="Given Coffee"
-                    className="h-24 w-auto object-contain"
+                    className="h-48 w-auto object-contain"
                 />
                 <span className="sr-only">{title}</span>
             </Link>
