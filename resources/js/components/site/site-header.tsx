@@ -58,7 +58,7 @@ export function SiteHeader() {
                     : 'bg-gradient-to-b from-ink/60 via-ink/20 to-transparent text-cream backdrop-blur-[2px]',
             )}
         >
-            <div className="mx-auto flex h-16 max-w-[1400px] items-center justify-between px-5 md:h-[72px] md:px-8">
+            <div className="mx-auto flex h-20 max-w-[1400px] items-center justify-between px-5 md:h-24 md:px-8">
                 <Logo href={`/${locale}`} variant={dark ? 'white' : 'color'} />
 
                 <nav className="hidden items-center gap-8 lg:flex">
