@@ -5,11 +5,14 @@
 @section('content')
     <div class="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
         @php
+            $gaId = \App\Support\SiteSettings::all()['ga_id'] ?? 'G-HG7PSJTN85';
+            // Extract numeric property ID from measurement ID (G-XXXXXXX) for deep link
+            $gaUrl = 'https://analytics.google.com/analytics/web/';
             $cards = [
-                ['label' => 'Inquiries', 'value' => $inquiryCount, 'extra' => "$newInquiryCount new", 'route' => 'admin.inquiries.index'],
-                ['label' => 'Posts', 'value' => $postCount, 'extra' => '', 'route' => 'admin.posts.index'],
-                ['label' => 'Categories', 'value' => $categoryCount, 'extra' => '', 'route' => 'admin.categories.index'],
-                ['label' => 'Products', 'value' => $productCount, 'extra' => '', 'route' => 'admin.product.edit'],
+                ['label' => 'Inquiries', 'value' => $inquiryCount, 'extra' => "$newInquiryCount new", 'route' => 'admin.inquiries.index', 'external' => null],
+                ['label' => 'Posts', 'value' => $postCount, 'extra' => '', 'route' => 'admin.posts.index', 'external' => null],
+                ['label' => 'Categories', 'value' => $categoryCount, 'extra' => '', 'route' => 'admin.categories.index', 'external' => null],
+                ['label' => 'Products', 'value' => $productCount, 'extra' => '', 'route' => 'admin.product.edit', 'external' => null],
             ];
         @endphp
         @foreach ($cards as $card)
@@ -21,6 +24,24 @@
                 @endif
             </a>
         @endforeach
+
+        {{-- Google Analytics shortcut --}}
+        <a href="{{ $gaUrl }}" target="_blank" rel="noreferrer" class="group rounded-md border border-border bg-cream p-6 transition-shadow hover:shadow-sm">
+            <div class="flex items-center justify-between">
+                <p class="text-xs font-semibold uppercase tracking-[0.18em] text-coffee">Analytics</p>
+                <svg class="size-4 text-coffee transition-colors group-hover:text-terra" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+            </div>
+            {{-- Mini bar chart icon --}}
+            <div class="mt-3 flex items-end gap-1" aria-hidden="true">
+                <div class="w-2 rounded-sm bg-terra/30" style="height:12px"></div>
+                <div class="w-2 rounded-sm bg-terra/50" style="height:20px"></div>
+                <div class="w-2 rounded-sm bg-terra/70" style="height:16px"></div>
+                <div class="w-2 rounded-sm bg-terra" style="height:28px"></div>
+                <div class="w-2 rounded-sm bg-terra/60" style="height:22px"></div>
+                <div class="w-2 rounded-sm bg-terra/40" style="height:14px"></div>
+            </div>
+            <p class="mt-3 text-xs text-coffee group-hover:text-terra">Open Google Analytics →</p>
+        </a>
     </div>
 
     <div class="mt-10 grid gap-8 lg:grid-cols-2">
